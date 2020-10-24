@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<order order_id = "346712" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="order.xsd">
+    <client_info>
+        <name>Johanes</name>
+        <age>19</age>
+        <gender>male</gender>
+        <location>34-th street, 124 - New York, USA</location>
+    </client_info>
+    <order_info>
+        <order_structure>Coca-Cola, Pizza, Sandwich</order_structure>
+        <price>423</price>
+    </order_info>
+</order>

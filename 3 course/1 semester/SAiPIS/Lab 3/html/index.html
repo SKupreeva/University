@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <title>SAiPIS Lab 3, variant 13</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="/css/style_index.css">
+        <script src = "../myjs.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <p><center>Welcom, Dear Guest!</center></p>
+        </header>
+        <main>
+            <nav>
+              <form id="nav_butt">
+              <br><br><br>
+              <button class="button" id="getInfo" >
+                <a href="/html/results.html"onclick="window.open(this.href, '_self');return false;"><center>Results</center></a>
+              </button><br><br>
+              <button class="button" id="getInfo" >
+                <a href="/html/index.html"onclick="window.open(this.href, '_self');return false;"><center>Main Page</center></a>
+              </button>
+            </form>
+            </nav>
+            <article>
+                <div id="art">
+                  <h2><center>Please share your impressions about our store</center></h2>
+                  <div class="content-wrap">
+                    <form name = "myForm" id="myform">
+                      <div>
+                        <label for="name">Your first name:</label><br>
+                        <input type="text" id="name" name="name" pattern="^[а-яА-ЯеЁa-zA-Z-\s]+$" required><br><br>
+                      </div>
+                      
+                      <div>
+                        <label>Select your gender:</label><br>
+                          <input type="radio" id="female" checked name="gender" value="female">Female<br>
+                          <input type="radio" id="male" name="gender" value="male">Male<br>
+                          <input type="radio" id="other" name="gender" value="other">Other<br><br>
+                      </div>
+                      
+                      <div>
+                        <label for="age">Select your age:</label><br>
+                          <input type="number" id="age" name="num_age" min="0" max="120"><br><br>
+                      </div>
+                      
+                      <div>
+                        <label for="date">Select date of your last visit:</label><br>
+                          <input type="datetime-local" id="date" name="date"><br><br>
+                      </div>
+                      
+                      <div>
+                        <label for="advantages">What do you like in our store?</label><br>
+                          <input type="checkbox" id="cbox1" name="adv" value="Assortment">Assortment<br>
+                          <input type="checkbox" id="cbox2" name="adv" value="Service">Service<br>
+                          <input type="checkbox" id="cbox3" name="adv" value="Location">Location<br><br>
+                      </div>
+                      
+                      <div>
+                        <label for="rate">Please rate our store:</label><br>
+                          <select id="rate" name="rate" multiple>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                          </select><br><br>
+                      </div>
+                      <p>
+                        <button id="submit" type="submit" name="submitbutton" value="Submit" >Submit</button>
+                        <button type="reset" id="reset" name="resetbutton" value="Reset">Clear</button>
+                      </p>
+                    </form>
+                  </div>
+                  </div>
+              </div>
+            </article>
+            <aside>
+                <p>&nbsp;&nbsp;&nbsp;The global wine market is segmented on the basis of color 
+                  into red wine, rose wine, white wine, and other colors. 
+                  The red wine segment is expected to dominate the wine market. 
+                  Based on product type, the market is divided into still wine, 
+                  sparkling wine, dessert wine, and fortified wine. </p>
+                  <form>
+                    <input type="image" id="imf" src="/resource/form.jpg" width="200" height="100">
+                  </form>
+            </aside>
+        </main>
+        <footer>
+            <p><center>Survey</center></p>
+        </footer>
+    </body>
+</html>
