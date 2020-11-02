@@ -1,3 +1,0 @@
-interface order {
-    void print();
-}
