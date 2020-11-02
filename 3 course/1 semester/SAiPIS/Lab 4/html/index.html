@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <title>SAiPIS Lab 4, variant 13</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/4/css/style.css">
+        <script src = "../js/myscript.js" defer></script>
+    </head>
+    <body>
+        <div id="op">
+        <div id="forms">
+            <h2>Please select image properties:</h2>
+            <div class="content-wrap">
+                <form name = "myform" id="myform">                      
+                    <div>
+                      <label for="text">Text above image:</label><br>
+                        <select id="text" name="text">
+                            <option value="Pumpkin 1">Pumpkin 1</option>
+                            <option value="Pumpkin 2">Pumpkin 2</option>
+                            <option value="Pumpkin 3">Pumpkin 3</option>
+                        </select><br><br>
+                    </div>
+        
+                    <div>
+                      <label for="width">Image width:</label><br>
+                        <select id="width" name="width">
+                            <option value="300px">300px</option>
+                            <option value="200px">200px</option>
+                            <option value="100px">100px</option>
+                        </select><br><br>
+                    </div>
+        
+                    <div>
+                      <label for="bColor">Border color:</label><br>
+                        <select id="bColor" name="bColor">
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="grey">Grey</option>
+                        </select><br><br>
+                    </div>
+        
+                    <div>
+                      <label for="opacity">Image opacity:</label><br>
+                        <select id="opacity" name="opacity">
+                            <option value="100%">100%</option>
+                            <option value="50%">50%</option>
+                            <option value="0%">0%</option>
+                        </select><br><br>
+                    </div>
+        
+                    <div>
+                      <label for="name">Image name:</label><br>
+                        <select id="name" name="name">
+                            <option value="pumpkin1.jpg">pumpkin1.jpg</option>
+                            <option value="pumpkin2.jpg">pumpkin2.jpg</option>
+                            <option value="pumpkin3.jpg">pumpkin3.jpg</option>
+                        </select><br><br>
+                    </div>
+        
+                    <p>
+                      <button onclick="submitFunc()" id="submit">Submit</button>
+                    </p>
+
+                    <p>
+                        <button onclick="clearFunc()" id="clear">Clear</button>
+                    </p>
+
+                  </form>
+            </div>
+        </div>
+
+        <div class="img-wrap" id="imw">
+            <div id="imtext"></div>
+            <canvas id="drawingCanvas" style= "margin-top: -20px;"></canvas>
+        </div>
+
+        <div id="table_div">
+            <div id="openModal" class="modalDialog">
+                <table id="table" cellpadding="10" cellspacing="0" align="center" class = "font">
+                    <tr>
+                      <th>Text</th>
+                      <th>Width</th>
+                      <th>Border Color</th>
+                      <th>Opacity</th>
+                      <th>Name</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

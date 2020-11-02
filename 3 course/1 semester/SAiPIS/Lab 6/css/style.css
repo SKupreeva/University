@@ -1,0 +1,144 @@
+body {
+    width: 1550px;
+    height: 700px;
+    background: url("/6/resources/back.jpg") no-repeat;
+}
+
+#class1 {
+    position: relative;
+    z-index: 100;
+    bottom: 180px;
+    color: rgb(19, 17, 17);
+}
+
+.class2 {
+    position: relative;
+    z-index: 100;
+    bottom: 560px;
+    color: rgb(134, 13, 13);
+}
+
+#class3 {
+    position: relative;
+    z-index: 100;
+    bottom: 160px;
+    color: rgb(28, 54, 170);
+}
+
+.class4 {
+    position: relative;
+    z-index: 100;
+    bottom: 600px;
+    color: rgb(61, 148, 20);
+}
+
+#class5 {
+    position: relative;
+    z-index: 100;
+    bottom: 180px;
+    color: rgb(148, 138, 46);
+}
+
+.class6 {
+    position: relative;
+    z-index: 100;
+    bottom: 600px;
+    color: rgb(163, 71, 151);
+}
+
+
+#changeStyle, #changeText {
+    border: 2px solid rgb(19, 24, 71);
+    background: azure;
+    color: rgb(19, 24, 71);
+}
+
+#changeText {
+    margin-left: 1220px;
+}
+
+h1, h2, h6 {
+    text-align: center;
+}
+
+table {
+    width: 1500px;
+    height: 600px;
+    background: rgb(193, 226, 255, 0.7);
+    text-align: justify;
+    border-collapse: collapse;
+    border: 3px solid rgb(19, 24, 71);
+}
+
+td {
+    height: 600px;
+    border-collapse: collapse;
+    border: 3px solid rgb(19, 24, 71);
+}
+
+#mainText {
+    text-align: center;
+    color: rgb(219, 219, 255);
+    font-size: 30px;
+}
+
+.idNEW {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.hsNEW {
+    font-size: 16px;
+    font-style: normal;
+}
+
+.img2 {
+    opacity: 0%;
+    position: relative;
+    z-index: 0;
+    top: 40px;
+}
+
+.img2-spin, .img4-spin, .img6-spin {
+    animation: imgapear 20s linear 1;
+}
+
+.class2-spin, .class4-spin, .class6-spin {
+    animation: change_opacity 20s linear 1;
+}
+
+.img4 {
+    opacity: 0%;
+    z-index: 0;
+    top: 0;
+}
+
+.img6 {
+    opacity: 0%;
+    z-index: 0;
+    top: 0;
+}
+
+@keyframes change_opacity {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+@keyframes imgapear {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}
+
