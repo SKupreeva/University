@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MultiThreadedServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MultiThreadedServer</output-path>
+    <root id="archive" name="MultiThreadedServer_jar.jar">
+      <element id="archive" name="MultiThreadedServer.jar">
+        <element id="module-output" name="MultiThreadedServer" />
+      </element>
+    </root>
+  </artifact>
+</component>

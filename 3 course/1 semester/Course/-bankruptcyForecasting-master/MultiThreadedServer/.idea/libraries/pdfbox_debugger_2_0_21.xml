@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pdfbox-debugger-2.0.21">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../libs/pdfbox-debugger-2.0.21.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

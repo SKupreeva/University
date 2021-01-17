@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MultiThreadedServer1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer_jar/MultiThreadedServer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

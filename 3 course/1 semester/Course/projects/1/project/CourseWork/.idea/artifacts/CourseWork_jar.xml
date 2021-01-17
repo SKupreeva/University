@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CourseWork:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CourseWork_jar</output-path>
+    <root id="archive" name="CourseWork.jar">
+      <element id="module-output" name="CourseWork" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jfreechart-1.0.19.jar" path-in-jar="/" />
+      <element id="library" level="project" name="mysql-connector-java-5.1.37-bin" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jcommon-1.0.23.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

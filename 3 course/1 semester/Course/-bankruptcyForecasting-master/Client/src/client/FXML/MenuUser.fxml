@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="435.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controllers.MenuUserController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="610.0">
+         <items>
+            <Button fx:id="displayAccount" mnemonicParsing="false" onAction="#displayAccount" prefHeight="25.0" prefWidth="200.0" text="Кабинет Пользователя" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets left="20.0" />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="exit" alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="63.0" text="Выход">
+               <opaqueInsets>
+                  <Insets left="80.0" />
+               </opaqueInsets>
+            </Button>
+         </items>
+      </ToolBar>
+      <Button fx:id="getReports" layoutX="80.0" layoutY="82.0" mnemonicParsing="false" onAction="#display" text="Просмотр отчетов" />
+      <TableView fx:id="companies" layoutX="80.0" layoutY="132.0" prefHeight="220.0" prefWidth="319.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="160.00000762939453" text="Название" />
+          <TableColumn fx:id="address" prefWidth="158.00001525878906" text="Адрес" />
+        </columns>
+      </TableView>
+      <Button fx:id="addCompany" layoutX="440.0" layoutY="160.0" mnemonicParsing="false" onAction="#addCompany" text="Добавить компанию" />
+      <Button fx:id="calculate" layoutX="467.0" layoutY="204.0" mnemonicParsing="false" onAction="#display" text="Рассчитать" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="205.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controllers.ResultController">
+   <children>
+      <Label fx:id="result" layoutX="179.0" layoutY="37.0" text="Label" />
+      <Label fx:id="description" alignment="CENTER" layoutX="83.0" layoutY="67.0" prefHeight="54.0" prefWidth="220.0" text="Если H &lt; 0, банкротство неизбежено Если H &gt; 0, банкротство маловероятно" textAlignment="JUSTIFY" wrapText="true" />
+      <Button fx:id="exit" layoutX="177.0" layoutY="131.0" mnemonicParsing="false" onAction="#exit" text="OK" />
+      <Button fx:id="txt" layoutX="107.0" layoutY="164.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="173.0" text="Сохранить отчет .txt" />
+   </children>
+</AnchorPane>

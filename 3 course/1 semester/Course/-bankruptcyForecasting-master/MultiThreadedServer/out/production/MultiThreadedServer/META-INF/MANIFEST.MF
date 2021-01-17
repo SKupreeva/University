@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: commons-logging-1.1.2.jar java-json.jar pdfbox-2.0.17.jar 
+ fontbox-2.0.17.jar mysql-connector-java-8.0.18.jar pdfbox-debugger-2.
+ 0.17.jar
+Main-Class: Main
+

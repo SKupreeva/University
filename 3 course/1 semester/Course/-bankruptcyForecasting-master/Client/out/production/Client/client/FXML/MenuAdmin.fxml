@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controllers.MenuAdminController">
+   <children>
+       <ToolBar prefWidth="600.0">
+           <items>
+               <Button fx:id="exit" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#exit" text="Выход"/>
+               <Button fx:id="statistics" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveStatistics" text="Текстовый отчет по статистике"/>
+           </items>
+       </ToolBar>
+      <TableView fx:id="user" layoutX="24.0" layoutY="59.0" prefHeight="142.0" prefWidth="428.0">
+        <columns>
+          <TableColumn fx:id="login" prefWidth="82.00000762939453" text="Логин" />
+            <TableColumn fx:id="name" prefWidth="88.66668701171875" text="Имя" />
+            <TableColumn fx:id="surname" prefWidth="90.66661071777344" text="Фамилия" />
+            <TableColumn fx:id="phone" prefWidth="75.0" text="Телефон" />
+            <TableColumn fx:id="email" prefWidth="83.33336385091144" text="Email" />
+        </columns>
+      </TableView>
+      <Button fx:id="delete" layoutX="491.0" layoutY="68.0" mnemonicParsing="false" onAction="#deleteUser" text="Удалить" />
+      <Button fx:id="companiesUser" layoutX="485.0" layoutY="117.0" mnemonicParsing="false" onAction="#getCompanies" text="Компании" />
+      <Button fx:id="reports" layoutX="493.0" layoutY="161.0" mnemonicParsing="false" onAction="#getReports" text="Отчеты" />
+      <Label layoutX="24.0" layoutY="213.0" text="Добавить текущий курс доллара США:" />
+      <TextField fx:id="eur" layoutX="97.0" layoutY="239.0" />
+      <TextField fx:id="byn" layoutX="97.0" layoutY="274.0" />
+      <TextField fx:id="rub" layoutX="97.0" layoutY="309.0" />
+      <Label layoutX="35.0" layoutY="243.0" text="к EUR:" />
+      <Label layoutX="33.0" layoutY="278.0" text="к BYN:" />
+      <Label layoutX="33.0" layoutY="313.0" text="к RUB" />
+      <Button fx:id="addUSD" layoutX="97.0" layoutY="349.0" mnemonicParsing="false" onAction="#addUSD" text="Добавить" />
+      <TableView fx:id="companies" layoutX="293.0" layoutY="237.0" prefHeight="135.0" prefWidth="287.0">
+        <columns>
+          <TableColumn fx:id="nameComp" prefWidth="146.0" text="Название" />
+          <TableColumn fx:id="addressComp" prefWidth="140.66665649414062" text="Адрес" />
+        </columns>
+      </TableView>
+      <Label layoutX="293.0" layoutY="213.0" text="Компании выбранного пользователя:" />
+   </children>
+</AnchorPane>

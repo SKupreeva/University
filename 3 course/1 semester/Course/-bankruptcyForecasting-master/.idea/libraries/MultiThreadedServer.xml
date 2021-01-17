@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="MultiThreadedServer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/pdfbox-2.0.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/mysql-connector-java-8.0.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/MultiThreadedServer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/commons-logging-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/pdfbox-debugger-2.0.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/java-json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MultiThreadedServer/out/artifacts/MultiThreadedServer/fontbox-2.0.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

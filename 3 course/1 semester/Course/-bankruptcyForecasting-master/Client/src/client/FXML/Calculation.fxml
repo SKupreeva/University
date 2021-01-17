@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controllers.CalculationController">
+   <children>
+      <Label layoutX="64.0" layoutY="44.0" text="Введите коэффициенты для расчета формулы:" />
+      <GridPane layoutX="64.0" layoutY="69.0" prefHeight="278.0" prefWidth="536.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.33331298828125" minWidth="0.0" prefWidth="47.333353678385414" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="85.66664632161456" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.9999542236328" minWidth="10.0" prefWidth="355.33335367838544" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="27.666656494140625" minHeight="10.0" prefHeight="27.666656494140625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.666656494140625" minHeight="10.0" prefHeight="28.666676839192704" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="25.999989827473954" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="72.33333333333334" minHeight="10.0" prefHeight="29.333343505859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="58.33332316080728" minHeight="0.0" prefHeight="29.333323160807296" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="42.0" minHeight="2.66668701171875" prefHeight="29.333348592122405" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="46.66664123535156" minHeight="10.0" prefHeight="27.333343505859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="44.666656494140625" minHeight="10.0" prefHeight="38.00001017252603" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="42.6666564941406" minHeight="10.0" prefHeight="36.6666564941406" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="X1">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X3" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X4" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X5" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X6" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X7" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X8" GridPane.rowIndex="7">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="X9" GridPane.rowIndex="8">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="Нераспределенная прибыль прошлых лет / Баланс" GridPane.columnIndex="2">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="Выручка от реализации / Баланс" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="Прибыль до уплаты налогов / Собственный капитал" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="30.0" prefWidth="373.0" text="Денежный поток / Долгосрочные и краткосрочные обязательства" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="Долгосрочные обязательства / Баланс" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="Краткосрочные обязательства / Совокупные активы" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="log (материальные активы)" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="Оборотный капитал / Долгосрочные и краткосрочные обязательства" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label text="log (прибыль до налогообложения + проценты к уплате/выплаченные проценты)" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <TextField GridPane.columnIndex="1" fx:id="x1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="x2" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="x3" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="x4" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="x5" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="x6" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="x7" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" fx:id="x8" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" fx:id="x9" />
+         </children>
+      </GridPane>
+      <Button fx:id="calculate" layoutX="253.0" layoutY="360.0" mnemonicParsing="false" onAction="#calculate" text="Рассчитать" />
+      <RadioButton fx:id="usd" layoutX="121.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCheck" text="USD" />
+      <RadioButton fx:id="byn" layoutX="186.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCheck" text="BYN" />
+      <RadioButton fx:id="rub" layoutX="247.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCheck" text="RUB" />
+      <Label layoutX="64.0" layoutY="14.0" text="Валюта:" />
+      <RadioButton fx:id="eur" layoutX="309.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCheck" text="EUR" />
+   </children>
+</AnchorPane>

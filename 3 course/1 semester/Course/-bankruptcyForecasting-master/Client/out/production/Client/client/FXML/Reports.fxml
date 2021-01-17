@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="428.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controllers.ReportsController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="650.0">
+        <items>
+          <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Назад" />
+        </items>
+      </ToolBar>
+      <TableView fx:id="reports" layoutX="26.0" layoutY="107.0" prefHeight="190.0" prefWidth="561.0">
+        <columns>
+          <TableColumn fx:id="date" prefWidth="75.0" text="Дата" />
+          <TableColumn prefWidth="36.66667938232422" text="х1" fx:id="x1" />
+            <TableColumn prefWidth="52.66668701171875" text="х2" fx:id="x2" />
+            <TableColumn prefWidth="41.333343505859375" text="х3" fx:id="x3" />
+            <TableColumn prefWidth="48.66664123535156" text="х4" fx:id="x4" />
+            <TableColumn prefWidth="42.66668701171875" text="х5" fx:id="x5" />
+            <TableColumn prefWidth="46.6666259765625" text="х6" fx:id="x6" />
+            <TableColumn prefWidth="44.0" text="х7" fx:id="x7" />
+            <TableColumn prefWidth="46.6666259765625" text="х8" fx:id="x8" />
+            <TableColumn minWidth="0.0" prefWidth="40.666595458984375" text="х9" fx:id="x9" />
+            <TableColumn fx:id="result" prefWidth="82.666748046875" text="Результат" />
+        </columns>
+      </TableView>
+      <Button fx:id="search" layoutX="26.0" layoutY="60.0" mnemonicParsing="false" onAction="#searchByDate" text="Поиск по дате" />
+       <Button fx:id="filter" layoutX="150.0" layoutY="325.0" mnemonicParsing="false" onAction="#filterByResult" text="Фильтр по результату" />
+      <Button fx:id="sort" layoutX="413.0" layoutY="60.0" mnemonicParsing="false" onAction="#sortByResult" prefHeight="26.0" prefWidth="174.0" text="Сортировка по результату" />
+      <TextField fx:id="dateBy" layoutX="150.0" layoutY="60.0" prefHeight="26.0" prefWidth="188.0" promptText="Введите дату в формате дд.мм.гггг" />
+      <Button fx:id="diagrammaReports" layoutX="83.0" layoutY="375.0" mnemonicParsing="false" onAction="#openDiagrReports" text="Диаграмма по всем отчетам" />
+      <Button fx:id="diagrammaKoef" layoutX="380.0" layoutY="375.0" mnemonicParsing="false" onAction="#openDiagrKoef" text="Диаграмма по коэффициентам" />
+      <ChoiceBox fx:id="filterBy" layoutX="340.0" layoutY="325.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

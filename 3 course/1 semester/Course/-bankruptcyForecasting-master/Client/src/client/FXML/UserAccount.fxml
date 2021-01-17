@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane prefHeight="193.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controllers.UserAccountController">
+   <children>
+      <AnchorPane layoutX="5.0" prefHeight="231.0" prefWidth="331.0">
+         <children>
+            <GridPane layoutX="61.0" layoutY="51.0" prefHeight="171.0" prefWidth="215.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Имя" GridPane.rowIndex="1" />
+                  <Label text="Логин" GridPane.rowIndex="4" />
+                  <Label text="Пароль" GridPane.rowIndex="5" />
+                  <Label fx:id="name" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="login" prefHeight="17.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="password" prefHeight="28.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="Номер" GridPane.rowIndex="2" />
+                  <Label text="Фамилия" />
+                  <Label text="Email" GridPane.rowIndex="3" />
+                  <Label fx:id="surname" GridPane.columnIndex="1" />
+                  <Label fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <ToolBar prefHeight="35.0" prefWidth="331.0">
+               <items>
+                  <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Выход" />
+                  <Label text="Кабинет Пользователя">
+                     <opaqueInsets>
+                        <Insets left="40.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="90.0" />
+                     </padding>
+                  </Label>
+               </items>
+            </ToolBar>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
