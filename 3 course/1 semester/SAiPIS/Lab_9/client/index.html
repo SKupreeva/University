@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js' type='text/javascript'></script>
+</head>
+<body>
+  <div class="class1">
+  <div>
+    <legend class="text"><b>Select gender:</b></legend>
+    <select name="select" id="select"> 
+        <option value="Female" >Female</option> 
+        <option value="Male">Male</option>
+      </select>
+    </div>
+  
+  <div >
+    <legend class="text"> <b>Enter student's name:</b></legend>
+    <input type="text" size="40" id="name" pattern="^[а-яА-ЯеЁa-zA-Z-\s]+$" required >
+  </div>
+  <div >
+    <legend class="text"> <b>Enter adress:</b></legend>
+    <input type="text" size="40" id="adress" pattern="^[а-яА-ЯеЁa-zA-Z-\s]+$" required >
+  </div>
+ 
+    
+  <button id="add">Submitt</button>
+</div>
+</br>
+
+  
+  
+<h2>Students</h2>
+<div class="row">
+  <button id="show">Show all students</button>
+  <button id="change">Change by name</button>
+
+<button id="delete">Delete by name</button>
+</br>
+
+<button id="deleteNonFood">Delete all male student</button>
+
+</div>
+<div class="select">
+  <legend class="text"><b>Name: </b></legend>
+  <select name="products" id="products">
+    </select>
+  </div>
+  <div class="date">
+    <legend class="text"><b>Registration date: </b></legend>
+  <input type="date" id="date" name="products-date"
+  value="2020-01-01"
+  min="2001-01-01" max="2020-12-31">
+</div>
+
+<table id="tester">
+ 
+  <tbody id="tbody">
+    <th>Gender</th>
+    <th>Name</th>
+    <th>Adress</th>
+    <th>Date of registration</th>
+</tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"></script>
+        <script>
+             var socket = io.connect('http://localhost:5000');
+    socket.on('message', function(message) {
+    })
+
+  $('#show').click(function () 
+   {      
+     console.log("clicked");
+     socket.emit("message","sdf");
+     var tbody = document.getElementById('tester').getElementsByTagName('TBODY')[0];
+     var list=document.getElementById('products');  
+
+    socket.on('show', function(message) {
+      $("#tbody").empty();
+      list.innerHTML='';
+      rowCount = tbody.rows.length;
+     console.log(rowCount);
+     var rowTH = document.createElement("TR");
+     tbody.appendChild(rowTH);
+     var th1 = document.createElement("TH");
+    var th2 = document.createElement("TH");
+    var th3 = document.createElement("TH");
+    var th4 = document.createElement("TH");
+    rowTH.appendChild(th1);
+    rowTH.appendChild(th2);
+    rowTH.appendChild(th3);
+    rowTH.appendChild(th4);
+    th1.innerHTML="Gender";
+    th2.innerHTML="Name";
+    th3.innerHTML="Adress";
+    th4.innerHTML="Date of registration";
+       for(var i = 0; i < message.length; i++){
+        var row = document.createElement("TR");
+    tbody.appendChild(row);
+    var td1 = document.createElement("TD");
+    var td2 = document.createElement("TD");
+    var td3 = document.createElement("TD");
+    var td4 = document.createElement("TD");
+    row.appendChild(td1);
+    row.appendChild(td2);
+    row.appendChild(td3);
+    row.appendChild(td4);
+    td1.innerHTML=message[i].feature;
+    td2.innerHTML=message[i].name;
+    td3.innerHTML=message[i].adress;
+    td4.innerHTML=message[i].date;
+    var x=document.createElement("option");
+     list.appendChild(x);
+    x.text=message[i].name;
+     }
+  })
+  })
+
+
+  $('#add').click(function () 
+   {      
+     
+var now=new Date();
+var feat=document.getElementById('select').value;
+var name=document.getElementById('name').value;
+var num=document.getElementById('adress').value;
+var date=now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes();
+
+console.log(feat);
+console.log(name);
+console.log(num);
+console.log(date);
+let user = {feature: feat, name: name, adress: num, date: date};
+socket.emit("add",user);
+
+  })
+
+  $('#delete').click(function () 
+   {  
+    var feat=document.getElementById('products').value;
+    socket.emit("delete",feat);
+ 
+  })
+
+  $('#change').click(function () 
+  {      
+    var feat1=document.getElementById('products').value;
+    var now=new Date();
+var feat=document.getElementById('select').value;
+var num=document.getElementById('number').value;
+var date=now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes();
+
+console.log(feat);
+console.log(feat1);
+console.log(num);
+console.log(date);
+let user = {feature: feat, name: feat1, number: num, date: date};
+socket.emit("change",user);
+  })
+
+  $('#showOnDate').click(function () 
+  {      
+    let dateControl = document.querySelector('input[type="date"]');
+    console.log(dateControl.value);
+    socket.emit("showOnDate",dateControl.value);
+  })
+
+  $('#deleteNonFood').click(function () 
+   {  
+    socket.emit("deleteNonFood","Male");
+    location.reload();
+ 
+  })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" /><META NAME="save" CONTENT="history" /><title>Использование автоматически сформированных ключей</title><meta name="Language" content="ru-RU" /><meta name="System.Keywords" content="автоматически сформированные ключи" /><meta name="Microsoft.Help.Id" content="55a062c7-45ce-40e3-9a6f-4a0f4da4e2a6" /><meta name="Description" content="Драйвер Драйвер Microsoft JDBC для SQL Server поддерживает дополнительные API JDBC 3.0 для получения автоматически сформированных идентификаторов строк." /><meta name="Microsoft.Help.ContentType" content="Concepts" /><link rel="stylesheet" type="text/css" href="../local/Classic.css" /><script type="text/javascript" src="../scripts/EventUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/SplitScreen.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/Dropdown.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_manifold.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_feedBack.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CheckboxMenu.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CommonUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../local/script_main.js">&amp;nbsp;</script></head><body><div id="header"><table id="bottomTable" cellpadding="0" cellspacing="0"><tr><td align="left"><span id="headerBold">Использование автоматически сформированных ключей</span></td></tr></table><table id="gradientTable"><tr><td class="nsrBottom" background="../icons/gradient.gif" /></tr></table></div><div id="mainSection"><div id="mainBody"><div class="introduction"><p>Драйвер Драйвер Microsoft JDBC для SQL Server поддерживает дополнительные API JDBC 3.0 для получения автоматически сформированных идентификаторов строк. Главным преимуществом этой функции является доступность значений IDENTITY для приложения, которое обновляет таблицу базы данных, без необходимости отправлять запрос и вторично обращаться к серверу. </p><p>Поскольку SQL Server не поддерживает псевдостолбцы для идентификаторов, то обновления, в которых должна использовать функция автоматического создания ключей, должны работать с таблицей, содержащей столбец IDENTITY. SQL Server разрешает наличие только одного столбца IDENTITY в каждой таблице. Результирующий набор, возвращаемый методом <a href="a3325950-0e81-4ae8-aa0c-e1f6d371adcd.htm">getGeneratedKeys</a> класса <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>, содержит только один столбец с именем GENERATED_KEYS. Если созданные ключи запрашиваются для таблицы без столбца IDENTITY, то драйвер JDBC возвращает результирующий набор со значением NULL.</p><p>Для примера создайте следующую таблицу в образце базы данных SQL Server 2005 AdventureWorks.</p><div class="sampleCode"><span codeLanguage="other"><pre>CREATE TABLE TestTable 
+   (Col1 int IDENTITY, 
+    Col2 varchar(50), 
+    Col3 int);</pre></span></div><p>В следующем примере в функцию передается открытое соединение с образцом базы данных AdventureWorks, составляется инструкция SQL, которая добавляет данные к таблице, а затем инструкция выполняется и выводится значение столбца IDENTITY.</p><div name="snippetGroup"><div class="sampleCode"><span codeLanguage="Java"><pre>public static void executeInsertWithKeys(Connection con) {
+   try {
+      String SQL = "INSERT INTO TestTable (Col2, Col3) VALUES ('S', 50)";
+      Statement stmt = con.createStatement();
+      int count = stmt.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
+      ResultSet rs = stmt.getGeneratedKeys();
+
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int columnCount = rsmd.getColumnCount();
+      if (rs.next()) {
+         do {
+            for (int i=1; i&lt;=columnCount; i++) {
+               String key = rs.getString(i);
+               System.out.println("KEY " + i + " = " + key);
+            }
+         } while(rs.next());
+      }
+      else {
+         System.out.println("NO KEYS WERE GENERATED.");
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+
+</pre></span></div></div></div><span id="seeAlsoSpan"><h1 class="heading">См. также</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection" style=""><div class="seeAlsoStyle"><span sdata="link"><a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">Использование инструкций с драйвером JDBC</a></span></div></div></div><div id="footer" class="section"><span id="feedbackarea">Отправить <a href="javascript:SubmitFeedback('DevDocs@Microsoft.com','','','','8.0.12060.10000','%0\dСпасибо%20за%20отзыв!%20Отзывы%20помогают%20команде%20разработчиков%20в%20улучшении%20документации.%20Просматривая%20ваши%20отзывы,%20корпорация%20Майкрософт%20может%20спросить%20по%20электронной%20почте%20ваше%20мнение,%20касающееся%20определенного%20решения.%20Адрес%20электронной%20почты%20не%20используется%20в%20других%20целях%20и%20удаляется%20корпорацией%20Майкрософт%20после%20завершения%20просмотра.%0\AДополнительные%20сведения%20о%20политике%20конфиденциальности%20корпорации%20Майкрософт%20см.%20на%20странице%20http://privacy.microsoft.com/ru-ru/default.aspx.%0\A%0\d','Отзывы%20пользователей.');">отзыв</a> об этом разделе в Майкрософт.</span><span id="copyrightarea"><p><a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">© © Корпорация Майкрософт (Microsoft Corporation), 2012 г. Все права защищены.</a></p></span></div></div></body></html>

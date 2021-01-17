@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - coursework@localhost" uuid="9b1213d2-e06d-47ee-96be-f2ac648c9656">
+    <database-info product="MySQL" version="5.7.9-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="coursework"/>
+    <table name="date" schema="" catalog="coursework" type="TABLE">
+      <column name="idDate" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="day" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="month" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="year" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hours" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="minutes" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idDate"/>
+      <exported-key name="idDate" table="schedule" schema="" catalog="coursework" columns="idDate"/>
+    </table>
+    <table name="indexofprice" schema="" catalog="coursework" type="TABLE">
+      <column name="idIndexOfPrice" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="timeOfFlight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="indexOfPrice" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="idIndexOfPrice"/>
+      <exported-key name="idIndexOfPrice" table="schedule" schema="" catalog="coursework" columns="idPriceIndex"/>
+    </table>
+    <table name="passengers" schema="" catalog="coursework" type="TABLE">
+      <column name="idPassenger" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="secondName" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="patronymic" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="passportSeries" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="passportNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idPassenger"/>
+      <exported-key name="idPassenger" table="ticket" schema="" catalog="coursework" columns="idPassenger"/>
+    </table>
+    <table name="plane" schema="" catalog="coursework" type="TABLE">
+      <column name="idPlane" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="model" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="yearOfMade" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="countOfSeats" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="boardNumber" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idPlane"/>
+      <exported-key name="idPlane" table="schedule" schema="" catalog="coursework" columns="idPlane"/>
+    </table>
+    <table name="rout" schema="" catalog="coursework" type="TABLE">
+      <column name="idRout" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="startPoint" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="finalPoint" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cost" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hoursOfFlight" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="minutesOfFlight" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idRout"/>
+      <exported-key name="idRoute" table="schedule" schema="" catalog="coursework" columns="idRout"/>
+    </table>
+    <table name="schedule" schema="" catalog="coursework" type="TABLE">
+      <column name="idSchedule" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="flight" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="typeClass" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="idPlane" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="idRout" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="idPriceIndex" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="idDate" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idSchedule"/>
+      <foreign-key name="idDate" columns="idDate" ref-table="date" ref-schema="" ref-catalog="coursework" ref-columns="idDate" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="idIndexOfPrice" columns="idPriceIndex" ref-table="indexofprice" ref-schema="" ref-catalog="coursework" ref-columns="idIndexOfPrice" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="idPlane" columns="idPlane" ref-table="plane" ref-schema="" ref-catalog="coursework" ref-columns="idPlane" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="idRoute" columns="idRout" ref-table="rout" ref-schema="" ref-catalog="coursework" ref-columns="idRout" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="idSchedule" table="ticketsinsale" schema="" catalog="coursework" columns="idSchedule"/>
+      <index name="idDate_idx" unique="false" columns="idDate"/>
+      <index name="idIndexOfPrice_idx" unique="false" columns="idPriceIndex"/>
+      <index name="idPlane_idx" unique="false" columns="idPlane"/>
+      <index name="idRoute_idx" unique="false" columns="idRout"/>
+    </table>
+    <table name="ticket" schema="" catalog="coursework" type="TABLE">
+      <column name="idTicket" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="numberOfTicket" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="numberOfSeat" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idSale" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="registration" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="idUser" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="idPassenger" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idTicket"/>
+      <foreign-key name="idPassenger" columns="idPassenger" ref-table="passengers" ref-schema="" ref-catalog="coursework" ref-columns="idPassenger" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="idSale" columns="idSale" ref-table="ticketsinsale" ref-schema="" ref-catalog="coursework" ref-columns="idTicketsInSale" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="isUser" columns="idUser" ref-table="users" ref-schema="" ref-catalog="coursework" ref-columns="idUser" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="idPassenger_idx" unique="false" columns="idPassenger"/>
+      <index name="idSale_idx" unique="false" columns="idSale"/>
+      <index name="isUser_idx" unique="false" columns="idUser"/>
+    </table>
+    <table name="ticketsinsale" schema="" catalog="coursework" type="TABLE">
+      <column name="idTicketsInSale" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idSchedule" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="count" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="currentCount" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="cost" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idTicketsInSale"/>
+      <foreign-key name="idSchedule" columns="idSchedule" ref-table="schedule" ref-schema="" ref-catalog="coursework" ref-columns="idSchedule" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="idSale" table="ticket" schema="" catalog="coursework" columns="idSale"/>
+      <index name="idSchedule_idx" unique="false" columns="idSchedule"/>
+    </table>
+    <table name="users" schema="" catalog="coursework" type="TABLE">
+      <column name="idUser" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="login" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="status" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="secondName" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="patronymic" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="passportSeries" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="passportNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idUser"/>
+      <exported-key name="isUser" table="ticket" schema="" catalog="coursework" columns="idUser"/>
+    </table>
+  </data-source>
+</component>

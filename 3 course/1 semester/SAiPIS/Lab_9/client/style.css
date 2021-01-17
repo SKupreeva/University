@@ -1,0 +1,52 @@
+table, td, tr,th{
+    border: 2px solid white;
+    color:white;
+    margin-left: 30%;
+}
+
+table{
+    width: 69%;
+    margin-top: 1%;
+}
+
+html{
+    background-image: url("back.jpg");
+}
+
+.class1{
+    text-align: center;
+    color:white;
+    font-size: larger;
+    width: 23%;
+}
+button{
+    background-color: rgba(255, 255, 255, 0.5);
+    color:white;
+    margin-top: 2%;
+    width: 350px;
+
+}
+.row{
+    padding:3px;
+   margin-left: 29%;
+    text-align: center;
+    margin-top: -3%;
+}
+h2{
+    font-size: xx-large;
+    margin-left: 60%;
+    margin-top: -190px;
+    color:white;
+}
+.select{
+    color:white;
+    font-size: larger;
+    margin-top: 1%;
+    margin-left: 40%;
+}
+.date{
+    color:white;
+    font-size: larger;
+    margin-top: -3%;
+    margin-left: 60%;
+}

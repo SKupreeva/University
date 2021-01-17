@@ -1,0 +1,64 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" /><META NAME="save" CONTENT="history" /><title>Использование зеркального отображения базы данных (JDBC)</title><meta name="Language" content="ru-RU" /><meta name="System.Keywords" content="зеркальное отображение" /><meta name="Microsoft.Help.Id" content="4ff59218-0d3b-4274-b647-9839c4955865" /><meta name="Description" content="Зеркальное отображение базы данных представляет решение по повышению доступности базы данных и резервированию данных, реализуемое в основном программными средствами." /><meta name="Microsoft.Help.ContentType" content="Concepts" /><link rel="stylesheet" type="text/css" href="../local/Classic.css" /><script type="text/javascript" src="../scripts/EventUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/SplitScreen.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/Dropdown.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_manifold.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_feedBack.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CheckboxMenu.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CommonUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../local/script_main.js">&amp;nbsp;</script></head><body><div id="header"><table id="bottomTable" cellpadding="0" cellspacing="0"><tr><td align="left"><span id="headerBold">Использование зеркального отображения базы данных (JDBC)</span></td></tr></table><table id="gradientTable"><tr><td class="nsrBottom" background="../icons/gradient.gif" /></tr></table></div><div id="mainSection"><div id="mainBody"><div class="introduction"><p>Зеркальное отображение базы данных представляет решение по повышению доступности базы данных и резервированию данных, реализуемое в основном программными средствами. Драйвер Драйвер Microsoft JDBC для SQL Server реализует неявную поддержку зеркального отображения базы данных, поэтому разработчику не придется писать какой бы то ни было код или выполнять другие действия, если для базы данных настроено зеркальное отображение.</p><p>Зеркальное отображение базы данных, реализованное отдельно для каждой базы данных, хранит копию производственной базы данных SQL Server на резервном сервере. Это или горячий, или резервный сервер, в зависимости от конфигурации и состояния сеанса зеркального отображения базы данных. Сервер горячей замены поддерживает быструю отработку отказа без потери зафиксированных транзакций, а резервный сервер поддерживает принудительное обслуживание (с возможной потерей данных).</p><p>Рабочая база данных называется <span class="term">основной</span>, а резервная копия — <span class="term">зеркальной</span> базой данных. Основная и зеркальная базы данных должны размещаться в разных экземплярах SQL Server (экземпляры сервера) и по возможности их следует размещать на отдельных компьютерах.</p><p>Рабочий экземпляр сервера, который называется основным сервером, обменивается данными с резервным экземпляром сервера, который называется зеркальным сервером. Основной и зеркальный серверы выступают в роли участников в сеансе зеркального отображения базы данных. Если основной сервер дает сбой, зеркальный сервер делает свою базу данных основной с помощью процесса, который называется <span class="term">отработкой отказа</span>. Например, имеется два сервера-участника, Partner_A и Partner_B, при этом основная база данных изначально находится на сервере Partner_A (основной сервер), а зеркальная база данных — на сервере Partner_B (зеркальный сервер). Если сервер Partner_A переходит в режим вне сети, база данных на сервере Partner_B становится текущей основной базой данных. Когда сервер Partner_A возвращается в сеанс зеркального отображения, он становится зеркальным сервером, а его база данных — зеркальной базой данных.</p><p>В случае, когда сервер Partner_A вышел из строя без возможности восстановления, сервер Partner_C можно перевести в режим «в сети», чтобы работать в качестве зеркального сервера для Partner_B, который теперь играет роль основного. Однако в этой ситуации клиентское приложение должно содержать логику программирования, обеспечивающую обновление свойств строк соединения с учетом новых имен серверов, используемых в конфигурации зеркального отображения базы данных. В противном случае соединение с серверами может завершиться ошибкой.</p><p>Другие конфигурации зеркального отображения баз данных имеют разные уровни производительности и безопасности данных, а также поддерживают разные формы отработки отказа. Дополнительные сведения см. в разделе «Общие сведения о зеркальном отображении базы данных» электронной документации по SQL Server.</p></div><h1 class="heading">Замечания по программированию</h1><div id="sectionSection0" class="section" name="collapseableSection" style=""><p>Если сервер, на котором размещается основная база данных, дает сбой, в ответ на вызовы API клиентское приложение получает ошибки, которые указывают на потерю соединения с базой данных. В этом случае утрачиваются все незафиксированные изменения в базе данных и выполняется откат текущей транзакции. Приложение должно закрыть соединение (или освободить объект источника данных), а затем снова открыть его. После подключения новое соединение автоматически направляется на зеркальную базу данных, которая теперь играет роль основного сервера, а клиенту не нужно изменять строку соединения или объект источника данных.</p><p>Во время первоначального установления соединения основной сервер отправляет удостоверение партнера по обеспечению обработки отказа на клиент, который будет использоваться при отработке отказа. Когда приложение пытается установить первоначальное соединение с отказавшим основным сервером, клиенту неизвестно удостоверение партнера по обеспечению обработки отказа. Чтобы дать клиентам возможность выхода из такой ситуации, предоставляются свойство строки соединения failoverPartner и метод источника данных <a href="5310b7c2-9d10-474f-ad3a-218fe5da694b.htm">setFailoverPartner</a> (необязательно), с помощью которых клиент может самостоятельно указать удостоверение партнера по обеспечению обработки отказа. Свойство клиента используется только в этом сценарии и не используется, если доступен основной сервер. </p><div style="margin: .5em 1.5em .5em 1.5em"><b></b><p>Если свойство failoverPartner указывается в строке соединения или в объекте источника данных, то также необходимо установить свойство databaseName. В противном случае будет вызвано исключение. Если свойства failoverPartner и databaseName не заданы явно, то приложение не будет запускать отработку отказа в случае отказа основного сервера базы данных. Иначе говоря, автоматическое перенаправление работает только для соединений, где явно указаны свойства failoverPartner и databaseName. Дополнительные сведения о свойстве failoverPartner и других свойствах строки соединения см. в разделе <span sdata="link"><a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">Задание свойств соединения</a></span>.</p></div><p>Если сервер-партнер по обеспечению обработки отказа, указанный клиентом, не является сервером, который играет роль партнера по обеспечению отработки отказа для указанной базы данных, и если указанный сервер (база данных) участвует в зеркальном отображении, то соединение будет отклонено сервером. Класс <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a> содержит метод <a href="885f927f-9c48-42e0-a7fb-fd936d2b8130.htm">getFailoverPartner</a>, но этот метод возвращает только имя партнера по обеспечению обработки отказа, указанное в строке соединения или с помощью метода <b>setFailoverPartner</b>. Получить имя фактического партнера по обеспечению обработки отказа можно с помощью следующей инструкции Transact-SQL:</p><div class="sampleCode"><span codeLanguage="other"><pre>SELECT m.mirroring_role_DESC, m.mirroring_state_DESC,
+m.mirroring_partner_instance FROM sys.databases as db,
+sys.database_mirroring AS m WHERE db.name = 'MirroringDBName'
+AND db.database_id = m.database_id</pre></span></div><div style="margin: .5em 1.5em .5em 1.5em"><b></b><p>Эту инструкцию нужно изменить в соответствии с именем зеркальной базы данных.</p></div><p>Рекомендуется кэшировать сведения об участниках для обновления строки соединения или разработать план повторных попыток в случае, если первая попытка установления соединения завершается ошибкой.</p></div><h1 class="heading">Пример</h1><div id="sectionSection1" class="section" name="collapseableSection" style=""><p>В следующем примере сначала выполняется попытка подключения к основному серверу. Если эта попытка завершается созданием исключения, выполняется попытка подключения к зеркальному серверу, который мог стать новым основным сервером. Заметьте, что в строке соединения используется свойство failoverPartner.</p><div class="sampleCode"><span codeLanguage="other"><pre>import java.sql.*;
+
+public class clientFailover {
+
+   public static void main(String[] args) {
+
+      // Create a variable for the connection string.
+      String connectionUrl = "jdbc:sqlserver://serverA:1433;" +
+         "databaseName=AdventureWorks;integratedSecurity=true;" +
+         "failoverPartner=serverB";
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      Statement stmt = null;
+
+      try {
+         // Establish the connection to the principal server.
+         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+         con = DriverManager.getConnection(connectionUrl);
+         System.out.println("Connected to the principal server.");
+
+         // Note that if a failover of serverA occurs here, then an
+         // exception will be thrown and the failover partner will
+         // be used in the first catch block below.
+
+         // Create and execute an SQL statement that inserts some data.
+         stmt = con.createStatement();
+
+         // Note that the following statement assumes that the 
+         // TestTable table has been created in the AdventureWorks
+         // sample database.
+         stmt.executeUpdate("INSERT INTO TestTable (Col2, Col3) VALUES ('a', 10)");
+      }
+
+      // Handle any errors that may have occurred.
+      catch (SQLException se) {
+         try {
+            // The connection to the principal server failed,
+            // try the mirror server which may now be the new
+            // principal server.
+            System.out.println("Connection to principal server failed, " +
+            "trying the mirror server.");
+            con = DriverManager.getConnection(connectionUrl);
+            System.out.println("Connected to the new principal server.");
+            stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO TestTable (Col2, Col3) VALUES ('a', 10)");
+         }
+         catch (Exception e) {
+            e.printStackTrace();
+         }
+      }
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      // Close the JDBC objects.
+      finally {
+         if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+      }
+   }
+}</pre></span></div></div><span id="seeAlsoSpan"><h1 class="heading">См. также</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection" style=""><div class="seeAlsoStyle"><span sdata="link"><a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">Соединение с SQL Server с помощью драйвера JDBC</a></span></div></div></div><div id="footer" class="section"><span id="feedbackarea">Отправить <a href="javascript:SubmitFeedback('DevDocs@Microsoft.com','','','','8.0.12060.10000','%0\dСпасибо%20за%20отзыв!%20Отзывы%20помогают%20команде%20разработчиков%20в%20улучшении%20документации.%20Просматривая%20ваши%20отзывы,%20корпорация%20Майкрософт%20может%20спросить%20по%20электронной%20почте%20ваше%20мнение,%20касающееся%20определенного%20решения.%20Адрес%20электронной%20почты%20не%20используется%20в%20других%20целях%20и%20удаляется%20корпорацией%20Майкрософт%20после%20завершения%20просмотра.%0\AДополнительные%20сведения%20о%20политике%20конфиденциальности%20корпорации%20Майкрософт%20см.%20на%20странице%20http://privacy.microsoft.com/ru-ru/default.aspx.%0\A%0\d','Отзывы%20пользователей.');">отзыв</a> об этом разделе в Майкрософт.</span><span id="copyrightarea"><p><a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">© © Корпорация Майкрософт (Microsoft Corporation), 2012 г. Все права защищены.</a></p></span></div></div></body></html>

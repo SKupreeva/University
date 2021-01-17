@@ -1,0 +1,158 @@
+html,body{
+    width: 100%;
+    margin: 0 0 0 0;
+   background-image: url("/back.jpg");
+   height: 100%;
+}
+
+.flexclass{
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.info{
+    text-indent: 1.5em; /* Отступ первой строки */
+    text-align: justify;
+    color: rgb(255, 255, 255);
+    margin-left: 5%;
+    margin-top: 1%;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding:10px;
+}
+.Apple{
+    flex-basis: 60%;
+    text-indent: 1.5em; /* Отступ первой строки */
+    text-align: justify;
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-left: 5%;
+    padding: 15px;
+}
+.infoApple{
+    flex-basis: 20%;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    margin-left: 5%;
+    width: 80%;
+    padding: 15px;
+    border: 2px solid rgb(255, 253, 253);
+    
+}
+
+.Samsung{
+    flex-basis: 60%;
+    text-indent: 1.5em; /* Отступ первой строки */
+    text-align: justify;
+    color: rgb(190, 205, 255);
+    border: 1px solid rgba(1, 5, 238, 0.5);
+    margin-left: 5%;
+    width: 80%;
+    font-size: x-large;
+    padding: 15px;}
+.infoSamsung{
+        flex-basis: 20%;
+        color: rgb(190, 205, 255);
+        font-weight: bolder;
+        margin-left: 5%;
+        width: 80%;
+        padding: 15px;
+        border: 2px solid rgba(1, 5, 238, 0.5);
+}
+
+.Nokia{
+    flex-basis: 60%;
+    text-indent: 1.5em; /* Отступ первой строки */
+    text-align: justify;
+    color: rgb(188, 255, 188);
+    border: 1px solid rgba(83, 255, 60, 0.5);
+    margin-left: 5%;
+    font-size: x-large;
+    width: 80%;
+    padding: 15px;
+}
+.infoNokia{
+    flex-basis: 20%;
+    color:rgb(188, 255, 188);
+    font-weight: bolder;
+    margin-left: 5%;
+    width: 80%;
+    padding: 15px;
+    border: 2px solid rgba(83, 255, 60, 0.5);
+}
+
+.Sony{
+    flex-basis: 60%;
+    text-indent: 1.5em; /* Отступ первой строки */
+    text-align: justify;
+    color: rgb(255, 254, 187);
+    border: 1px solid rgba(255, 215, 105, 0.5);
+    margin-left: 5%;
+    font-size: x-large;
+    width: 80%;
+    padding: 15px;
+}
+.infoSony{
+    flex-basis: 20%;
+    color: rgb(255, 254, 187);
+    font-weight: bolder;
+    margin-left: 5%;
+    width: 80%;
+    padding: 15px;
+    border: 2px solid rgba(255, 215, 105, 0.5);
+}
+
+.button{
+    background-color: rgba(53, 53, 52);
+    color: rgb(233, 233, 233);
+    font-weight: bolder;
+    font-size: xx-large;
+    border: 2px solid black; 
+}
+
+.button-raw{
+text-align: center;
+vertical-align: middle;
+
+margin-left: 20%;
+}
+.white{
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    margin-left: 110%;
+    width: 300px;
+ 
+}
+
+.image1{
+  
+    text-align: center;
+    padding: 10px;
+}
+img{
+    height: 300px;
+    width: 400px;
+}
+.SamsungImage{
+    text-align: center;
+}
+.color{
+    color: rgb(255, 255, 255);
+    font-size: larger;
+}
+.back{
+    background-color: rgba(0, 0, 0, 0.9);
+    margin-left: 10%;
+   width: 80%;
+   margin-top: 5%;
+   height: 3600px;
+    position: absolute;
+}
+.flexclass1{
+    display: flex;
+    flex-wrap: wrap;
+}
+.img1{
+    margin-left: 100%;
+}

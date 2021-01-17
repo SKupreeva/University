@@ -1,0 +1,26 @@
+{
+  "name": "mongoapp",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "express": "^4.16.0",
+    "mongodb": "^3.6.3",
+    "requirejs": "^2.3.6",
+    "socket.io": "^3.0.4"
+  },
+  "description": "<!--lint disable no-literal-urls-->\r <p align=\"center\">\r   <a href=\"https://nodejs.org/\">\r     <img\r       alt=\"Node.js\"\r       src=\"https://nodejs.org/static/images/logo-light.svg\"\r       width=\"400\"\r     />\r   </a>\r </p>",
+  "main": "mongoclient.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "me",
+  "license": "UNLICENSED"
+}

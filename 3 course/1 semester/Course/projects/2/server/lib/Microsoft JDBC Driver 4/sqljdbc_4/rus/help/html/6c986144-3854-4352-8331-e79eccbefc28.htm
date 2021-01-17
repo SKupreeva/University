@@ -1,0 +1,84 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" /><META NAME="save" CONTENT="history" /><title>Образец считывания данных большого объема</title><meta name="Language" content="ru-RU" /><meta name="System.Keywords" content="образцы адаптивной буферизации, настройки адаптивной буферизации" /><meta name="Microsoft.Help.Id" content="6c986144-3854-4352-8331-e79eccbefc28" /><meta name="Description" content="В этом образце приложения, использующем драйвер Драйвер Microsoft JDBC для SQL Server, показано, как получить из базы данных SQL Server большое значение одного столбца с помощью метода getCharacterStream." /><meta name="Microsoft.Help.ContentType" content="Samples" /><link rel="stylesheet" type="text/css" href="../local/Classic.css" /><script type="text/javascript" src="../scripts/EventUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/SplitScreen.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/Dropdown.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_manifold.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_feedBack.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CheckboxMenu.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CommonUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../local/script_main.js">&amp;nbsp;</script></head><body><div id="header"><table id="bottomTable" cellpadding="0" cellspacing="0"><tr><td align="left"><span id="headerBold">Образец считывания данных большого объема</span></td></tr></table><table id="gradientTable"><tr><td class="nsrBottom" background="../icons/gradient.gif" /></tr></table></div><div id="mainSection"><div id="mainBody"><div class="introduction"><p>В этом образце приложения, использующем драйвер Драйвер Microsoft JDBC для SQL Server, показано, как получить из базы данных SQL Server большое значение одного столбца с помощью метода <a href="c70e210f-0288-47cc-9268-a29c45979729.htm">getCharacterStream</a>.</p><p>Файл кода для этого образца имеет имя readLargeData.java и находится в следующей папке:</p><p>&lt;<i>каталог установки</i>&gt;\sqljdbc_&lt;<i>версия</i>&gt;\&lt;<i>язык</i>&gt;\help\samples\adaptive</p></div><h1 class="heading">Требования</h1><div id="requirementsTitleSection" class="section" name="collapseableSection" style=""><p>Для запуска этого образца приложения также потребуется доступ к образцу базы данных SQL Server 2005 AdventureWorks. Необходимо также включить в путь к классу файл sqljdbc.jar или sqljdbc4.jar. Если в пути к классу не указан файл sqljdbc.jar или sqljdbc4.jar, то образец приложения вызовет распространенное исключение «Класс не найден». Дополнительные сведения о задании пути к классу см. в разделе <span sdata="link"><a href="6faaf05b-8b70-4ed2-9b44-eee5897f1cd0.htm">Использование драйвера JDBC</a></span>.</p><div style="margin: .5em 1.5em .5em 1.5em"><b></b><p>Драйвер Драйвер Microsoft JDBC для SQL Server содержит файлы библиотек классов sqljdbc.jar и sqljdbc4.jar, которые используются в зависимости от применяемых параметров среды выполнения Java (JRE). Дополнительные сведения о том, какие файлы JAR следует выбрать, см. в разделе <span sdata="link"><a href="447792bb-f39b-49b4-9fd0-1ef4154c74ab.htm">Системные требования для драйверов JDBC</a></span>.</p></div></div><h1 class="heading">Пример</h1><div id="exampleSection" class="section" name="collapseableSection" style=""><p>В следующем примере образец кода будет использоваться для соединения с базой данных SQL Server 2005 AdventureWorks. Затем образец кода создает образцы данных и обновляет таблицу Production.Document с помощью параметризированного запроса. </p><p>Кроме того, в образце кода показано, как получить режим адаптивной буферизации с помощью метода <a href="a9a9ffdd-7ce3-4e0a-907c-34d6a54e6865.htm">getResponseBuffering</a> класса <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>. Обратите внимание, что, начиная с версии драйвера JDBC 2.0, свойство соединения responseBuffering по умолчанию имеет значение «adaptive».</p><p>Затем в образце кода выполняется инструкция SQL с объектом <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>, а возвращенные ею данные помещаются в объект <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a>.</p><p>Наконец, выполняется проход по строкам данных, содержащимся в результирующем наборе, и выполняется доступ к некоторым из этих данных с помощью метода <a href="c70e210f-0288-47cc-9268-a29c45979729.htm">getCharacterStream</a>. </p><div name="snippetGroup"><div class="sampleCode"><span codeLanguage="Java"><pre>import java.sql.*;
+import java.io.*;
+import com.microsoft.sqlserver.jdbc.SQLServerStatement;
+
+public class readLargeData {
+	
+   public static void main(String[] args) {
+
+      // Create a variable for the connection string.
+      String connectionUrl = 
+    	    "jdbc:sqlserver://localhost:1433;" +
+            "databaseName=AdventureWorks;integratedSecurity=true;";
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      Statement stmt = null;
+      ResultSet rs = null;  
+
+      try {
+          // Establish the connection.
+          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+          con = DriverManager.getConnection(connectionUrl);
+
+          // Create test data as an example.
+          StringBuffer buffer = new StringBuffer(4000);
+          for (int i = 0; i &lt; 4000; i++) 
+              buffer.append( (char) ('A'));
+	    	
+          PreparedStatement pstmt = con.prepareStatement(
+                    "UPDATE Production.Document " +
+                     "SET DocumentSummary = ? WHERE (DocumentID = 1)");
+
+          pstmt.setString(1, buffer.toString());
+          pstmt.executeUpdate();
+          pstmt.close();
+
+          // In adaptive mode, the application does not have to use a server cursor 
+          // to avoid OutOfMemoryError when the SELECT statement produces very large
+          // results. 
+
+          // Create and execute an SQL statement that returns some data.
+          String SQL = "SELECT Title, DocumentSummary " +
+	      		       "FROM Production.Document";
+          stmt = con.createStatement();
+
+          // Display the response buffering mode.
+          SQLServerStatement SQLstmt = (SQLServerStatement) stmt;          
+          System.out.println("Response buffering mode is: " +
+             SQLstmt.getResponseBuffering());              
+
+          // Get the updated data from the database and display it.
+          rs = stmt.executeQuery(SQL);
+	                  
+          while (rs.next()) {
+               Reader reader = rs.getCharacterStream(2);
+               if (reader != null)
+               {
+                  char output[] = new char[40];
+                  while (reader.read(output) != -1)
+                  {
+                      // Do something with the chunk of the data that was                       
+                      // read.
+                  }		 		 
+
+                  System.out.println(rs.getString(1) + 
+                      " has been accessed for the summary column.");
+                  // Close the stream.
+                  reader.close();
+               }
+          }
+      }
+      // Handle any errors that may have occurred.
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      finally {
+          if (rs != null) try { rs.close(); } catch(Exception e) {}
+          if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+    	  if (con != null) try { con.close(); } catch(Exception e) {}
+      }
+   }
+}
+
+</pre></span></div></div></div><span id="seeAlsoSpan"><h1 class="heading">См. также</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection" style=""><div class="seeAlsoStyle"><span sdata="link"><a href="5b93569f-eceb-4f05-b49c-067564cd3c85.htm">Работа с большими объемами данных</a></span></div></div></div><div id="footer" class="section"><span id="feedbackarea">Отправить <a href="javascript:SubmitFeedback('DevDocs@Microsoft.com','','','','8.0.12060.10000','%0\dСпасибо%20за%20отзыв!%20Отзывы%20помогают%20команде%20разработчиков%20в%20улучшении%20документации.%20Просматривая%20ваши%20отзывы,%20корпорация%20Майкрософт%20может%20спросить%20по%20электронной%20почте%20ваше%20мнение,%20касающееся%20определенного%20решения.%20Адрес%20электронной%20почты%20не%20используется%20в%20других%20целях%20и%20удаляется%20корпорацией%20Майкрософт%20после%20завершения%20просмотра.%0\AДополнительные%20сведения%20о%20политике%20конфиденциальности%20корпорации%20Майкрософт%20см.%20на%20странице%20http://privacy.microsoft.com/ru-ru/default.aspx.%0\A%0\d','Отзывы%20пользователей.');">отзыв</a> об этом разделе в Майкрософт.</span><span id="copyrightarea"><p><a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">© © Корпорация Майкрософт (Microsoft Corporation), 2012 г. Все права защищены.</a></p></span></div></div></body></html>

@@ -1,0 +1,49 @@
+﻿<html xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" /><META NAME="save" CONTENT="history" /><title>Образец источника данных</title><meta name="Language" content="ru-RU" /><meta name="System.Keywords" content="образец источника данных" /><meta name="Microsoft.Help.Id" content="b4a933ee-f2c6-4e0d-a96d-6dd061abf759" /><meta name="Description" content="Этот образец приложения Драйвер Microsoft JDBC для SQL Server показывает, как установить соединение с базой данных SQL Server через объект источника данных." /><meta name="Microsoft.Help.ContentType" content="Samples" /><link rel="stylesheet" type="text/css" href="../local/Classic.css" /><script type="text/javascript" src="../scripts/EventUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/SplitScreen.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/Dropdown.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_manifold.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/script_feedBack.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CheckboxMenu.js">&amp;nbsp;</script><script type="text/javascript" src="../scripts/CommonUtilities.js">&amp;nbsp;</script><script type="text/javascript" src="../local/script_main.js">&amp;nbsp;</script></head><body><div id="header"><table id="bottomTable" cellpadding="0" cellspacing="0"><tr><td align="left"><span id="headerBold">Образец источника данных</span></td></tr></table><table id="gradientTable"><tr><td class="nsrBottom" background="../icons/gradient.gif" /></tr></table></div><div id="mainSection"><div id="mainBody"><div class="introduction"><p>Этот образец приложения Драйвер Microsoft JDBC для SQL Server показывает, как установить соединение с базой данных SQL Server через объект источника данных. Приложение также демонстрирует извлечение данных из базы данных SQL Server с помощью хранимой процедуры.</p><p>Файл кода для этого образца имеет имя connectDS.java и находится в следующей папке:</p><p>&lt;<i>каталог установки</i>&gt;\sqljdbc_&lt;<i>версия</i>&gt;\&lt;<i>язык</i>&gt;\help\samples\connections</p></div><h1 class="heading">Требования</h1><div id="requirementsTitleSection" class="section" name="collapseableSection" style=""><p>Чтобы запустить этот образец приложения, необходимо в пути к классу указать файл sqljdbc.jar или файл sqljdbc4.jar. Если в пути к классу не указан файл sqljdbc.jar или sqljdbc4.jar, то образец приложения вызовет распространенное исключение «Класс не найден». Также потребуется доступ к образцу базы данных SQL Server 2005 AdventureWorks. Дополнительные сведения о задании пути к классу см. в разделе <span sdata="link"><a href="6faaf05b-8b70-4ed2-9b44-eee5897f1cd0.htm">Использование драйвера JDBC</a></span>.</p><div style="margin: .5em 1.5em .5em 1.5em"><b></b><p>Драйвер Драйвер Microsoft JDBC для SQL Server содержит файлы библиотек классов sqljdbc.jar и sqljdbc4.jar, которые используются в зависимости от применяемых параметров среды выполнения Java (JRE). Дополнительные сведения о том, какие файлы JAR следует выбрать, см. в разделе <span sdata="link"><a href="447792bb-f39b-49b4-9fd0-1ef4154c74ab.htm">Системные требования для драйверов JDBC</a></span>.</p></div></div><h1 class="heading">Пример</h1><div id="exampleSection" class="section" name="collapseableSection" style=""><p>В следующем примере образец кода задает различные свойства соединения с помощью методов задания объекта <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a>, затем вызывает метод <a href="a15ee185-f433-4915-9c75-5ebd90c758fd.htm">getConnection</a> объекта <b>SQLServerDataSource</b>, чтобы вернуть объект <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a>.</p><p>Далее образец кода создает объект <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> с помощью метода <a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall</a> объекта <b>SQLServerConnection</b>, после чего вызывается метод <a href="dfff3358-f391-4af6-84c1-b94c029f506d.htm">executeQuery</a> для выполнения хранимой процедуры.</p><p>Наконец, для прохода по результатам, возвращенным хранимой процедурой, используется объект <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a>, возвращенный из метода <b>executeQuery</b>.</p><div class="sampleCode"><span codeLanguage="other"><pre>import java.sql.*;
+import com.microsoft.sqlserver.jdbc.*;
+
+public class connectDS {
+
+   public static void main(String[] args) {
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      CallableStatement cstmt = null;
+      ResultSet rs = null;
+
+      try {
+         // Establish the connection. 
+         SQLServerDataSource ds = new SQLServerDataSource();
+         ds.setUser("UserName");
+         ds.setPassword("*****");
+         ds.setServerName("localhost");
+         ds.setPortNumber(1433); 
+         ds.setDatabaseName("AdventureWorks");
+         con = ds.getConnection();
+
+         // Execute a stored procedure that returns some data.
+         cstmt = con.prepareCall("{call dbo.uspGetEmployeeManagers(?)}");
+         cstmt.setInt(1, 50);
+         rs = cstmt.executeQuery();
+
+         // Iterate through the data in the result set and display it.
+         while (rs.next()) {
+            System.out.println("EMPLOYEE: " + rs.getString("LastName") + 
+               ", " + rs.getString("FirstName"));
+            System.out.println("MANAGER: " + rs.getString("ManagerLastName") + 
+               ", " + rs.getString("ManagerFirstName"));
+            System.out.println();
+         }
+      }
+
+      // Handle any errors that may have occurred.
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      finally {
+         if (rs != null) try { rs.close(); } catch(Exception e) {}
+         if (cstmt != null) try { cstmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+         System.exit(1);
+      }
+   }
+}</pre></span></div></div><span id="seeAlsoSpan"><h1 class="heading">См. также</h1></span><div id="seeAlsoSection" class="section" name="collapseableSection" style=""><div class="seeAlsoStyle"><span sdata="link"><a href="ce43cc20-46a3-42ff-a3fb-75ad1ed10e08.htm">Соединение и извлечение данных</a></span></div></div></div><div id="footer" class="section"><span id="feedbackarea">Отправить <a href="javascript:SubmitFeedback('DevDocs@Microsoft.com','','','','8.0.12060.10000','%0\dСпасибо%20за%20отзыв!%20Отзывы%20помогают%20команде%20разработчиков%20в%20улучшении%20документации.%20Просматривая%20ваши%20отзывы,%20корпорация%20Майкрософт%20может%20спросить%20по%20электронной%20почте%20ваше%20мнение,%20касающееся%20определенного%20решения.%20Адрес%20электронной%20почты%20не%20используется%20в%20других%20целях%20и%20удаляется%20корпорацией%20Майкрософт%20после%20завершения%20просмотра.%0\AДополнительные%20сведения%20о%20политике%20конфиденциальности%20корпорации%20Майкрософт%20см.%20на%20странице%20http://privacy.microsoft.com/ru-ru/default.aspx.%0\A%0\d','Отзывы%20пользователей.');">отзыв</a> об этом разделе в Майкрософт.</span><span id="copyrightarea"><p><a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">© © Корпорация Майкрософт (Microsoft Corporation), 2012 г. Все права защищены.</a></p></span></div></div></body></html>
