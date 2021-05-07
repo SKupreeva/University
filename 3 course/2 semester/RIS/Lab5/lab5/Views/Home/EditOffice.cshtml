@@ -1,0 +1,33 @@
+﻿@model OfficeEntity
+
+@{
+    ViewData["Title"] = "EditOffice";
+}
+
+<h2>Изменение офиса</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Офис</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <p>
+            Название офиса <br />
+            @Html.EditorFor(model => model.name)
+        </p>
+
+        <p>
+            Адрес офиса <br />
+            @Html.EditorFor(model => model.adress)
+        </p>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Вернуться к списку офисов", "OfficeDetails")
+</div>

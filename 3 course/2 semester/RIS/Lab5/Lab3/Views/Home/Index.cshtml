@@ -1,0 +1,41 @@
+﻿@model HomeViewModel
+
+<form method="get">
+    <p>
+        <label>Enter please id of customer:</label>
+        <input type="number" name="customerId" min="1" max="2147483647"/>
+    </p>
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+</form>
+
+@{
+    if (Model.Customer == null)
+    {
+        <h4>ID you entered does't exist! Please try again.</h4>
+    }
+    else
+    {
+        <h2>Customer Id = @Model.Customer.id</h2>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>FirstAddress</th>
+                <th>SecondAddress</th>
+                <th>FaxNumber</th>
+            </tr>
+            @{
+                <tr>
+                    <td>@Model.Customer.name</td>
+                    <td>@Model.Customer.surname</td>
+                    <td>@Model.Customer.firstAddress</td>
+                    <td>@Model.Customer.secondAddress</td>
+                    <td>@Model.Customer.officeId</td>
+                </tr>
+            }
+        </table>
+    }
+}

@@ -1,0 +1,18 @@
+﻿table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    text-align: center;
+    padding: 2px;
+}
+
+td {
+    width: auto;
+    border: 2px solid black;
+    text-align: center;
+    padding: 2px;
+}
+th {
+    border: 2px solid black;
+    text-align: center;
+    margin: 2px;
+}

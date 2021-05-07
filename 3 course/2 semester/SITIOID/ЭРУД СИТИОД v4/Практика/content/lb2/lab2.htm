@@ -1,0 +1,97 @@
+﻿<html>
+   <head></head>
+   <body>
+      <h1>Лабораторная работа №2 Использование средств BI для построения отчетов</h1>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><br></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><b>Задание.</b></FONT></P>
+      <ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>Загрузить SpagoBIServer и выполнить следующие пункты.</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере нужно прописать в Functionalities Management папку, где будет лежать проект.</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере в Resources прописать DataSource: указать по аналогии с предыдущей лаб работой путь к bidb.</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере в Resources прописать DataSet. Там в закладке Dataset type  указывать Query. Сам запрос вставить в соответствующую область (запрос искать в файле dash1.txt). </FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере в Documents Development добавить (смотреть справа) Create Document и там Generic Document. Там  внизу в Templates выбрать xml файл, описывающий свойства графика sales_comparison.xml.</FONT></P></li>
+      </ol>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><b>Ход выполнения</b></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Прежде, чем преступить к работе, необходимо сгененироваь базу данных при помощи sql-скрипта. Далее создадим xml-файл или найдём готовый, аналогичный файлу на рисунке 1.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture1.jpg" NAME="Рисунок 1" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 1.  Исходный xml-документ</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Далее в пункте меню Profiling выберем пункт Functionalities Managemen (рисунок 2) и, кликнув левой кнопкой мыши по узлу Functionalities, добавим новую папку (рисунок 3)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture2.jpg" NAME="Рисунок 2" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 2.  Меню Profiling</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture3.jpg" NAME="Рисунок 3" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 3.  Добавление новой папки</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Свойства папки настраиваются, как показано на рисунке 4.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture4.jpg" NAME="Рисунок 4" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 4.  Настройка свойств новой папки</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Далее во вкладке Resources выбираем пункт DataSet, как на рисунке 5</FONT></P>
+
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture5.jpg" NAME="Рисунок 5" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 5.  Выбор настроек DataSet</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь надо настроить DataSet так, как указано на рисунках 6-8. Если всё было сделано правильно, то на вкладке Preview можно получить выборку данных из БД, как на рисунке 9.</FONT></P>
+
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture6.jpg" NAME="Рисунок 6" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 6.  Общие настройки DataSet</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture7.jpg" NAME="Рисунок 7" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 7. Настройки выборки DataSet</FONT></P>
+       <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture8.jpg" NAME="Рисунок 8" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 8.  Прочие настройки DataSet</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture9.jpg" NAME="Рисунок 9" ALIGN=BOTTOM BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 9.  Preview полученного DataSet</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь надо зайти во вкладку Document Developmen, где будет видна созданная папка, и создать новый документ (рисунок 10).</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture10.jpg" NAME="Рисунок 10" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 10.  Создание нового документа в папке</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Для документа необходимо выполнить настройки, как на рисунке 11. При этом в правой части экрана в дереве папок должна быть выбрана созданная Вами папка. DataSet выбирается из списка и должен соответствовать созданному Вами. После всех изменений не забудьте сохранить документ.</FONT></P>
+
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture11.jpg" NAME="Рисунок 11" ALIGN=BOTTOM BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 11.  Настройки нового документа</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Вернёмся в пункт Document Development, в Вашей попке должен появиться документ, как на рисунке 12.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture12.jpg" NAME="Рисунок 12" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 12.  Документ в папке</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Откройте его, кликнув по нему левой кнопкой мыши.</FONT></P>
+
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture13.jpg" NAME="Рисунок 13" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 13.  Полученный чат на основе данных из БД</FONT></P>
+
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Чтобы получить представление в виде гистограммы, необходимо изменить исходный xml-файл, заменив тип на column, как на рисунке 14.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture14.jpg" NAME="Рисунок 14" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 14.  Отредактированный файл </FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После этого достаточно открыть документ, кликнув по ярлычку в виде глаза, и подгрузить изменённый xml-файл в качестве template. При повторном открытии документа, он будет иметь вид, как на рисунке 14.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture15.jpg" NAME="Рисунок 15" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 15.  Новое представление данных в виде гистограммы</FONT></P>
+</body>
+</html>

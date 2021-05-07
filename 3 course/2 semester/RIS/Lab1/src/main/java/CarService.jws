@@ -1,0 +1,38 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class CarService {
+
+    public String findCrashByRepairType(String repairType) {
+        String crash = "No crash with such repair type found", line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("D:/repair.txt"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(", ");
+                if (repairType.equals(data[1])) {
+                    crash = data[0];
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            crash = "Sorry, serer error occurred";
+        }
+        return crash;
+    }
+
+    public String findRepairTypeByCrash(String crash) {
+        String repairType = "No repair type with such crash found", line;
+        try (BufferedReader reader = new BufferedReader(new FileReader("D:/repair.txt"))) {
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(", ");
+                if (crash.equals(data[0])) {
+                    repairType = data[1];
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            repairType = "Sorry, serer error occurred";
+        }
+        return repairType;
+    }
+}

@@ -1,0 +1,444 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;174700000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;174700000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<FONT COLOR="#000000"><FONT SIZE=4><B>Архитектура Hadoop, экосистема Hadoop. Архитектура ядра
+	Hadoop, основные компоненты. Использование PIG, HIVE в Hadoop. HDFS. Обработка данных с
+	использованием Storm. </B></FONT></FONT>
+</P>
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Hadoop</b> – это программная платформа (Software Framework) построения распределенных
+		приложений для массово-параллельной обработки (<i>Massive Parallel
+			Processing, MPP</i>) данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>На февраль 2012 года проект Apache Hadoop включает в себя 3 подпроекта:</FONT></P>
+<ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4><i>Hadoop Common</i>: библиотеки и сценарии управления распределенной
+			обработкой, файловой системой, развертывания инфраструктуры;</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4><i>Hadoop Distributed File System</i>: распределенная файловая система,
+			которая обеспечивает высокоскоростной доступ к данным приложения;</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4><i>Hadoop MapReduce</i>: программная платформа для распределенной
+			обработки больших объемов данных на вычислительном кластере.</FONT></P></li>
+</ol>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>К основным техническим характеристикам платформы Hadoop относят:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Масштабируемость</i>: платформа масштабируется линейно
+			и позволяет хранить и обрабатывать петабайты данных;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Устойчивость к сбоям</i>: все хранящиеся
+			данные избыточны, все проваленные задания по обработке данных перезапускаются;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Кроссплатформенность</i>:
+			библиотеки Hadoop написаны (в основном) на Java, и могут выполняться в любой
+			операционной системе, поддерживающей JVM (Java VM);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+	<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Автоматическое распараллеливание выполнения
+		задачи</i>: Hadoop создает «чистые» абстракции для разработчиков, снимая с них работу по
+		планированию, контролю и агрегатированию результатов параллельной обработки
+		данных.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Архитектура ядра Hadoop, основные компоненты</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Apache Hadoop — это фреймворк для обработки больших объемов данных. Он предоставляет
+		абстракции позволяющие разработчикам не беспокоиться о многих типичных проблемах распределенных
+		вычислений. Hadoop берет на себя распределение подзадач по узлам и сбор результатов. Благодаря
+		встроенному дублированию данных, он может относительно легко продолжать работу в случае сбоев,
+		когда отдельные узлы ломаются или становятся недоступными по причине сетевых проблем. Другими
+		словами, Hadoop освобождает разработчиков от необходимости изобретать велосипед при проведении
+		распределенных вычислений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Два основных компонента Hadoop:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>MapReduce — распределенные
+			вычисления,</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>HDFS — распределенная
+			файловая система.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture3.jpg" NAME="Рисунок 3" ALIGN=BOTTOM WIDTH=435 HEIGHT=300 BORDER=0><br><br>
+	</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Рассмотрим архитектуру и принципы работы <b>Hadoop MapReduсе</b> более подробно.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Архитектура MapReduce построена по принципу «главный —
+		подчиненные» (master — workers). В качестве главного выступает сервер
+		JobTracker, раздающий задания подчиненным узлам кластера и контролирующий
+		их выполнение.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Обработка данных подразделяется на следующие этапы:</FONT></P>
+<ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Запуск приложения: передача кода приложения на главный
+			(master) и подчиненные узлы (workers);</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Мастер назначает конкретные задачи (Map или Reduce)
+			и распределяет части входных данных по вычислительным узлам
+			(workers);</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Map-узлы читают назначенные им входные
+			данные и начинают их обработку;</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Map-узлы локально сохраняют промежуточные результаты: каждый
+			узел сохраняет полученный результат на локальные диски;</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Reduce-узлы читают промежуточные данные с
+			Map-узлов и выполняют Reduce обработку данных;</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Reduce-узлы сохраняют итоговые
+			результаты в выходные файлы, обычно в HDFS.</FONT></P></li>
+</ol>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>HDFS (Hadoop Distributed File System) — это другая часть фреймворка Hadoop,
+		его файловая система. Она спроектирована так, чтобы быть масштабируемой и поддерживать
+		хранение очень больших объемов данных. Она устойчива к сбоям, позволяет делать откаты
+		состояний и эффективно работает с MapReduce. Hadoop переносит вычисления к данным и
+		минимизирует нагрузку на сеть.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Узел в Hadoop может быть главным (master node) и подчиненным
+		(slave node). На главном узле находятся компоненты: JobTracker, NameNode,
+		TaskTracker и DataNode. На подчиненном узле мгут быть только TaskTracker
+		and DataNode. JobTracker берет входящие MapReduce задачи и распределяет
+		их между TaskTraker-ами. NameNode поддерживает индекс данных. Он предоставляет
+		информацию о том где найти определенные данные и направляет запрос к
+		соответствующему DataNodes.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture4.jpg" NAME="Рисунок 4" ALIGN=BOTTOM WIDTH=435 HEIGHT=400 BORDER=0><br><br>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Экосистема платформы Hadoop</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Центральное место экосистемы Hadoop занимает хранилище данных (Data Storage).
+		Hadoop поддерживает хранение как неструктурированных данных с распределенной файловой
+		системе HDFS, так и структурированных данных в нереляционной базе данных HBase.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture5.jpg" NAME="Рисунок 5" ALIGN=BOTTOM WIDTH=435 HEIGHT=400 BORDER=0><br><br>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Фреймворк MapReduce отвечает за планирование задач (Job Scheduling)
+		и выполнение распределенных вычислений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Делать запросы к хранящимся на Hadoop-кластере наборам данных с помощью
+		следующих инструментов, входящих в экосистему Hadoop: Pig, Hive (имеет свой SQL
+		-подобный язык запросов HiveQL). Для передачи большого количества данных, хранящихся
+		на кластере Hadoop, и хранилищами структурированных данных, такие как, реляционные
+		базы данных, разработан инструмент Sqoop.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Компоненты, относящейся к взаимодействию (Integration Services), управлению
+		(Management), отвечающие за доступ к данным (Data Access), а также нереляционная БД
+		HBase представлены отдельными проектами Apache Foundation (часто верхнего уровня).
+		Подробную информацию о них можно узнать в соответствующих разделах сайта <i>Apache Software Foundation</i>.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Одним из ключевых компонентов платформы Hadoop является файловая система HDFS.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Hadoop Distributed File System</i> (HDFS) - распределенная файловая система,
+		которая обеспечивает высокоскоростной доступ к данным приложения.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Концепции и структура HDFS</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>HDFS является иерархической файловой системой. Таким образом, в
+		HDFS имеется поддержка вложение каталогов. В каталоге может располагаться
+		ноль или более файлов, а также любое количество подкаталогов.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>HDFS состоит из следующих обязательных компонентов:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Узел имен (NameNode)</b> – программный
+			код, выполняющийся, в общем случае, на выделенной машине экземпляра HDFS и отвечающий
+			за файловые операции (работу с <i>метаданными</i>);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Узел данных (DataNode)</b> – программный код,
+			как правило, выполняющийся выделенной машине экземпляра HDFS и отвечающий за операции уровня
+			файла (работа с <i>блоками данных</i>).</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture6.jpg" NAME="Рисунок 6" ALIGN=BOTTOM WIDTH=435 HEIGHT=400 BORDER=0><br><br>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Использование PIG, HIVE в Hadoop</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Итак, начнем с Hive. Его основная фишка — это SQL-подобный язык запросов HQL
+		(Hive query language). Он позволяет работать с данными привычным нам способом, так, как
+		если бы мы работали с обычной реляционной базой. Скрипты можно запускать как через консоль,
+		так и с помощью командной строки.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Hive это:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>SQL-подобный язык HQL</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Интерактивная консоль</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Встроенные функции агрегации</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Поддержка пользовательских функций (UDF)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Данные — как таблица</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Hive умеет работать:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с текстовыми файлами (можно задать
+			разграничительный символ)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с сжатыми текстовыми файлами (Gzip, Bzip)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с массивами, словарями,
+			объединениями (union)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>имеет огромное количество встроенных
+			функций для работы с: коллекциями, датами, строками, JSON-ми</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с математическими функциями
+			(округление, логарифмы, корни, тригонометрия)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с функциями агрегации (sum, min, max, avg...)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Если всего перечисленного выше не
+			хватило, то можно использовать кастомные функции,
+			а также мэпперы и редьюсеры (python, java)</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Hive плюсы:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Старый, добрый SQL
+			— хорош для описания выборок. Да и просто все его знают.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>MapReduce под капотом. Уходит много оверхеда,
+			связанного с обвязкой вокруг MR. Описание моделей данных, входных и выходных
+			форматов, цепочек MR задач.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Интерактивность. Хорош для анализа
+			данных в разных срезах.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Быстрота разработки</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Отсутствие зависимостей,
+			компиляции, сборки (всё это скрыто)</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Hive Минусы:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Не всё можно уложить в парадигму HQL</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Это хорошо ложится в голову, при
+			простых выборках. Но с ростом сложности становится всё труднее и труднее их понимать.
+			Особенно если выборку писали не вы</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Поговорим теперь о Pig. Он основан на процедурном языке Pig
+		Latin. Чтобы в нем разобраться нужно потратить какое то время.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Давайте разберемся и походу выясним отличия от Hive</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Pig это:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>язык Pig Latin</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Интерактивная консоль</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Встроенные функции агрегации</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Поддержка пользовательских функций (UDF)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Данные — в виде структур (Tuple, Bag)</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Pig умеет работать:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с текстовыми файлами (можно задать
+			разграничительный символ)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с сжатыми текстовыми файлами (Gzip, Bzip)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с массивами, словарями,
+			объединениями (union)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>имеет огромное количество встроенных
+			функций для работы с: коллекциями, датами, строками, JSON-ми</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с математическими функциями
+			(округление, логарифмы, корни, тригонометрия)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>с функциями агрегации (sum, min, max, avg...)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Если всего перечисленного выше не
+			хватило, то можно использовать кастомные функции,
+			а также мэпперы и редьюсеры (python, java)</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Как видите, Pig умеет всё то же, что и Hive. Отличие лишь в представлении
+		данных и в языке. Но именно это отличие выводит работу с Pig совершенно на другой уровень.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Данный фреймфорк работает со специальными структурами данных — Tuple и Bag.</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Tuple</b> — упорядоченный набор полей.
+			Структура, к полям которой можно обращаться по индексу и/или имени.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Bag</b> — коллекция
+			(множество) Tuple.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Pig плюсы:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Процедурный подход. Упорядоченность!
+			Язык позволяет разбивать логику на блоки, каждый шаг можно развернуто
+			описывать комментариями.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Формирование MapReduce под капотом.
+			Уходит много оверхеда, связанного с обвязкой вокруг MR. Описание моделей данных,
+			входных и выходных форматов, цепочек MR задач.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Интерактивность. Хорош для
+			анализа данных в разных срезах.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Быстрота разработки.
+			Отсутствие зависимостей, сборки</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Pig Минусы:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Не всё можно уложить
+			в язык Pig Latin</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Pig Latin вместе со
+			структурами данных более сложен, в отличии от HQL</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Для UDF используется Jython.
+			Это может ограничить в использовании некоторых библиотек.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Nearreal-time системы обработки данных  (Storm, Spark)</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Storm -  система, ориентированная на распределенную обработку больших потоков
+		данных в реальном времени. Storm работает не со статическими данными, а с потоковыми,
+		которые поступают непрерывно.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Storm ― это вычислительная система без хранения данных. Это позволяет
+		использовать Storm в различных контекстах независимо от того, поступают ли данные
+		динамически из нетрадиционных источников или хранятся в базе данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Ключевые особенности Storm</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Масштабируемость</b>. Задачи обработки
+			распределяются по узлам кластера и потокам на каждом узле</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Гарантированная защита
+			от потери данных</b>.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Простота
+			развертывания и сопровождения</b></FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Восстановление после сбоев</b>.
+			(Если сбой - переадресуются на другие обработчики.)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Возможность написания компонентов
+			не только на Java</b>. ( за счет  json объектов)</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Элементы Storm:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Tuple</i> - Элемент представления данных.
+			По умолчанию может содержать Long, Integer, Short, Byte, String, Double, Float,
+			Boolean и byte[] поля. Пользовательские типы должны быть сериализуемыми.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Stream</i> - Последовательность из Tuple. </FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Spout</i> - Поставщик
+			данных для Stream. Получает данные из внешних источников, формирует из
+			них Tuple и отправляет в Stream. Может отправлять Tuple в несколько
+			разных Stream. </FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Bolt</i> - Обработчик
+			данных. На вход поступают Tuple. На выход отправляет 0 или более Tuple.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Topology</i> - Совокупность
+			элементов с описанием их взаимосвязи. Осуществляет транспорт
+			Tuple между элементами Spout и Bolt. </FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Примеры задач</b>: использования Storm в Twitter -
+		получение информации о тенденциях. Twitter извлекает новые тенденции
+		из потока твитов и отслеживает их на местном и национальном уровне. Это
+		означает, что как только история зарождается, алгоритм поиска тенденций в
+		темах Twitter обнаруживает ее. Этот алгоритм реального времени реализован в
+		Storm как система непрерывного анализа данных Twitter.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Apache Spark</i> представляет собой систему организации
+		параллельной обработки данных, написанную на языке программирования
+		Scala. Spark обрабатывает данные, хранящиеся в оперативной памяти. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Архитектура: Фреймворк состоит из четырех функциональных
+		модулей, работающих в пределах одного кластера данных. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>1 - SparkSQL – дает возможность интеграции SQL-запросов
+		со всеми без исключения элементами фреймворка.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>2 - SparkStreaming, позволяет пользователю писать и запускать приложения
+		на Scala и Java в потоковом режиме. Приложение сможет одновременно работать как с
+		потоками данных, так и осуществлять пакетную обработку. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>3 –  библиотека машинного обучения MLib </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>4 - GraphX для работы с графами и графо-параллельных вычислений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Видео материалы</FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/8tzCrau5JuE" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/A02SRdyoshM" width="560"></iframe>
+        <iframe id="I3" allowfullscreen="" frameborder="0" height="315" name="I3" src="https://www.youtube.com/embed/V_AvsqwqLBA" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

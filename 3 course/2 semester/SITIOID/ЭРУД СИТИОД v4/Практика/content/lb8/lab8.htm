@@ -1,0 +1,886 @@
+﻿<html>
+   <head>
+       <style type="text/css">
+           .auto-style1
+           {
+               font-size: xx-large;
+           }
+ table.MsoNormalTable
+	{font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+           }
+           .auto-style2
+           {
+               font-size: large;
+           }
+       </style>
+   </head>
+   <body>
+      <h1>Лабораторная работа №8 NoSQL базы данных</h1>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><br></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+          &nbsp;</P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+          <i><span class="auto-style2">Задание</span><span class="auto-style1">:</span><FONT SIZE=4> </FONT> </i></P>
+       <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+           &nbsp;</P>
+       <div data-canvas-width="683.397" style="left: 127.44px; top: 273.981px; font-size: 23.4px; font-family: sans-serif; transform: scaleX(0.938732);">
+           Используя СУБД MongoDB, разработайте базу данных, предназначенную&nbsp; для хранения логов веб-сервера. Лог включает в себя следующие поля: адрес ресурса (URL), IP-адрес пользовательского компьютера, отметка времени начала просмотра ресурса, длительность просмотра ресурса.</div>
+       <div style="page: WordSection1;">
+           <p class="MsoNormal">
+               <b style="mso-bidi-font-weight:normal"><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">Краткая справка по СУБД MongoDB<o:p></o:p></span></b></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><i style="mso-bidi-font-style:normal"><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">СУБД MongoDB </span></i><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">реализует документ-ориентированную модель данных.<i style="mso-bidi-font-style:normal"> До-кумент </i>(см.<i style="mso-bidi-font-style:normal"> </i>пример на </span><a href="#page13"><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:windowtext;text-decoration:none;text-underline:none">рис. 7) </span></a><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">– это набор, состоящий из имен и значений свойств. Значение может быть простым типом, массивом или другим документом.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;
+line-height:99%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Ключевое отличие реляционной модели от документ-ориентированной в том, что при использовании реляционной модели данные раскладываются по нескольким таблицам с фиксированной структурой, что приводит к необходи-мости выполнения соединений для работы с взаимосвязанными данными из разных таблиц. Документ-ориентированная модель представляет данные в агрегированной форме, то есть работает с объектом как с единым целым: все данные, относящиеся к сущности, хранятся в одном объекте базы данных.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;
+line-height:99%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Второе важное отличие – структура объектов в MongoDB не декларируются схемой данных. Наборы объектов хранятся в виде коллекций и каждый объект может иметь собственную структуру, но данный подход редко встречается на практике. Обычно объекты в коллекции имеют схожую структуру с небольши-ми отличиями. Преимуществом беccхемного подхода является высокая гибкость при изменении и уточнении предметной области.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <!--[if gte vml 1]><v:line
+ id="_x0000_s1026" style='position:absolute;left:0;text-align:left;z-index:-251655680'
+ from="-5.6pt,.75pt" to="462.2pt,.75pt" o:allowincell="f" o:userdrawn="t"
+ strokeweight=".48pt" xmlns:v="urn:schemas-microsoft-com:vml"/><![endif]--><![if !vml]><![endif]><!--[if gte vml 1]><v:line id="_x0000_s1027"
+ style='position:absolute;left:0;text-align:left;z-index:-251654656' from="-5.4pt,.5pt"
+ to="-5.4pt,302.8pt" o:allowincell="f" o:userdrawn="t" strokeweight=".16931mm" xmlns:v="urn:schemas-microsoft-com:vml"/><![endif]--><![if !vml]><span style="mso-ignore:vglayout;position:absolute;z-index:251661819;left:0px;
+margin-left:-8px;margin-top:0px;width:2px;height:405px">
+               <img height="405" src="file:///C:/Users/radac/AppData/Local/Temp/msohtmlclip1/02/clip_image002.gif" v:shapes="_x0000_s1027" width="2" /></span><![endif]><!--[if gte vml 1]><v:line id="_x0000_s1028"
+ style='position:absolute;left:0;text-align:left;z-index:-251653632' from="462pt,.5pt"
+ to="462pt,302.8pt" o:allowincell="f" o:userdrawn="t" strokeweight=".16931mm" xmlns:v="urn:schemas-microsoft-com:vml"/><![endif]--><![if !vml]><![endif]><span style="font-size:9.5pt;
+mso-bidi-font-size:10.0pt;line-height:99%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:Arial">{<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">_id: ObjectID(&#39;4bd9e8el7cefd644108961bb&#39;, title: &#39;Adventures in Databases&#39;,</span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">url: &#39;http://example.com/databases.txt&#39; author: &#39;msmith&#39;,<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">vote.count: 20,<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:94%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">tags: [&#39;databases&#39;, &#39;mongodb&#39;, &#39;indexing&#39;], image:<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">{<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">url: &#39;http://example.com/db.jpg&#39;, caption: &#39;&#39;,<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:96%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">type: &#39;jpg&#39;, size: 75381, data: &quot;Binary&quot;<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">},<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">comments:<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">[<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">{<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">user: &#39;bjones&#39;,<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">text: &#39;Interesting article!&#39;<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">},<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">{<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">user: &#39;blogger&#39;,<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">text: &#39;related article at http://example.com/db/db.txt&#39;<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">}<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">]<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">}<o:p></o:p></span></p>
+       </div>
+       <div style="page: WordSection2;">
+           <p class="MsoNormal">
+               <a name="page14"></a><span style="font-size:14.0pt;
+mso-bidi-font-size:10.0pt;line-height:99%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Следующим свойством MongoDB является возможность работы с произ-вольными запросами на уровне гибкости языка реляционных баз данных SQL. Поддержка произвольных запросов означает, что нет принципиальных ограничений, требуемых для выполнения запроса. Например, данным свойством не обладают NoSQL СУБД организованные по принципу key-value (ключ-значение). В таких СУБД запросы могут выполняться только по ключу. След-ствием поддержки произвольных запросов является необходимость в развитой системе вторичных индексов. С их помощью достигается высокая скорость исполнения запросов. Индексы MongoDB реализованы на основе B-деревьев и поддерживают те же способы организации, что и реляционные СУБД.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;
+line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">MongoDB содержит механизм журналирования, при использовании которо-го пользователь получает более высокую гарантию сохранения записей ценой снижения производительности. При необходимости данную подсистему можно отключить.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;
+line-height:102%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">MongoDB поддерживает технологию горизонтального масштабирования с использованием автосегментирования и дублирования реплик данных. Данный механизм гарантирует автоматическое восстановление без точки общего отказа.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">Основные <i style="mso-bidi-font-style:normal">программные артефакты</i> <i style="mso-bidi-font-style:normal">MongoDB</i>:<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:95%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">1)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;line-height:95%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial">mongod </span><span style="font-size:14.0pt;
+mso-bidi-font-size:10.0pt;line-height:95%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">–</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;line-height:95%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:
+95%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">исполняемый файл сервера баз данных;<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:96%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">2)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;line-height:96%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial">mongo </span><span style="font-size:14.0pt;
+mso-bidi-font-size:10.0pt;line-height:96%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">–</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;line-height:96%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:
+96%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">командная оболочка</span><span style="font-size:
+12.0pt;mso-bidi-font-size:10.0pt;line-height:96%;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:96%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">MongoDB.</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+line-height:96%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:96%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Язык оболочки</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;line-height:96%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:
+96%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">JavaScript.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">3)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;line-height:91%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial">mongodump </span><span style="font-size:14.0pt;
+mso-bidi-font-size:10.0pt;line-height:91%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">u</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> mongorestore </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;
+line-height:91%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">–</span><span style="font-size:
+12.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">стандартные утилиты резервного копирования</span><span style="font-size:
+12.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">и восстановления базы данных<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">4)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:11.5pt;mso-bidi-font-size:
+10.0pt;line-height:99%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial">mongoexport </span><span style="font-size:13.5pt;
+mso-bidi-font-size:10.0pt;line-height:99%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">u</span><span style="font-size:11.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> mongoimport </span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;
+line-height:99%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">–</span><span style="font-size:
+11.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">утилиты экспорта и импорта файлов в фор</span><span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">матах JSON, CSV и TSV<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:91%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">5)</span><span style="font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size:
+12.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">mongosniff </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">–</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+line-height:91%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:91%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">анализатор протокола для просмотра команд,</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+line-height:91%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:91%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">посылаемых</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;line-height:91%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:
+91%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">серверу базы данных.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><span style="font-size:13.5pt;
+mso-bidi-font-size:10.0pt;line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">6)</span><span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size:11.5pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial">mongostat </span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;line-height:
+98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">–</span><span style="font-size:11.5pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial"> </span><span style="font-size:13.5pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">аналог</span><span style="font-size:11.5pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> iostat</span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;
+line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">;</span><span style="font-size:
+11.5pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:&quot;Courier New&quot;;
+mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial">постоянно опрашивает</span><span style="font-size:11.5pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:Arial"> </span><span style="font-size:13.5pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">MongoDB</span><span style="font-size:11.5pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:Arial"> </span><span style="font-size:13.5pt;mso-bidi-font-size:10.0pt;line-height:
+98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">и операцион-ную систему для выдачи полезной статистики, в том числе количества опе-раций (вставки, выборки, обновления, удаления и др.) в секунду, объема выделенной виртуальной памяти и числа подключений к серверу.<o:p></o:p></span></p>
+           <p class="MsoNormal">
+               <span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+           <table border="0" cellpadding="0" cellspacing="0" class="MsoNormalTable" style="margin-left:.5pt;border-collapse:collapse;mso-table-layout-alt:fixed;
+ mso-padding-alt:0cm 0cm 0cm 0cm">
+               <tr style="height:16.2pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-bottom:none;padding:0cm 0cm 0cm 0cm;height:16.2pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Пример<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:solid windowtext 1.0pt;
+  border-left:none;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:16.2pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Семантика<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="22" style="height:16.2pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:2.9pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:2.9pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:
+  2.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:2.9pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:
+  2.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="4" style="height:2.9pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:15.2pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:15.2pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">use &lt;db name&gt;<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:15.2pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Переключение контекста на указанную<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="20" style="height:15.2pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:16.25pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:16.25pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:
+  12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:16.25pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">базу данных (</span><span style="font-size:11.0pt;
+  mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+  &quot;Times New Roman&quot;;mso-bidi-font-family:Arial">users</span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">)<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="22" style="height:16.25pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:12.4pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.insert({username:<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Вставка документа в коллекцию </span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">users<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="17" style="height:12.4pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:11.2pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">&quot;Smith&quot;})<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:
+  9.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="15" style="height:11.2pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:1.05pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:1.05pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:1.05pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="1" style="height:1.05pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:15.4pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:15.4pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.find()<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:15.4pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Получение содержимого коллекции </span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">users<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="21" style="height:15.4pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:15.7pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:15.7pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.count()<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:15.7pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Получение размера коллекции </span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">users<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="21" style="height:15.7pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:12.4pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.find({username:<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Поиск с использованием селектора за-<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="17" style="height:12.4pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:11.2pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">&quot;Jones&quot;})<o:p></o:p></span></p>
+                   </td>
+                   <td rowspan="2" style="width:262.0pt;border:none;
+  border-right:solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">проса (документ, с которым сравнивают-<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="15" style="height:11.2pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:7.9pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:7.9pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:
+  6.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+                   <span style="font-size:6.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+  mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA"><![if !supportMisalignedRows]>
+                   <td height="11" style="height:7.9pt;border:none" width="0"></td>
+  <![endif]></span>
+               </tr>
+               <tr style="height:16.25pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:16.25pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:
+  12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:16.25pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">ся все документы в коллекции)<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="22" style="height:16.25pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:12.4pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.update({username:<o:p></o:p></span></p>
+                   </td>
+                   <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Во все документы коллекции </span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">users</span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">, со-<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="17" style="height:12.4pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:11.2pt">
+                   <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">&quot;Smith&quot;}, {$set: {country: &quot;Can-<o:p></o:p></span></p>
+                   </td>
+                   <td rowspan="2" style="width:262.0pt;border:none;
+  border-right:solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">держащие имя пользователя Смит, будет<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="15" style="height:11.2pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:12.35pt">
+                   <td rowspan="2" style="width:226.0pt;border-top:none;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:12.35pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">ada&quot;}}<o:p></o:p></span></p>
+                   </td>
+                   <span style="font-size:6.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+  mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA"><![if !supportMisalignedRows]>
+                   <td height="16" style="height:12.35pt;border:none" width="0"></td>
+  <![endif]></span>
+               </tr>
+               <tr style="height:4.4pt">
+                   <td rowspan="2" style="width:262.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:4.4pt" valign="bottom" width="349">
+                       <p class="MsoNormal">
+                           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">добавлена информация о стране.<o:p></o:p></span></p>
+                   </td>
+  <![if !supportMisalignedRows]>
+                   <td height="6" style="height:4.4pt;border:none" width="0"></td>
+  <![endif]>
+               </tr>
+               <tr style="height:11.85pt">
+                   <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:11.85pt" valign="bottom" width="301">
+                       <p class="MsoNormal">
+                           <span style="font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+                   </td>
+                   <span style="font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+  mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA"><![if !supportMisalignedRows]>
+                   <td height="16" style="height:11.85pt;border:none" width="0"></td>
+  <![endif]></span>
+               </tr>
+           </table>
+       </div>
+       <table border="0" cellpadding="0" cellspacing="0" class="MsoNormalTable" style="margin-left:.5pt;border-collapse:collapse;mso-table-layout-alt:fixed;
+ mso-padding-alt:0cm 0cm 0cm 0cm">
+           <tr style="height:12.2pt">
+               <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:12.2pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.update({username:<o:p></o:p></span></p>
+               </td>
+               <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:12.2pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Из всех документов коллекции </span><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">users</span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">, со-<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="16" style="height:12.2pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+           <tr style="height:11.2pt">
+               <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">&quot;Smith&quot;}, {$unset: {country:<o:p></o:p></span></p>
+               </td>
+               <td rowspan="2" style="width:262.0pt;border:none;
+  border-right:solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:11.2pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">держащих имя пользователя Смит, будет<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="15" style="height:11.2pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+           <tr style="height:12.4pt">
+               <td rowspan="2" style="width:226.0pt;border-top:none;
+  border-left:solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:12.4pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">&quot;Canada&quot;}}<o:p></o:p></span></p>
+               </td>
+               <span style="font-size:6.5pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+  mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA"><![if !supportMisalignedRows]>
+               <td height="17" style="height:12.4pt;border:none" width="0"></td>
+  <![endif]></span>
+           </tr>
+           <tr style="height:4.5pt">
+               <td rowspan="2" style="width:262.0pt;border-top:none;
+  border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:4.5pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">удалена информация о стране.<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="6" style="height:4.5pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+           <tr style="height:11.8pt">
+               <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:11.8pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+               </td>
+               <span style="font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+  mso-ansi-language:RU;mso-fareast-language:RU;mso-bidi-language:AR-SA"><![if !supportMisalignedRows]>
+               <td height="16" style="height:11.8pt;border:none" width="0"></td>
+  <![endif]></span>
+           </tr>
+           <tr style="height:15.45pt">
+               <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:15.45pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.foo.remove()<o:p></o:p></span></p>
+               </td>
+               <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:15.45pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Удаление всех документов из коллекции<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="21" style="height:15.45pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+           <tr style="height:16.25pt">
+               <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:16.25pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:
+  12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+               </td>
+               <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:16.25pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">foo (аналог SQL команды TRUNCATE)<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="22" style="height:16.25pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+           <tr style="height:15.4pt">
+               <td style="width:226.0pt;border-top:none;border-left:
+  solid windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:15.4pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Courier New&quot;;mso-fareast-font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+  Arial">db.users.drop()<o:p></o:p></span></p>
+               </td>
+               <td style="width:262.0pt;border:none;border-right:
+  solid windowtext 1.0pt;padding:0cm 0cm 0cm 0cm;height:15.4pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">Удаление коллекции вместе со всеми ин-<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="21" style="height:15.4pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+           <tr style="mso-yfti-lastrow:yes;height:16.3pt">
+               <td style="width:226.0pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0cm 0cm 0cm 0cm;height:16.3pt" valign="bottom" width="301">
+                   <p class="MsoNormal">
+                       <span style="font-size:
+  12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+  mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+               </td>
+               <td style="width:262.0pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0cm 0cm 0cm 0cm;height:16.3pt" valign="bottom" width="349">
+                   <p class="MsoNormal">
+                       <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+  &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+  mso-bidi-font-family:Arial">дексами (аналог SQL команды DROP)<o:p></o:p></span></p>
+               </td>
+  <![if !supportMisalignedRows]>
+               <td height="22" style="height:16.3pt;border:none" width="0"></td>
+  <![endif]>
+           </tr>
+       </table>
+       <p class="MsoNormal">
+           <span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+       <p class="MsoNormal">
+           <b style="mso-bidi-font-weight:normal"><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">Указания к заданию </span></b>
+       </p>
+       <p class="MsoNormal">
+           <![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Разработайте консольную утилиту для преобразования лога веб-сервера в формате CSV (Comma Separated Values), в формат JSON. Лог должен содер</span><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:99%;
+font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial">жать поля со следующими названиями: URL, IP, timeStamp, timeSpent.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Разработайте запросы для загрузки полученных данных в формате JSON в СУБД MongoDB.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span></p>
+       <p class="MsoNormal">
+           <a href="#page6"><b style="mso-bidi-font-weight:normal"><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:windowtext;text-decoration:none;text-underline:
+none">Разработка запросов в СУБД MongoDB</span></b></a><b style="mso-bidi-font-weight:
+normal"><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial"><o:p></o:p></span></b></p>
+       <p class="MsoNormal">
+           <span style="font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">1.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Разработайте следующие запросы, используя встроенные в СУБД MongoDB средствами выборки:<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:99%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">1)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:99%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать упорядоченный список URL ресурсов.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">2)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать упорядоченный список IP-адресов пользователей, посетивших ресурс с заданным URL.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">3)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать упорядоченный список URL ресурсов, посещенных в заданный временной период.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">4)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать упорядоченный список URL ресурсов, посещенных пользовате-лем с заданным IP-адресом.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">2.<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Разработайте следующие запросы, используя встроенные в СУБД MongoDB средства программирования на основе парадигмы MapReduce:<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">1)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать список URL ресурсов с указанием суммарной длительности по-сещения каждого ресурса, упорядоченный по убыванию.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:97%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">2)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:97%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать список URL ресурсов с указанием суммарного количества посе-щений каждого ресурса, упорядоченный по убыванию.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">3)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать список URL ресурсов с указанием количества посещений каждого ресурса в день за заданный период, упорядоченный URL ресурса и убы-ванию количества посещений.<o:p></o:p></span></p>
+       <p class="MsoNormal">
+           <span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial"><o:p>&nbsp;</o:p></span><![if !supportLists]><span style="font-size:14.0pt;mso-bidi-font-size:10.0pt;line-height:98%;font-family:
+&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><span style="mso-list:Ignore">4)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span style="font-size:14.0pt;mso-bidi-font-size:
+10.0pt;line-height:98%;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Выдать список IP-адресов c указанием суммарного количества и суммар-ной длительности посещений ресурсов, упорядоченный по адресу, убы-ванию количества и убыванию длительности.<o:p></o:p></span></p>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4></FONT></P>
+
+   </body>
+</html>

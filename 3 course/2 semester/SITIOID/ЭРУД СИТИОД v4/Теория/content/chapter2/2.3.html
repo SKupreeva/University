@@ -1,0 +1,160 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;172800000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;172900000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><SPAN LANG="be-BY"><B>Методы и инструменты визуализации для аналитика</B></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.5in; margin-bottom: 0in; line-height: 100%">
+<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Основные игроки на поле BI</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В соответствии с пресловутыми магическими квадратами Gartner  технологическими лидерами EBIS
+		являются сегодня Business Objects и Cognos, на границе между лидерами и претендентами — Information
+		Builders, а Microsoft и Oracle — в претендентах. У одной нет самостоятельного OLAP-клиента,
+		а используется функциональность сводной таблицы Excel200x, и нет генератора отчетов, у другой
+		— пока нет замены для Oracle Express Analyzer. В группе «провидцев» выделяются Crystal Decisions
+		на границе с лидерами. Также следует отметить Actuate и MicroStrategy.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для BI-платформ практически нет лидеров, что свидетельствует о незрелости технологий
+		и рынка. На границе этой области находится пока только Microsoft за счет решений по встраиванию
+		OLAP-сервисов в MS SQL Server и развития их до аналитического сервера. Среди других претендентов
+		— SAS Institute, далее плотную группу образуют Oracle, PeopleSoft и SAP. Hyperion в буквальном
+		смысле на перепутье — SAS и Hyperion потеряли лидирующие позиции 2000 года. Среди провидцев
+		следует отметить MicroStrategy. К сожалению, Crystal Decisions пока выступает как нишевой игрок.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Тенденции</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Среди BI-инструментов наибольший рост испытывают EBIS, что отражает усилившуюся конкуренцию
+		в сегодняшней экономике. Использование инструментов для генерации запросов и отчетов, анализа данных
+		снижается, организации обновляют их и заменяют корпоративными BI-наборами. Основные инструменты
+		(незапланированные запросы, отчетность и основной OLAP-анализ) все еще остаются наиболее
+		распространенными, удовлетворяя большинство потребностей. Также растет применение OLAP и других
+		развитых BI-инструментов, подобных технологии data mining. Однако автономные инструменты data
+		mining исчезают, эта технология поглощается и включается в другие BI-инструменты, например,
+		в расширения СУБД.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Ожидается, что в течение 5 лет такие возможности, как XML для анализа (XML/A), BI
+		Web-сервисы, совместная работа, беспроводные и мобильные коммуникации объединятся в виде
+		сетей бизнес-интеллекта (BI networks), которые будут дополнены средствами мониторинга бизнес
+		деятельности (Business activity monitoring, BAM).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>XML для анализа.</b> XML/A первоначально появился как коммуникационный протокол между
+		разными BI-слоями (клиент, аналитический сервер, сервер БД). У XML/A имеются серьезные
+		проблемы производительности — он создает большие накладные расходы и пока применим лишь для
+		«облегченного» OLAP-клиента. Однако если эти проблемы будут решены, XML/A мог бы стать единым
+		языком общения (lingua franca) между различными BI-средами, пересекая множество доменов,
+		поставщиков и технологий, таким образом поддерживая BI networks.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>BI Web-сервисы.</b> Поставщики часто идентифицируют продукты EBIS как BI-порталы,
+		потому что версии этих продуктов для Web обеспечивают точку входа к корпоративной информации.
+		Фактически зачастую эти BI-порталы поддерживают также связи с неструктурированной информацией,
+		хотя обычно для этого требуется некая система интеграции. Все более и более продукты EBIS
+		фокусируются на внешних составляющих корпорации (extranet e-business intelligence). Новая
+		компонентная архитектура SOA, ориентированная на сервисы (службы), является развитием серверов
+		приложений и корпоративных порталов. Эта новация связана также с технологиями J2EE и .NET. BI
+		Web-сервисы делают BI-инструменты открытыми компонентами с известными интерфейсами и доступными
+		во всех видах сетей. Увеличивается число поставщиков BI-продуктов, которые реализуют их в виде
+		Web-служб, но чаще под соусом порталов.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Совместная работа.</b> Добавление аннотаций к отчетам и разделение результатов анализа
+		между несколькими пользователями возможно со времен EIS, однако сейчас эта функциональность
+		популярна и во многие BI-приложения добавлены возможности workflow. Ожидается, что пользователи
+		смогут работать одновременно с одной моделью или будет обеспечена связь разных BI-приложений
+		в реальном времени.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Беспроводной и мобильный бизнес-интеллект.</b> Другая устойчивая тенденция по доставке
+		BI-информации видна у поставщиков, дающим возможность BI-продуктам доставлять отчеты посредством
+		мобильной технологии, включая персональных электронных помощников PDA,
+		Internet-телефонов и пейджеров.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Мониторинг бизнес-деятельности.</b> Новая технология BAM является по существу операционным
+		BI и сочетает интеграцию приложений реального времени с возможностями бизнес-интеллекта.
+		Используя транзакционные данные, извлеченные из систем обработки транзакций в реальном времени,
+		BI-инструменты анализируют эти данные и выдают предупреждения о критических событиях и информацию
+		операционным пользователям, принимающим непосредственные решения.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>SpagoBI</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>SpagoBI принадлежит к классу систем «с открытым кодом». Она была разработана в конце
+		2005 года итальянской компанией Engineering Ingegneria Informatica как часть пакета ПО
+		промежуточного слоя, разрабатываемого под эгидой ассоциации ObjectWeb Consortium.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Система ориентирована на работу с различными источниками данных, что позволяет ей
+		гибко «вливаться» в существующую ИТ-инфраструктуру.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>SpagoBI – система, позволяющая осуществлять многомерный анализ и формировать корпоративную
+		отчетность высокого качества.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Система ориентирована на работу с самыми различными источниками данных, масштабируема,
+		а лежащий в ее основе портал позволяет решать, как задачи, связанные с бизнес-анализом, так
+		и сопутствующие задачи. К последним, например, можно отнести хранение копий исходных документов,
+		организация совместной работы, дискуссии, форумы и многое другое.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Ключевые особенности SpagoBI:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P></P>
+		<FONT SIZE=4>Наиболее полный набор средств бизнес-анализа;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>Единый интерфейс работы с BI (Business Intelligence) инструментами;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>Модули корпоративного управления документами и совместной работы;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>"Гибкое" внедрение;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>Неограниченные возможности кастомизаций и расширений.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>На сегодняшний день технологии Spago BI используются в двух программных решениях Naumen
+		- Автоматизированной информационной системе управление федеральными целевыми программами (АИС УП)
+		и информационно-аналитической системе для управления учебным процессом в высших и средних специальных
+		учебных заведениях Naumen University.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Благодаря наличию широкого перечня BI-инструментов (ETL, OLAP, KPI, data mining, data
+		warehousing, dashboards, средства аналитической картографии и топологических карт и пр.) и
+		удобному интерфейсу платформа SpagoBI позволяет решать ежедневные и стратегические задачи как
+		на операционном уровне, так и на уровне принятия решений. Модульная архитектура платформы и
+		соблюдение открытых стандартов дают возможность легко адаптировать компоненты, входящие в состав
+		платформы, и создавать дружественные для пользователей решения.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В текущий момент специалисты Naumen разрабатывают с применением инструментария SpagoBI
+		отчетную систему для двух заказчиков. Отчетная система ориентирована на работу с различными
+		источниками данных и должна обеспечить проведение полноценного анализа проектной деятельности
+		этих организаций.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Видео материалы</FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/KsAnnCyLjgE" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/9Gu6Skb2mOQ" width="560"></iframe>
+        <iframe id="I3" allowfullscreen="" frameborder="0" height="315" name="I3" src="https://www.youtube.com/embed/cieBFkuz_Sw" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

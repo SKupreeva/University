@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="converterBean"
+          class="by.bsuir.laba8.service.impl.ConverterService"
+          scope="prototype">
+    </bean>
+
+    <bean id="inputBean"
+          class="by.bsuir.laba8.service.impl.InputService">
+    </bean>
+
+</beans>

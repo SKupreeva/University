@@ -1,0 +1,15 @@
+a <-seq(1,20,len=20)
+a
+b <-a+4
+b
+c <-a*3
+c
+sum(a)
+max(a)
+min(a)
+prod(a)
+length(a)
+mean(a)
+var(a)
+sort(a)
+summary(a)

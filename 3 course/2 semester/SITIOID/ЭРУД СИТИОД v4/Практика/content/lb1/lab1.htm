@@ -1,0 +1,171 @@
+<html>
+   <head></head>
+   <body>
+      <h1 CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">Лабораторная работа №1 Консолидация данных и ETL </h1>
+      <p><br></p>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Задание.</FONT></P>
+      <ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>Создать CSV файл. Используя Talend, написать
+               по генерации из этого файла другого CSV файла.</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>Создать Excel файл. Используя Talend, написать
+               сценарий по генерации из этого файла другого Excel файла. </FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>Создать Excel файл. Используя элемент tMap Talend(а),
+               написать сценарий по генерации другого Excel файла с заданной структурой полей.
+               Например, некоторые поля одного файла объединены в одно поле другого файла.
+               Таких объединений должно быть 2.</FONT></P></li>
+      </ol>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><b>Ход выполнения</b></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После установки и запуска TOS_DI создайте новый проект.
+            Выберите Create… в окошке на рисунке 1</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture1.jpg" NAME="Рисунок 1" ALIGN=BOTTOM WIDTH=410 HEIGHT=200 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 1.  Окно выбора проекта</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>В появившемся диалоговом окошке введите название проекта и
+            подтвердите его создание, нажав <i>ОК</i> </FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture2.jpg" NAME="Рисунок 2" ALIGN=BOTTOM WIDTH=410 HEIGHT=200 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 2.  Диалоговое окно ввода названия проекта</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После подтверждения создания нового проекта вы увидите вкладку Welcome,
+            аналогичную представленной на рисунке 3. Теперь вы можете либо сразу создать новую
+            работу, щелкнув левой кнопкой мыши по ссылке Job, либо закрыть эту вкладку и увидеть
+            рабочую среду, представленную на рисунке 5. В любом случае, для создания работы, вам
+            потребуется ввести её название. Диалоговое окошко представлено на рисунке 4.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture3.jpg" NAME="Рисунок 3" ALIGN=BOTTOM WIDTH=430 HEIGHT=260 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 3.  Вкладка Welcome</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture4.jpg" NAME="Рисунок 4" ALIGN=BOTTOM WIDTH=430 HEIGHT=260 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 4.  Название новой работы</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После того, как новая работа создана, перед вами откроется окошко,
+            представленное на рисунке 5. Здесь вы сможете наблюдать рабочую область (на
+            рисунке она выделена салатовым контуром и подписана салатовыми буквами).
+            Именно здесь вы будете размещать элементы для работы с ними. Слева у вас
+            репозиторий, где вы создаете новые элементы (работы, соединения с базой данных
+            и т.д.), справа – меню элементов для рабочей области, снизу – работа с выбранными
+            элементами (изменения названий элементов, изменение его свойств, настройка
+            элементов)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture5.jpg" NAME="Рисунок 5" ALIGN=BOTTOM WIDTH=500 HEIGHT=350 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 5.  Рабочая среда</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь приступим к работе. Справа во вкладке File выберем input
+            и там tFileInputDelimited (рисунок 6). Перенесем элемент на рабочую область
+            (рисунок 7). Теперь настроим его во вкладке Component (рисунок 7).</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture6.jpg" NAME="Рисунок 6" ALIGN=BOTTOM WIDTH=300 HEIGHT=350 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 6.  Выбор типа элемента</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture7.jpg" NAME="Рисунок 7" ALIGN=BOTTOM WIDTH=500 HEIGHT=350 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 7.  Настройка элемента</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Здесь во вкладке Component мы выбираем входящий файл, выбираем разделитель
+            (проверьте, чтобы разделитель в CSV файле был таким же, как и на вкладке, иначе вылетит
+            ошибка) Включте заголовок (Header) и после этого щелкните Edit schema (рисунок 8). </FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture8.jpg" NAME="Рисунок 8" ALIGN=BOTTOM WIDTH=500 HEIGHT=350 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 8.  Добавление схемы</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Окошко, для добавления схемы, надо отредактировать в соответствии со своим документом. </FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture9.jpg" NAME="Рисунок 9" ALIGN=BOTTOM WIDTH=500 HEIGHT=350 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 9.  Отредактированная схема</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь перенесем на рабочую область еще несколько элементов:
+            tFileOutDelimited и tLogRow.  tFileOutDelimited – для вывода файла,
+            tLogRow – для отображения файла (рисунок 10)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture10.jpg" NAME="Рисунок 10" ALIGN=BOTTOM WIDTH=500 HEIGHT=200 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 10.  Рабочая область</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Элемент tFileOutDelimited также нужно отредактировать на вкладке Component.
+            Файл out можно не создавать, он создастся автоматчески. Но чтобы файл имел заголовок,
+            его надо включить, поставив галочку Include header. Остальное можно не изменять. Свяжем
+            элементы, щелкнув правой кнопкой мышки по элементу FileInput на рабочей области на пункт
+            Row->Main тянем связь ко второму элементу и повторяем операцю со вторым элементом,
+            протянув связь к третьему (рисунок 11)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture11.jpg" NAME="Рисунок 11" ALIGN=BOTTOM WIDTH=500 HEIGHT=200 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 11.  Связанные элементы</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Схема готова. Теперь кликнем по кнопке Run (рисунок 5) и наш файл
+            вывода сгенерируется самостоятельно. Чтобы просмотреть, что происходит на этапе
+            генерации, необходимо кликнуть по элементу tLogRow и на вкладке Debug Run  нажать
+            на кнопку Debug. В результате вы увидите, как «переходят данные» из одного файла
+            в другой (рисунок 12)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture12.jpg" NAME="Рисунок 12" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 12.  Debug файла</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>При отладке (Debug) вы можете также вывести файл в импровизированную консоль
+            в различных видах (рисунок 13).  В виде таблице (Table – рисунок 14). Или в виде отдельных
+            таблиц (Vertical – рисунок 15)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture13.jpg" NAME="Рисунок 13" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 13.  Выбор типа отображения информации</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture14.jpg" NAME="Рисунок 14" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 14.  Отображение в виде одной таблицы </FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture15.jpg" NAME="Рисунок 15" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 15.  Отображение в виде нескольких таблиц</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>При успешном выполнении вы должны увидеть в
+            консоли результат, представленный на рисунке 16.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture16.jpg" NAME="Рисунок 16" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 16.  Успешный результат выполнения сценария</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После успешного выполнения сценария создается файл
+            вывода с такими же данными, как и исходные (рисунок 17)</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture17.jpg" NAME="Рисунок 17" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 17.  Исходный файл и файл вывода</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Все! Поздравляю! Файл создан!</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь проделаем те же действия с excel файлом. То есть перетащим на
+            рабочую область tFileInputExcel, tLogRow и tFileOutExcel.и проделаем те же
+            движения, что и при настройке csv файла.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture18.jpg" NAME="Рисунок 18" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 18.  Элементы для работы с Еxcel файлом</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture19.jpg" NAME="Рисунок 19" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 19.  Работа с Excel файлом</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Не забудьте проверить, чтобы совпали типы данных иначе вылетит
+            ошибка. Все остальное также. Также и вывод, только файл будет Excel.</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь попробуем создать сценарий, соединить колонки и из csv файла сделать
+            Excel. Для этого кроме элементов tFileInputDelimited, tLogRow и tFileOutputExcel
+            перетащите еще и элемент Map из меню Processing (рисунок 20). Вытащили? Теперь его
+            необходимо настроить. Щелкаем дважды левой кнопкой мыши по элементу и выплывает меню,
+            представленное на рисунке 21. Здесь вы сначала настраиваете схему данных (снизу слева
+            на рисунке 20), проверяете соответствия полей типам данных сходного файла, а затем просто
+            перетаскиваете нужные поля в нужные ячейки. В случае, если в одном поле будут значения,
+            которые первоначально были в двух столбцах, то просто перетащите оба поля слева в одно
+            поле справа и, активировав его, в нижней правой схеме напишите его название. Следите за
+            тем, чтобы поля, которые будут идентичны во входном и выходном файлах имели один и тот
+            же тип данных, иначе вылетит ошибка.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture20.jpg" NAME="Рисунок 20" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 20.  Схема для выполнения сценария</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture21.jpg" NAME="Рисунок 21" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 21. Свойства элемента Map</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Все! Смело жмите Ок, Run и любуйтесь созданным Excel-файлом с объединенными колонками!</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4></FONT></P>
+
+   </body>
+</html>

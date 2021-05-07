@@ -1,0 +1,273 @@
+﻿<html>
+   <head></head>
+   <body>
+   <h1>Лабораторная работа №4 Построение отчетности с возможностью фильтрации и навигации </h1>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4><br></FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4><b>Задание.</b></FONT></P>
+   <ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+      <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Создать в MySQL базу данных из одной таблицы (6 полей, 50 строк). </FONT></P></li>
+      <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Используя SpagoBIStudio создать 2 отчета (исходных данных и на выборку данных), структура которых приведена ниже.</FONT></P></li>
+      <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Используя SpagoBI-Server, отобразить созданные отчеты.</FONT></P></li>
+      </ol>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4><b>Ход выполнения</b></FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Прежде всего, создадим таблицу с 6ю колонками и 50ю строками, как на рисунке 1, например.</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture1.jpg" NAME="Рисунок 1" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 1.  Новая таблица</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Далее необходимо запустить SpagoBIStudio. В открывшемся редактора необходимо создать новый проект при помощи сочетания пунктов File->New->Project…, как на рисунке 2</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture2.jpg" NAME="Рисунок 2" ALIGN=BOTTOM WIDTH=410 HEIGHT=200 BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 2.  Создание нового проекта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>В качестве типа проекта выберем Report Project, как на рисунке 3</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture3.jpg" NAME="Рисунок 3" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 3.  Выбор типа проекта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь необходимо дать проекту название в строке Project Name</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture4.jpg" NAME="Рисунок 4" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 4.  Выбор названия проекта и папки</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>После создания проекта нам необходимо создать отчёт при помощи сочетания пунктов File->New->Report, как показано на рисунке 5</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture5.jpg" NAME="Рисунок 5" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 5.  Создание нового отчёта в проекте</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>В качестве хранилища Вашего отчёта должен быть выбран Ваш проект. Кроме того, нужно дать отчёту имя, как на рисунке 6.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture6.jpg" NAME="Рисунок 6" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 6.  Выбор названия и проекта для отчёта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>В качестве типа отчёта выбираем Blank Report, как на рисунке 7.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture7.jpg" NAME="Рисунок 7" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 7. Выбор типа отчёта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если всё верно, то в нижней части экрана будет дерево с Вашим проектом, в котором окажется Ваш отчёт (рисунок 8)</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture8.jpg" NAME="Рисунок 8" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 8.  Дерево проекта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Далее необходимо создать DataSource через меню Data->New Data Source (рисунок 9)</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture9.jpg" NAME="Рисунок 9" ALIGN=BOTTOM BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 9.  Создание DataSource</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Тип DataSource – JDBC Data Source, не забудьте дать название (рисунок 10)</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture10.jpg" NAME="Рисунок 10" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 10.  Выбор типа Data Source</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Далее заполните настройки DataSource, как указано на рисунке 11. Данные настройки подходят для БД MySQL, в случае работы с другими БД настройки будут отличаться.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture11.jpg" NAME="Рисунок 11" ALIGN=BOTTOM BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 11.  Настройки соединения</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4> Если настройки верны, то по нажатии кнопки Test Connection, Вы увидите окно, как на рисунке 12. Иначе перепроверьте настройки, например, драйвер может быть указан неверно, путь к БД, имя и пароль пользователя.</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture12.jpg" NAME="Рисунок 12" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 12.  Результат удачного соединения</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если же у Вас всё получилось, то в левой части экрана Вы увидите появившийся DataSource, как на рисунке 13.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture13.jpg" NAME="Рисунок 13" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 13.  Созданный Data Source</FONT></P>
+
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Создадим DataSet последовательностью действий DataSet->New Data Set (рисунок 14)</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture14.jpg" NAME="Рисунок 14" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 14.  Создание Data Set</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>В появившемся окне укажем созданный ранее Data Source и имя Data Set (рисунок 15)</FONT></P>
+   </body>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture15.jpg" NAME="Рисунок 15" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 15.  Настройки Data Set</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Далее необходимо указать скрипт выборки из таблицы. В нашем случае мы желаем выбрать все данные из таблицы, а потому скрипт будет аналогичен скрипту на рисунке 16.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture16.jpg" NAME="Рисунок 16" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 16.  Настройка выборки для Data Set</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если Вы верно написали скрипт, то появится окно, в котором можно выбрать пункт Preview Results  и увидеть, как отработает скрипт и какие данные будут взяты из таблицы (рисунок 17)</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture17.jpg" NAME="Рисунок 17" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 17.  Превью выборки</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь необходимо заняться непосредственно самим отчётом. В левой части экрана найдём элемент Grid (рисунок 17) и перетянем его на рабочую область. В появившемся окне настроек укажем количество столбцов и строк, как на рисунке 18</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture18.jpg" NAME="Рисунок 18" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 18.  Дерево элементов</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture19.jpg" NAME="Рисунок 19" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 19.  Настройка Grid</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Добавим изображение, перетянув его на рабочую область в получившуюся сетку так же, как перетягивали Grid. Выберем тип Embedded image и загрузим изображение. Превью картинки будет на той же форме (рисунок 20)</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture20.jpg" NAME="Рисунок 20" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 20.  Выбор картинки</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Далее добавим рядом с картинкой элемент Text. В появившемся окне не забудьте выставить тип HTML для оформления Вашего текста. После этого сам текст оформляется при помощи html-тегов, как на рисунке 21</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture21.jpg" NAME="Рисунок 21" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 21. Настройки текста</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если всё верно, то на текущий момент у Вас должна быть такая картина, как на рисунке 22.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture22.jpg" NAME="Рисунок 22" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 22. Предварительный результат отчёта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Пришло время добавить данные из таблицы в отчёт. Для этого перетяните свой Data Set на рабочую область (рисунок 23). Теперь у Вас появилась табличка с названием колонок. Если Вы хотите изменить названия колонок, то кликните по ним дважды и отредактируйте (рисунок 24)</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture23.jpg" NAME="Рисунок 23" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 23. Добавление Data Set в отчёт</FONT></P>
+
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture24.jpg" NAME="Рисунок 24" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 24. Редактирование названия колонок</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Чтобы просмотреть имеющийся результат необходимо нажать Run->View Report->In Web Viewer (рисунок 25)</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture25.jpg" NAME="Рисунок 25" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 25. Выбор предварительного просмотра отчёта</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если на предыдущих шагах не было допущено ошибок, то Вы увидите в новом окне Ваш отчёт, как на рисунке 26.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture26.jpg" NAME="Рисунок 26" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 26. Отчёт в BIRT Report Viewer</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Попробуем добавить диаграммы в отчёт. Начнём с круговой диаграммы. Перетяните элемент типа Chart на рабочую область под таблицей. Сперва выберите тип Pie – круговая диаграмма (рисунок 27)</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture27.jpg" NAME="Рисунок 27" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 27. Выбор диаграммы</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь укажите параметры, по которым будет строиться диаграмма, как на рисунке 28.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture28.jpg" NAME="Рисунок 28" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 28. Настройка данных</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Заключительный шаг – легенда диаграммы. Укажите название диаграммы и названия параметров, как на рисунках 29-31.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture29.jpg" NAME="Рисунок 29" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 29. Выбор подписи данных</FONT></P>
+
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture30.jpg" NAME="Рисунок 30" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 30. Выбор подписи документа</FONT></P>
+
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture31.jpg" NAME="Рисунок 31" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 31. Выбор подписи диаграммы</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если параметры были настроены верно, то при повторном просмотре отчёта Вы увидите внизу страницы диаграмму с данными, как на рисунке 32.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture32.jpg" NAME="Рисунок 32" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 32. Готовый отчёт</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь опубликуем отчёт в SpagoBIServer. Прежде всего, запомните путь, куда сохранился Ваш отчёт. Далее авторизуйтесь на сервере с логином и паролем bidev, как на рисунке 33.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture33.jpg" NAME="Рисунок 33" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 33. Авторизация на сервере</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Далее в меню Document Development (ярлык с папкой) создайте новый Generic Document и настройте его, как на рисунке 34. В качестве template необходимо выбрать Ваш созданный отчёт (рисунок 35). Не забудьте сохранить документ.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture34.jpg" NAME="Рисунок 34" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 34. Создание отчёта на сервере</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4></FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture35.jpg" NAME="Рисунок 35" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 35. Выбор отчёта для шаблона</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Если документ создан корректно, то при повторном открытии Document Development в указанной папке будет находится документ, как на рисунке 36</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture36.jpg" NAME="Рисунок 36" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 36. Документ с отчётом в папке</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Откройте его кликом левой кнопки мыши. Если всё верно, то увидите свой отчёт, как на рисунке 37.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture37.jpg" NAME="Рисунок 37" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 37. Готовый отчёт на сервере</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь займёмся графиком типа гистограмма. Для этого выберите в студии тип диаграммы - Bar, как на рисунке 38</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture38.jpg" NAME="Рисунок 38" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 38. Выбор гистограммы</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Изменим свой Data Set, указав ограничения на выборку данных. В нашем случае это ограничение на значение Id (рисунок 39)</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture39.jpg" NAME="Рисунок 39" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 39. Изменение выборки данных</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Откройте и просмотрите свой отчёт вновь в студии, диаграмма изменилась, как на рисунке 40.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture40.jpg" NAME="Рисунок 40" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 40. Готовый отчёт с гистограммой</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>На сервере необходимо лишь указать новый отчёт, чтобы представление его изменилось, как на рисунке 41.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture41.jpg" NAME="Рисунок 41" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 41. Отчёт на сервере</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Наконец, добавим параметры соединения на тот случай, если необходимо будет часто изменять источник данных. Для этого создадим 4 новых параметры в категории Report Parameters, как на рисунке 42.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture42.jpg" NAME="Рисунок 42" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 42. Добавление новых параметров</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Для их создания в новом окне достаточно лишь укзать их название. В результате Вы получите 4 параметра, как на рисунке 43.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture43.jpg" NAME="Рисунок 43" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 43. Дерево параметров</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Нажмите на Ваш Data Source правой кнопкой мыши и выберите Edit. В полученном окне выберите Property Binding и укажите параметры для нужных строк, как на рисунке 44</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4><IMG SRC="picture44.jpg" NAME="Рисунок 44" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4> Рисунок 44. Настройка параметров</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь при загрузке Вашего отчёта будет появляться окно заполнения параметров. В нашем случае они заполняются, как на рисунке 45.</FONT></P>
+
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4><IMG SRC="picture45.jpg" NAME="Рисунок 45" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4> Рисунок 45. Заполнение параметров</FONT></P>
+   </body>
+</html>

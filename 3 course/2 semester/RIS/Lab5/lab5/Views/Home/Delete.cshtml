@@ -1,0 +1,38 @@
+﻿@model WorkerEntity
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Удаление работника</h2>
+
+<dl>
+    <dt>Имя работника</dt>
+    <dd>
+        @Html.DisplayFor(model => model.name)
+    </dd>
+
+    <dt>Фамилия работника</dt>
+    <dd>
+        @Html.DisplayFor(model => model.surname)
+    </dd>
+
+    <dt>Должность</dt>
+    <dd>
+        @Html.DisplayFor(model => model.position)
+    </dd>
+
+    <dt>Офис</dt>
+    <dd>
+        @ViewBag.Office
+    </dd>
+</dl>
+
+<div>
+    @Html.ActionLink("К списку работников", "Index")
+</div>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Удалить" />
+}

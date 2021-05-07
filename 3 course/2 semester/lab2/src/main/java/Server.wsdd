@@ -1,0 +1,8 @@
+<deployment
+        xmlns="http://xml.apache.org/axis/wsdd/"
+        xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+    <service name="Server" provider ="java:MSG">
+        <parameter name="className" value = "Server"/>
+        <parameter name="allowedMethods" value="getInfo"/>
+    </service>
+</deployment>

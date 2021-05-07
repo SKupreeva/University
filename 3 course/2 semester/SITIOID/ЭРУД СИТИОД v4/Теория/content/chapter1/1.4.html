@@ -1,0 +1,178 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+    <TITLE></TITLE>
+    <META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+    <META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+    <META NAME="CREATED" CONTENT="20160511;172500000000000">
+    <META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+    <META NAME="CHANGED" CONTENT="20160511;172600000000000">
+    <META NAME="AppVersion" CONTENT="15.0000">
+    <META NAME="DocSecurity" CONTENT="0">
+    <META NAME="HyperlinksChanged" CONTENT="false">
+    <META NAME="LinksUpToDate" CONTENT="false">
+    <META NAME="ScaleCrop" CONTENT="false">
+    <META NAME="ShareDoc" CONTENT="false">
+    <STYLE TYPE="text/css">
+        <!--
+        @page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+        P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+        P.western { font-family: "Times New Roman", serif }
+        P.cjk { font-family: "Calibri" }
+        P.ctl { font-family: "Times New Roman" }
+        -->
+    </STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><SPAN LANG="be-BY"><B>Инструменты интеграции и очистки данных (ETL)</B></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><b>ETL</b> (от англ. <i>Extract, Transform, Load</i> — дословно «извлечение , преобразование, загрузка»)
+        — один из основных процессов в управлении хранилищами данных , который включает в себя:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+    <LI><P></P>
+        <FONT SIZE=4>извлечение данных из внешних источников;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>их трансформация и очистка , чтобы они соответствовали потребностям бизнес-модели ;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>и загрузка их в хранилище данных.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>С точки зрения процесса ETL, архитектуру хранилища данных можно
+        представить в виде трёх компонентов:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+    <LI><P></P>
+        <FONT SIZE=4>источник данных: содержит структурированные данные в виде таблиц,
+            совокупности таблиц или просто файла (данные в котором разделены
+            символами-разделителями);</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>промежуточная область: содержит вспомогательные таблицы, создаваемые временно, и,
+            исключительно для организации процесса выгрузки.</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>получатель данных: хранилище данных или база данных, в которую
+            должны быть помещены извлечённые данные.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Перемещение данных от источника к получателю называют потоком данных. Требования к
+        организации потока данных описываются аналитиком. ETL следует рассматривать не только как
+        процесс переноса данных из одного приложения в другое, но и как инструмент подготовки
+        данных к анализу.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><b>Извлечение данных в ETL</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Начальным этапом процесса ETL является процедура извлечения записи из источников данных
+        и подготовка их к процессу преобразования. При разработке процедуры извлечения данных, в первую
+        очередь необходимо определить частоту выгрузки данных из OLTP-систем или отдельных источников.
+        Выгрузка данных занимает определённое время, которое называется окном выгрузки.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Процедуру извлечения данных можно реализовать двумя способами:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+    <LI><P></P>
+        <FONT SIZE=4>извлечение данных с помощью специализированных программных средств;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>извлечение данных средствами той системы, в которой они хранятся.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>После извлечения данные помещаются в так называемую «промежуточную область», где для каждого
+        источника данных создаётся своя таблица или отдельный файл, или и то и другое.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><b>Преобразование данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Цель этого этапа — подготовка данных к размещению в хранилище данных и приведение их к
+        виду более удобному для последующего анализа. При этом должны учитываться некоторые, выдвигаемые
+        аналитиком, требования, в частности, к уровню качества данных. Поэтому в процессе преобразования
+        может быть задействован самый разнообразный инструментарий, начиная с простейших средств ручного
+        редактирования данных и заканчивая системами, реализующими сложные методы обработки и очистки данных.
+        В процессе преобразования данных в рамках ETL чаще всего выполняются следующие операции:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+    <LI><P></P>
+        <FONT SIZE=4>преобразование структуры данных;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>агрегирование данных;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>перевод значений;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>создание новых данных;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>очистка данных.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><b>Загрузка данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Процесс загрузки заключается в переносе данных из промежуточных таблиц в структуру хранилища
+        данных. При очередной загрузке в хранилище данных переносится не вся информация из источников, а только
+        та, которая была изменена в течение промежуточного времени, прошедшего с предыдущей загрузки. При этом
+        выделяют два потока:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+    <LI><P></P>
+        <FONT SIZE=4>поток добавления — в хранилище данных передается новая, ранее не
+            существовавшая информация;</FONT></P></LI>
+    <LI><P>
+        <FONT SIZE=4>поток обновления (добавления) — в хранилище данных передается информация,
+            которая существовала ранее, но была изменена или дополнена.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Для распределения загружаемых данных на потоке используются средства данных. Они фиксируют
+        состояние данных в некоторые моменты времени и определяют, какие данные были
+        изменены или дополнены.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Технологии интеграции данных и управления данными используются уже давно. Инструменты,
+        обеспечивающие извлечение, преобразование и загрузку (extract, transform, and load, ETL) данных
+        изменили возможности традиционных баз данных и хранилищ данных. В настоящее время ETL-инструменты,
+        работающие в оперативной памяти, ускорили процессы ETL и ELT (извлечение, загрузка и
+        преобразование).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Для большинства ETL-решений требуются собственные серверы, средства обработки, базы данных и
+        лицензии. И для них требуются настройка, конфигурирование и разработка специалистами по именно этим
+        инструментам, а такие навыки не всегда переносимы.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4><b>Преимущества и ограничения традиционных концепций  и ETL</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Многие годы технологии и инструменты ETL остаются практически неизменными, в особенности
+        в контексте хранилищ данных. Инструменты улучшились, но методологии в основном не изменились. Вы
+        извлекаете данные из различных источников, выполняете набор сценариев или рабочих потоков ETL для
+        преобразования этих данных, затем загружаете их в хранилище данных со схемой «звезда» или в
+        полунормализованном формате, либо в систему управления основными данными.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Большинство специалистов по работе с данными знакомы с ETL. Такие проблемы, как управление
+        изменениями, медленно меняющиеся измерения, вставки, обновления и логически удаленные элементы
+        (tombstone), в течение этих лет решались, либо для них находились обходные пути. Поскольку данным
+        в хранилищах данных не всегда доверяли, пользователи полагались на электронные таблицы Microsoft
+        Excel®. Концепции и методологии разработаны, стратегии реализованы, однако существует обширное
+        разнообразие подходов.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Ключевым ограничением концепции ETL является то, что в самом начале процесса кто-то должен
+        решить, какие данные важны, какие данные необходимо обновить, какие данные следует отбросить и кто
+        получает разрешение на эти данные. После этого хранилища данных или системы управления основными данными
+        становятся репозиториями, содержащими только те данные, которые кто-то посчитал важными. Исходные данные
+        не хранятся и не могут быть извлечены. Содержимое витрин данных и преобразованные данные будут
+        единственными доступными данными, даже если это подмножество данных, которое спроектировал тот,
+        кто может уже и не работать в компании, и кто может не разделять ваши представления о том, какие
+        именно данные важны.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Учитывая такие ограничения, пользователи начали искать обходные пути, например хранение данных
+        в локальной базе данных. Подразделения создали свои собственные, отдельные хранилища и витрины данных,
+        и внезапно основные данные стали интересной концепцией — но не реальностью. Данные не были интегрированными.
+        Отделы продаж, маркетинга и финансов использовали разные данные. Числа и информационные панели были
+        ненадежными и недостоверными. Очевидно, что концепция ETL не могла поддерживать использование больших
+        данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+    <FONT SIZE=4>Видео материалы</FONT></P>
+    <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/7MOU1l30lXs" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/eBqvlS-IJRo" width="560"></iframe>
+    </P>
+</body>
+</html>

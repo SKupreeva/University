@@ -1,0 +1,48 @@
+﻿@model OfficeEntity
+
+@{
+    ViewData["Title"] = "DeleteOffice";
+}
+
+<h2>Удаление офиса</h2>
+
+<dl>
+    <dt>Название офиса</dt>
+    <dd>
+        @Html.DisplayFor(model => model.name)
+    </dd>
+
+    <dt>Адрес офиса</dt>
+    <dd>
+        @Html.DisplayFor(model => model.adress)
+    </dd>
+
+    <dt>Список работников</dt>
+    <dd>
+        @{
+            if (ViewBag.Workers == null)
+            {
+                <p>No workers!</p>
+            }
+            else
+            {
+                foreach (var w in ViewBag.Workers)
+                {
+                    if (w.officeId == Model.id)
+                    {
+                        <p>@w.surname - @w.position</p>
+                        }
+                    }
+                }
+            }
+        </dd>
+</dl>
+
+<div>
+    @Html.ActionLink("К списку офисов", "OfficeDetails")
+</div>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Удалить" />
+}

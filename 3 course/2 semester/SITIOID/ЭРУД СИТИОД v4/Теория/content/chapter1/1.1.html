@@ -1,0 +1,108 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;172400000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;172500000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+		A.sdfootnoteanc { font-size: 57% }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<FONT SIZE=4><B>Проектирование хранилищ данных</B></FONT></P>
+    <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<FONT SIZE=4><b><i>Хранилище данных (ХД — data warehouse)</i></b> является местом складирования
+	собираемых в системе данных и информационным источником для решения задач анализа
+	данных и принятия решений. Как правило, объем информации в ХД является достаточно большим.
+	Упрощенно можно сказать, что <i>хранилище данных</i> <b>управляет данными</b>, которые были собраны как из
+	операционных систем организации (OLTP-систем — On-Line Trasactions Processing), так и из внешних
+	источников данных, и которые длительный период времени хранятся в системе. Более точное определение будет
+	дано позже, после обсуждения истории создания концепции складирования данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Одной из главных целей создания <i>систем складирования данных</i> является их ориентация на
+		анализ накопленных данных, т.е. структуризация данных в ХД должна быть выполнена таким образом,
+		чтобы данные эффективно использовались в аналитических приложениях ( <i>analytical applications</i> ).
+	</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Заметим, что задачи анализа накопленных данных решали и до создания концепции складирования данных.
+		В распоряжении аналитиков и сейчас имеется большой набор пакетов программ. Главным отличием использования
+		концепции складирования данных является структуризация, систематизация, классификация, фильтрация и т. п.
+		больших массивов электронной информации в виде, удобном для анализа, визуализации результатов анализа и
+		производства корпоративной отчетности.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Концепция баз данных (БД) как метод представления и накопления данных в электронном виде сформировалась
+		к середине 60-х годов прошлого века в фирме IBM. В 1969 году была создана первая СУБД для управления и
+		манипулирования данными как самостоятельными информационными объектами. В 1970 году была предложена
+		реляционная модель данных для БД , и на ее основе начали создаваться популярные ныне реляционные СУБД. В
+		рамках реляционной модели с единых позиций были решены многие проблемы операционной <i>(транзакционной) обработки</i>
+		данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>С середины 80-х годов прошлого столетия стали интенсивно накапливаться электронные информационные
+		массивы данных организаций, корпораций, научно-исследовательских учреждений. Так, в начале 90-х годов прошлого
+		века только в области химических дисциплин было зарегистрировано более 7000 библиографических,
+		фактографических и смешанных баз данных, ведущие мировые корпорации создали огромные электронные массивы
+		конструкторской документации и документации по управлению производством. В это же время возникло четкое
+		понимание, что сбор данных в электронном виде – не самоцель, накопленные информационные массивы могут быть
+		полезны. Первыми осознали этот факт в области управления бизнесом и производством. В накопленных данных
+		организации находится "информационный снимок" хронологии ее поведения на рынке. Анализ истории
+		административно-хозяйственной деятельности организации позволил существенно увеличить эффективность
+		ее управления, эффективно организовать взаимоотношения с клиентами, производство и сбыт.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Задачи анализа накопленных данных стали перелагаться "на плечи" компьютера и встраиваться
+		в виде аналитических приложений в ИС с БД. Сейчас большинство исследователей сходятся к тому, что
+		<i>отправной точкой разработки концепции складирования данных явился ретроспективный (как иногда еще
+		говорят, исторический) взгляд на данные, накопленные в организации</i> как в электронном, так и
+		в ином виде.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Отметим также, что использование технологий БД и ИС на уже разработанных моделях данных и
+		методиках моделирования данных приводит к ряду проблем для аналитических приложений. Давайте
+		рассмотрим, как управление анализом накопленных (и в этом смысле исторических) данных и какие
+		факторы привели к развитию класса приложений складирования данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>ПРИНЦИПЫ ОРГАНИЗАЦИИ ХРАНИЛИЩА ДАННЫХ:</FONT></P>
+<ul>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4><i>Проблемно-предметная ориентация</i>. Данные объединяются в категории и хранятся в
+			соответствии с областями, которые они описывают, а не с приложениями,
+			которые они используют.</FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4></FONT><i>Интегрированность.</i>Данные объединены так, чтобы они удовлетворяли всем требованиям
+		предприятия в целом, а не единственной функции бизнеса.</P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4><i>Некорректируемость.</i>Данные в хранилище данных не создаются: то есть поступают из
+			внешних источников, не корректируются и не удаляются.</FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4><i>Зависимость от времени.</i> Данные в хранилище точны и корректны только в том случае,
+			когда они привязаны к некоторому промежутку или моменту времени.</FONT></P></LI>
+</ul>
+
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	&nbsp;</P>
+    <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	    Видео материалы:</P>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/7Dwf_xETWN8?list=PLDrmKwRSNx7LdHyMkUGRbY-i3GoV8jD34" frameborder="0" allowfullscreen></iframe>
+</DIV>
+    <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/2U6R5NJ7hGE?list=PLDrmKwRSNx7LdHyMkUGRbY-i3GoV8jD34" width="560"></iframe>
+</BODY>
+</HTML>

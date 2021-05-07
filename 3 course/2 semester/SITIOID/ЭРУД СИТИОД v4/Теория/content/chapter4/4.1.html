@@ -1,0 +1,400 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;174600000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;174600000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<FONT SIZE=4><B>Понятие Big Data, архитектура, цели. Ландшафт Big Data.
+	Принципы масштабирования распределенных систем. </B></FONT></P>
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Большие данные</b> (англ. <i>big data</i>) информационных технологиях — серия подходов,
+		инструментов и методов обработки структурированных и неструктурированных данных огромных
+		объёмов и значительного многообразия для получения воспринимаемых человеком результатов,
+		эффективных в условиях непрерывного прироста, распределения по многочисленным узлам
+		вычислительной сети, сформировавшихся в конце 2000-х годов, альтернативных традиционным
+		системам управления базами данных и решениям класса Business Intelligence. В данную серию
+		включают средства массово-параллельной обработки неопределённо структурированных данных,
+		прежде всего, решениями категории NoSQL, алгоритмами MapReduce, программными каркасами
+		и библиотеками проекта Hadoop.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В качестве определяющих характеристик для больших данных отмечают <i>«три V»</i>: объём
+		(англ. <i>volume</i>, в смысле величины физического объёма), скорость (англ. <i>velocity</i> в смыслах
+		как скорости прироста, так и необходимости высокоскоростной обработки и получения
+		результатов), многообразие (англ. <i>variety</i>, в смысле возможности одновременной обработки
+		различных типов структурированных и полуструктурированных данных).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Методы анализа</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Методы и техники анализа, применимые к большим данным, выделенные в отчёте McKinsey:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>методы класса Data Mining</i>: обучение
+			ассоциативным правилам (англ. <i>association rule learning</i>), классификация
+			(методы категоризации новых данных на основе принципов, ранее применённых к уже
+			наличествующим данным), кластерный анализ, регрессионный анализ;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>краудсорсинг</i> — категоризация и обогащение
+			данных силами широкого, неопределённого круга лиц, привлечённых на основании публичной оферты,
+			без вступления в трудовые отношения;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>смешение и интеграция данных</i>
+			(англ. <i>data fusion and integration</i>) — набор техник, позволяющих интегрировать
+			разнородные данные из разнообразных источников для возможности глубинного анализа, в
+			качестве примеров таких техник, составляющих этот класс методов приводятся цифровая
+			обработка сигналов и обработка естественного языка (включая тональный анализ);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>машинное обучение</i>, включая обучение
+			с учителем и без учителя, а также Ensemble learning (англ.) — использование моделей,
+			построенных на базе статистического анализа или машинного обучения для получения комплексных
+			прогнозов на основе базовых моделей (англ. <i>constituent models</i>, ср. состатистическим
+			ансамблем в статистической механике);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>искусственные нейронные сети, сетевой анализ,
+			оптимизация</i>, в том числе генетические алгоритмы;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>распознавание образов</i>;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>прогнозная аналитика</i>;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>имитационное моделирование</i>;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>пространственный анализ</i>
+			(англ. <i>Spatial analysis</i>) — класс методов, использующих топологическую, геометрическую
+			и географическую информацию в данных;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>статистический анализ</i>, в качестве примеров методов
+			приводятся A/B-тестирование и анализ временных рядов;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>визуализация аналитических данных</i>
+			— представление информации в виде рисунков, диаграмм, с использованием интерактивных
+			возможностей и анимации как для получения результатов, так и для использования в качестве
+			исходных данных для дальнейшего анализа.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Типовые архитектурные решения BigData для предприятий</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Любое решение Big Data направлено на реализацию конкретной задачи и по–своему
+		уникально. Однако вне зависимости от того, построено ли решение на бесплатных компонентах
+		или на покупных технологиях, его архитектура будет выглядеть одинаково — примерно так:</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture1.jpg" NAME="Рисунок 1" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0><br><br>
+	<FONT SIZE=4><i>Рисунок 1. Архитектура Big Data</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Источники данных</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Информация может попадать в систему хранения <i>Big Data</i> из различных
+		внутренних и внешних источников. Источники могут различаться по типам, объёмам и скоростям
+		предоставления данных. С помощью технологического стека <i>Big Data</i> поступающие данные
+		консолидируются в большие наборы данных (big data sets), также называемые
+		озёрами данных (<i>data lakes</i>).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Можно выделить две основные категории источников данных:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Старого поколения</i> — к ним относятся
+			традиционные виды стандартов и протоколов. Все они характеризуются достаточно высокой
+			плотностью полезной информации, например:</FONT></FONT></P></LI>
+	<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>HTTP веб-вервисы</FONT></FONT></P></LI>
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Реляционные базы данных</FONT></FONT></P></LI>
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Плоские файлы</FONT></FONT></P></LI>
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>XML</FONT></FONT></P></LI>
+	</ul>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Нового поколения</i> — это, как правило, «сырые»
+			типы данных, получение и активное применение которых стало возможно лишь в последние 10 лет.
+			В отличие от старого поколения данные нового поколения отличаются большим разнообразием, объёмом
+			и скоростью поступления. В тоже время доля информации, на основе которой принимаются какие–либо
+			решения, в данных нового поколения гораздо ниже и составляет обычно не более 10%. Примером данных
+			нового поколения могут быть:</FONT></FONT></P></LI>
+	<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Данные, поступающие непрерывным потоком
+				с различных устройств</FONT></FONT></P></LI>
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Записи с колл–центров, в том числе
+				полученные путём распознавания голоса</FONT></FONT></P></LI>
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Данные с GPS устройств, которые
+			требуют высокую скорость обработки</FONT></FONT></P></LI>
+		<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Сообщения и различного рода
+			контент из социальных сетей</FONT></FONT></P></LI>
+	</ul>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Подсистема фильтрации</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Подсистема фильтрации, которая в англоязычной литературе именуется <i>Ingestion Layer</i>,
+		служит вратами для огромного количества данных, попадающих в систему <i>Big Data</i> из различных
+		источников. Основное назначение подсистемы фильтрации — отделить мусор от релевантной информации
+		и, тем самым, подготовить данные для дальнейшей обработки внутри платформы <i>Big Data</i>.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Схема работы подсистемы фильтрации представлена на Рисунке 2.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture2.jpg" NAME="Рисунок 2" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0><br><br>
+	<FONT SIZE=4><i>Рисунок 2. Подсистема фильтрации</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Обработка данных в подсистеме фильтрации предусматривает выполнение следующих процедур:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Идентификация известных форматов данных или назначение
+			форматов по умолчанию для неструктурированных данных</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Фильтрация входящей информации на предмет релевантности
+			для данной организации. Релевантность оценивается на основании системы управления мастер
+			данными (<i>Master Data Management</i>)</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Валидация и анализ данных</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Снижение шума включает очистку данных
+			и минимизацию различных помех</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Трансформация предусматривает при
+			необходимости разбивку наборов данных на составляющие, сведение данных,
+			денормализацию и суммирование</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Сжатие данных уменьшает размер данных без потери
+			результатов предшествующего анализа</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Интеграция обеспечивает выгрузку отфильтрованной
+			информации на уровень хранения Hadoop.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Уровень хранения</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Технологии <i>Big Data</i> предусматривают высокую степень распределения данных на
+		уровне хранения. Распределенная система хранения не только обеспечивает отказоустойчивость,
+		но и позволяет распараллелить обработку данных, что
+		крайне важно при работе с объёмами <i>Big Data</i>.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Ключевой технологией хранения в мире Big Data является <i>Hadoop</i>. <i>Hadoop</i> представляет
+		собой программную среду с открытым исходным кодом, которая обеспечивает распределённое хранение
+		огромных объёмов данных (в масштабе петабайт) на недорогих компьютерах. С помощью <i>Hadoop</i>
+		приложения <i>Big Data</i> взаимодействует с узлами хранения без непосредственного обращения
+		к физическим серверам.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Физический уровень</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Физический уровень представляет собой инфраструктуру для работы уровня хранения.
+		Инфраструктура <i>Big Data</i> масштабируется горизонтально, что с одной стороны обеспечивает
+		высокую надежность, а с другой стороны — дешевизну относительно традиционных вертикально
+		интегрированных решений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Высокая степень горизонтальной интеграции предусматривает применение архитектуры
+		без разделения ресурсов <i>(share-nothing architecture)</i>, когда узлы не имеют общих ресурсов
+		и не конфликтуют за них. В системах <i>Big Data</i> это достигается за счёт того, что данные и
+		функции для управления ими находятся на одном узле.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Уровень приложений</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Уровень приложений, который также называют уровнем платформы,
+		регулирует доступ к данным и управляет запросами. Ключевой технологией
+		на данном уровне является <i>MapReduce</i>.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>MapReduce</i> представляет собой технологию для пакетного выполнения процедур
+		по обработке больших объёмов данных. В независимости от конкретной реализации
+		типовое решение <i>MapReduce</i> работает так:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>при поступлении запроса на обработку данных со
+			стороны клиентского приложения функция <i>Map</i> разделяет исходные данные на куски и распределяет
+			их по узлам системы с учётом требований к балансировке и отказоустойчивости</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>по мере завершения задач на узлах функция
+			Reduce получает результат обработки с каждого куска и объединяет все результаты в один,
+			который и возвращает клиентскому приложению.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>На уровне приложений могут применяться следующие инструменты:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Hive</i> представляет собой Хранилище данных,
+			реализованное под <i>Hadoop. Hive</i> имеет sql–подобный интерфейс и может делать
+			агрегацию для больших объёмов</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><i>Pig</i> — это скриптовый язык программирования,
+			с помощью которого можно разрабатывать задания для MapReduce более эффективным образом, чем
+			на языке Java. Следует отметить, что Pig предназначен для обработки больших наборов данных
+			и на малых объёмах от него не стоит ждать хороших результатов.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>HBase представляет собой NoSQL СУБД,
+			реализованную на основе столбцов. В отличие от аналогов HBase наиболее адаптирована
+			для работы в Hadoop.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Sqoop — это инструмент на базе командной строки,
+			который предназначен для переноса больших объёмов данных из неструктурированного хранилища,
+			в структурированное (например, в реляционную СУБД).</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>ZooKeeper является координатором для различных
+			экземпляров Hadoop. Он обеспечивает синхронизацию и защиту от сбоев
+			для узлов системы.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Уровень мониторинга и информационной безопасности</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Чтобы свести к минимуму время простоя для компонент <i>Big Data</i> и все системы
+		в целом, необходима система мониторинга, реализованная по принципу автономности
+		из своих компонент. Наибольшей популярностью в среде <i>Big Data</i> пользуются системы
+		мониторинга с открытым кодом <i>Ganglia и Nagios</i>.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Что касается безопасности, то организация эффективной системы защиты в
+		распределённой системе <i>Big Data</i> является гораздо более сложной задачей, чем
+		в традиционных системах. Основная трудность заключается в отслеживании всей системы
+		целиком, когда логи формируются на многих узлах, а формирование конечного результата
+		происходит без всякой возможности проверки со стороны пользователя.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В качестве минимальных мер безопасности рекомендуется применять:</FONT></P>
+<ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Проверку подлинности при обращении к узлам системы</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Защищённую связь между узлами</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Шифрование файлов в хранилище</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Сервис доверенных сертификатов</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Распределённое логирование на всех уровнях архитектуры</FONT></P></li>
+</ol>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Проблемы и подходы к масштабированию распределенных систем хранения данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Масштабируемость системы</b> - её способность справляться с увеличением
+		рабочей нагрузки при добавлении ресурсов. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4> Когда дело доходит до любой крупной распределенной системы, размер оказывается
+		всего лишь одним пунктом из целого списка, который необходимо учитывать. Не менее важным
+		являются усилия, направленные на увеличение пропускной способности для обработки больших
+		объемов нагрузки, которая обычно и именуется масштабируемость системы. Масштабируемость
+		может относиться к различным параметрам системы: количество дополнительного трафика, с
+		которым она может справиться, насколько легко нарастить ёмкость запоминающего устройства,
+		или насколько больше других транзакций может быть обработано.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Подходы к масштабированию:</b></FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Вертикальное масштабирование</b> - увеличение
+			производительности каждого компонента системы с целью повышения общей производительности.
+			Масштабируемость в этом контексте означает возможность заменять в существующей системе
+			компоненты более мощными и быстрыми по мере роста требований и развития технологий. Это
+			самый простой способ масштабирования, так как не требует никаких изменений в прикладных
+			программах, работающих на таких системах.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Горизонтальное масштабирование</b>
+			- разбиение системы на более мелкие структурные компоненты и разнесение их по отдельным
+			физическим машинам (или их группам), и (или) увеличение количества серверов, параллельно
+			выполняющих одну и ту же функцию. Масштабируемость в этом контексте означает возможность
+			добавлять к системе новые узлы, серверы, процессоры для увеличения общей производительности.
+			Этот способ масштабирования может требовать внесения изменений в программы, чтобы программы
+			могли в полной мере пользоваться возросшим количеством ресурсов.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Масштабируемость системы может измеряться по трем различным показателям:</b></FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Масштабируемость по размеру</b>.
+			Масштабируемость по размеру определяет легкость подключения дополнительных
+			пользователей и ресурсов. Проблема масштабируемости по размеру заключается в
+			централизации служб, данных и алгоритмов;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Пространственная масштабируемость</b>.
+			Пространственная масштабируемость определяет легкость разнесения пользователей и ресурсов
+			в пространстве. Проблема пространственной масштабируемости заключается в синхронизации
+			процессов;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Административная масштабируемость.</b>
+			Административная масштабируемость определяет легкость в управлении множеством независимых
+			компонент системы. Проблема административной масштабируемости заключается в безопасности
+			доступа к ресурсам.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>К сожалению, система, обладающая масштабируемостью по одному или нескольким
+		из этих параметров, при масштабировании часто дает потерю производительности.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Технологии масштабирования:</b></FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Сокрытие времени</b>
+			ожидания связи при пространственном масштабировании. Основная идея проста:
+			постараться по возможности избежать ожидания ответа на запрос от удаленного
+			сервера.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Распределение</b>. Распределение
+			- это разбиение компонентов ресурсов на мелкие части с последующим
+			разнесением этих частей по системе.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><b>Репликация</b> - создание копий
+			ресурса его владельцем. Проблема репликации заключается в сохранении непротиворечивости
+			копий ресурса. Выделяют два вида репликации: синхронную (данные всегда совпадают) и
+			асинхронную (данные на копиях могут в течение какого-либо промежутка времени различаться)
+			. Асинхронная репликация работает быстрее синхронной, однако при её использовании возникает
+			проблема появления устаревших данных.  Проблема строгой непротиворечивости состоит в том,
+			что изменение в одной из копий должно немедленно распространяться на все остальные. Для
+			обработки ситуаций такого типа обычно требуется механизм глобальной синхронизации. К сожалению,
+			реализовать масштабирование подобных механизмов крайне трудно, а может быть и невозможно. Это
+			означает, что масштабирование путем репликации может включать в себя отдельные не
+			масштабируемые решения.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Видео материалы </FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/8tzCrau5JuE" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/2rnVX0SDs0w" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

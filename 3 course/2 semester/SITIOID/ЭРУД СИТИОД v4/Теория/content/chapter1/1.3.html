@@ -1,0 +1,149 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;172600000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;172600000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><SPAN LANG="be-BY"><B>Эффективные методы и подходы к работе с базами данных и храни-лищами данных</B></SPAN></FONT></P>
+<P STYLE="text-indent: 0.5in; margin-bottom: 0in; line-height: 100%"><BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Хранилище данных</i> содержит <i>непротиворечивые</i> консолидированные исторические данные и
+		предоставляет инструментальные средства для их <i>анализа</i> с целью <i>поддержки</i> принятия стратегических
+		решений. Информационные ресурсы <i>хранилища данных</i> формируются на основе фиксируемых на протяжении
+		продолжительного периода времени моментальных снимков баз данных оперативной <i>информационной
+			системы</i> и, возможно, различных внешних источников. В хранилищах данных применяются технологии
+		баз данных, <i>OLAP</i>, глубинного <i>анализа данных, визуализации</i> данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Основные характеристики хранилищ данных.</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P></P>
+		<FONT SIZE=4>содержит исторические данные;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>хранит подробные сведения, а также частично и полностью обобщенные данные;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>данные в основном являются статическими;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>нерегламентированный, неструктурированный и эвристический способ обработки данных;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>средняя и низкая интенсивность обработки <i>транзакций</i>;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>непредсказуемый способ использования данных;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>предназначено для проведения <i>анализа</i>;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>ориентировано на <i>предметные области;</i></FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4><i>поддержка</i> принятия стратегических решений;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>обслуживает относительно малое количество работников руководящего звена.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>ДИЗАЙН ХРАНИЛИЩ ДАННЫХ</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Существуют два архитектурных направления — нормализованные хранилища данных
+		и хранилища с измерениями.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В нормализованных хранилищах, данные находятся в предметно ориентированных таблицах
+		третьей нормальной формы. Нормализованные хранилища характеризуются как простые в создании и
+		управлении, недостатки нормализованных хранилищ — большое количество таблиц как следствие
+		нормализации, из-за чего для получения какой-либо информации нужно делать выборку из многих
+		таблиц одновременно, что приводит к ухудшению производительности системы. Для решения этой проблемы
+		используются денормализованные таблицы — витрины данных, на основе которых уже выводятся отчетные
+		формы. При громадных объемах данных могут использовать несколько уровней «витрин»/«хранилищ».</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Хранилища с измерениями используют схему «звезда» или схему «снежинка».
+		При этом в центре «звезды» находятся данные (таблица фактов), а измерения образуют лучи
+		звезды. Различные таблицы фактов совместно используют таблицы измерений, что значительно
+		облегчает операции объединения данных из нескольких предметных таблиц фактов (пример —
+		факты продаж и поставок товара). Таблицы данных и соответствующие измерения образуют архитектуру
+		«шина». Измерения часто создаются в третьей нормальной форме, в том числе, для протоколирования
+		изменения в измерениях. Основным достоинством хранилищ с измерениями является простота и понятность
+		для разработчиков и пользователей, также, благодаря более эффективному хранению данных и
+		формализованным измерениям, облегчается и ускоряется доступ к данным, особенно при сложных анализах.
+		Основным недостатком является более сложные процедуры подготовки и загрузки данных, а также управление
+		и изменение измерений данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>При достаточно большом объеме данных схемы «звезда» и «снежинка» также дают снижение
+		производительности при соединениях с измерениями.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>ПРОЦЕССЫ РАБОТЫ С ДАННЫМИ .</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Источниками данных могут быть:</FONT></P>
+<ol>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Традиционные системы регистрации операций</FONT></P>
+	</li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Отдельные документы</FONT></P>
+	</li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Наборы данных</FONT></P>
+	</li>
+</ol>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Операции с данными:</FONT></P>
+<ol>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Извлечение — перемещение информации от источников данных в отдельную БД, приведение их
+			к единому формату.</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Преобразование — подготовка информации к хранению в оптимальной форме для реализации
+			запроса, необходимого для принятия решений.</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Загрузка — помещение данных в хранилище, производится атомарно, путем добавления
+			новых фактов или корректировкой существующих.</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Анализ — OLAP, Data Mining, сводные отчёты.</FONT></P></li>
+	<li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<FONT SIZE=4>Представление результатов анализа.</FONT></P></li>
+</ol>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Вся эта информация используется в словаре метаданных. В словарь метаданных автоматически
+		включаются словари источников данных. Здесь же описаны форматы данных для их последующего согласования,
+		периодичность пополнения данных, согласованность во времени.Задача словаря метаданных состоит в том,
+		чтобы освободить разработчика от необходимости стандартизировать источники данных.Создание хранилищ
+		данных не должно противоречить действующим системам сбора и обработки информации.Специальные компоненты
+		словарей должны обеспечивать своевременное извлечение данных из них и обеспечить преобразование данных
+		к единому формату на основе словаря метаданных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Логическая структура данных хранилища данных существенно отличается от структуры данных
+		источников данных. Для разработки эффективного процесса преобразования необходима хорошо проработанная
+		модель корпоративных данных и модель технологии принятия решений.Данные для пользователя удобно
+		представлять в многоразмерных БД, где в качестве измерений могут выступать время, цена или
+		географический регион.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Кроме извлечения данных из БД, для принятия решений важен процесс извлечения знаний,
+		в соответствии с информационными потребностями пользователя. С точки зрения пользователя в
+		процессе извлечения знаний из БД должны решаться следующие преобразования: данные → информация
+		→ знания → полученные решения.</FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        Видео материалы</p>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/VrG6wiKiW4A" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/DffOEbxr9fI" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

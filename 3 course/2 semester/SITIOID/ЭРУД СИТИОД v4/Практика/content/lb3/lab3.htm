@@ -1,0 +1,127 @@
+﻿<html>
+   <head></head>
+   <body>
+      <h1>Лабораторная работа №3 Построение хранилища данных</h1>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><br></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><b>Задание.</b></FONT></P>
+      <ol CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>Скопировать xml схему (AverageMemoryUsage.xml) в папку Olap (ее нужно создать) в D:\SpagoBI\SpagoBI-Server-5.0_RC-27062014\resources\</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>Загрузить SpagoBIServer и выполнить три следующие пункта. </FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере нужно прописать в Functionalities Management папку, где будет лежать проект.</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере в Resources и там в Mondrian schemas catalog прописать мондриан-схему (там в Opload загрузить файл AverageMemoryUsage.xml и сохранить ее).</FONT></P></li>
+         <li><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+            <FONT SIZE=4>На сервере в Documents Development добавить (смотреть справа) Create Document и там Generic Document. После заполнения полей НУЖНО сохранить, тогда внизу появится Built tamplate, там нажать, появится возможность выбрать куб. Его выбираю и смотрю данные.</FONT></P></li>
+      </ol>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4><b>Ход выполнения</b></FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Сперва создадим или возьмём готовые xml-файлы AverageMemoryUsage и ShemmaStoreSales как на рисунках 1 и 2.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture1.jpg" NAME="Рисунок 1" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 1.  xml-файл AverageMemoryUsage</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture2.jpg" NAME="Рисунок 2" ALIGN=BOTTOM WIDTH=410 HEIGHT=200 BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 2.  xml-файл ShemmaStoreSales</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После этого необходимо в папке с сервером найти папку resources, в которой самостоятельно завести папку Olap, как на рисунке 3.
+         </FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture3.jpg" NAME="Рисунок 3" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 3.  Создание папки с Olap-ресурсами</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Далее необходимо найти папку webapps/SpagoBIJPivotEngine/WEB-INF/classes (рисунок 4) и отредактировать файл engine-config, добавив в него описание ресурсов xml, как показано на рисунке 5.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture4.jpg" NAME="Рисунок 4" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 4.  Расположение конфигурационного файла engine-config</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture5.jpg" NAME="Рисунок 5" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 5.  Описание xml-схем в конфигурационном файле</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь нам необходимо подключиться к рабочему серверу SpagoBI. Для этого введём в браузере адрес http://localhost:8080/SpagoBI/, после чего введём в качетсве логина и пароля значения biadmin, как на рисунке 6.</FONT></P>
+
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture6.jpg" NAME="Рисунок 6" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 6.  Авторизация на сервере SpagoBI</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После авторизации попадём на главную страницу, как на рисунке 7.</FONT></P>
+
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture7.jpg" NAME="Рисунок 7" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 7. Главная страница SpagoBI</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь нам необходимо создать DataSource. Для этого найдём пункт меню Resources->DataSource (рисунок 8). </FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture8.jpg" NAME="Рисунок 8" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 8.  Пункт меню DataSource</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Перейдём непосредственно к созданию DataSource. В появившемся окне нажмём зелёную кнопку Add И заполним поля формы, как показано на рисунке 9, т.е. укажем Label, Description, Dialect, тип взаимодействия – Read and Write, тип соединения JDBC, URL, User, Passqord, Driver. После заполнения полей не забудьте сохранить изменения при помощи кнопки в правом верхнем углу.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture9.jpg" NAME="Рисунок 9" ALIGN=BOTTOM BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 9.  Создание DataSource</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После этого необходимо подгрузить в систему xml-схемы, с которыми мы работали ранее. Для этого в том же меню Resources необходимо выбрать пункт Mondrian Schemas catalog, как на рисунке 10, а в нём выбрать нужные схемы, как на рисунке 11. Выбор схем аналогичен для 1 и 2 xml-файла.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture10.jpg" NAME="Рисунок 10" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 10.  Пункт меню Mondrian Schemas catalog</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture11.jpg" NAME="Рисунок 11" ALIGN=BOTTOM BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 11.  Загрузка xml-схем</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь необходимо добавить папку для будущих документов. Во вкладке Profiling выберем Functionalities management, как на рисунке 12, а затем нужно кликнуть левой кнопкой мыши по Functionalities и выбрать Insert, как на рисунке 13.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture12.jpg" NAME="Рисунок 12" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 12.  Пункт меню Functionalities management</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture13.jpg" NAME="Рисунок 13" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 13.  Добавление папки</FONT></P>
+
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь необходимо заполнить информацию о папке, как на рисунке 14. Не забудьте выбрать все галочки для администратора и сохранить.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture14.jpg" NAME="Рисунок 14" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 14.  Настройки создания папки </FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Далее через пункт меню Document Development попадём в список наших папок. Найдём созданную папку в дереве папок (рисунок 15) и создадим новый документ в ней (рисунок 16).</FONT></P>
+   </body>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture15.jpg" NAME="Рисунок 15" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 15.  Дерево папок</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture16.jpg" NAME="Рисунок 16" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 16.  Создание документа</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>Теперь надо заполнить параметры документа, как на рисунке 17. Не забудьте при этом проверить папку, в которой будет лежать документ, справа от формы, а также сохранить изменения.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture17.jpg" NAME="Рисунок 17" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 17.  Настройка нового документа</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После этих шагов нужно нажать кнопку TemplateBuild. Если все предыдущие шаги были выполнены корректно, то на экране появятся выпадающие списки со схемой и кубом, а после их заполнения появится сам куб на основе данных, как на рисунке 18.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture18.jpg" NAME="Рисунок 18" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 18.  Куб номер 1.</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Для куба номер 2 необходимо создать документ и настроить его, как на рисунке 19/FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture19.jpg" NAME="Рисунок 19" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 19.  Создание документа для 2го куба</FONT></P>
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+         <FONT SIZE=4>После сохранения документы при условии правильных настроек также появится 2 выпадающих списка. Если их зполнить, то получится куб номер 2, как на рисунке 20.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture20.jpg" NAME="Рисунок 20" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 20.  Куб номер 2</FONT></P>
+   <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+      <FONT SIZE=4>Теперь нажмём на Measures и проставим галочки во всех пунктах, как на рисунке 21. После этого дважды нажмём Ok. Если всё верно, то получится представление, как на рисунке 22.</FONT></P>
+      <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+         <IMG SRC="picture21.jpg" NAME="Рисунок 21" ALIGN=BOTTOM  BORDER=0><br><br>
+         <FONT SIZE=4>Рисунок 21. Заполнение Measures</FONT></P>
+   <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+      <IMG SRC="picture22.jpg" NAME="Рисунок 22" ALIGN=BOTTOM  BORDER=0><br><br>
+      <FONT SIZE=4>Рисунок 22. Представление куба номер 2.</FONT></P>
+   </body>
+</html>

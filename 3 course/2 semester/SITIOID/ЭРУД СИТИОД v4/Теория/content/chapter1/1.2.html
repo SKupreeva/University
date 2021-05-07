@@ -1,0 +1,248 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;172500000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;172600000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><SPAN LANG="be-BY"><B>Многомерный анализ данных</B></SPAN></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Хранилище данных</i> содержит <i>непротиворечивые</i> консолидированные исторические данные и
+		предоставляет инструментальные средства для их <i>анализа</i> с целью <i>поддержки</i> принятия стратегических
+		решений. Информационные ресурсы <i>хранилища данных</i> формируются на основе фиксируемых на протяжении
+		продолжительного периода времени моментальных снимков баз данных оперативной <i>информационной
+		системы</i> и, возможно, различных внешних источников. В хранилищах данных применяются технологии
+		баз данных, <i>OLAP</i>, глубинного <i>анализа данных, визуализации</i> данных.</FONT></P>
+
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Термин OLAP (On-Line Analytical Processing)</i> служит для описания модели представления
+		данных и соответственно технологии их обработки в хранилищах данных. В <i>OLAP</i> применяется многомерное
+		<i>представление агрегированных</i> данных для обеспечения быстрого доступа к стратегически важной информации
+		в целях углубленного <i>анализа</i>. Приложения <i>OLAP</i> должны обладать следующими основными
+		свойствами:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P></P>
+		<FONT SIZE=4>многомерное <i>представление данных</i>;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4><i>поддержка</i> сложных расчетов;</FONT></P></LI>
+	<LI><P>
+		<FONT SIZE=4>правильный учет <i>фактора</i> времени.</FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Преимущества OLAP:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P>
+		<FONT SIZE=4>повышение <i>производительности</i> производственного персонала, разработчиков <i>прикладных
+			программ</i>. Своевременный доступ к стратегической информации.</FONT></P>
+	</LI>
+	<LI><P>
+		<FONT SIZE=4>предоставление пользователям достаточных
+			возможностей для внесения собственных изменений в схему.</FONT></P>
+	</LI>
+	<LI><P>
+		<FONT SIZE=4>приложения <i>OLAP</i> опираются на <i>хранилища данных</i> и системы <i> OLTP</i>,
+			получая от них актуальные данные, что дает сохранениеконтроля целостности
+			<i>корпоративных данных</i>.</FONT></P>
+	</LI>
+	<LI><P>
+		<FONT SIZE=4>уменьшение нагрузки на системы <i>OLTP</i> и <i>хранилища данных</i>.</FONT></P>
+	</LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Основные элементы и операции OLAP</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В основе OLAP лежит понятие гиперкуба, или многомерного куба данных, в ячейках которого
+		хранятся анализируемые данные.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Факт</b> - это числовая величина которая располагается в ячейках гиперкуба. Один OLAP-куб
+		может обладать одним или несколькими показателями.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Измерение (dimension)</b> - это <i>множество</i> объектов одного или нескольких типов, организованных
+		в виде иерархической структуры и обеспечивающих информационный контекст числового показателя.
+		Измерение принято визуализировать в виде ребрамногомерного куба.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Объекты, совокупность которых и образует измерение, называются членами измерений (<i>members</i>).
+		Члены измерений визуализируют как точки или участи, откладываемые на осях <i>гиперкуба</i>.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Ячейка (cell)</b> - <i>атомарная</i> структура куба, соответствующая полному набору конкретный значений измерений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Иерархия</b> - группировка объектов одного измерения в объекты более высокого уровня.
+		Например - день-месяц-год. <i>Иерархии</i> в измерениях необходимы для возможности <i>агрегации</i> и <i>детализации</i>
+		значений показателей согласно их иерархической структуре.<i>Иерархия</i> целиком основывается на одном измерении
+		и формируется из уровней.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В OLAP-системах поддерживаются следующие базовые операции:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P>
+		<FONT SIZE=4>поворот;</FONT></P>
+	</LI>
+	<LI><P>
+		<FONT SIZE=4><i>проекция</i>. При проекции значения в ячейках, лежащих на оси проекции, суммируются по
+			некоторому предопределенному закону;</FONT></P>
+	</LI>
+	<LI><P>
+		<FONT SIZE=4>раскрытие ( drill-down ). Одно из значений измерения заменяется совокупностью значений
+			из следующего уровня <i>иерархии измерения</i>; соответственно заменяются значения в <i>ячейках
+			гиперкуба</i>;</FONT></P>
+	</LI>
+	<LI><P>
+	<FONT SIZE=4><i>свертка</i> ( roll-up/drill-up ). Операция, обратная раскрытию;</FONT></P>
+	</LI>
+	<LI><P>
+	<FONT SIZE=4><i>сечение</i> ( slice-and-dice ).</FONT></P>
+	</LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Основы многомерного представления данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Сущность многомерного представления данных состоит в следующем. Большинство реальных
+		бизнес-процессов описывается множеством показателей, свойств, атрибутов и т.д. Например, для
+		описания процесса продаж могут понадобиться сведения о наименованиях товаров или их групп, о
+		поставщике и покупателе, о городе, где производились продажи, а также о ценах, количествах
+		проданных товаров и общих суммах. Кроме того, для отслеживания процесса во времени должен быть
+		введен в рассмотрение такой атрибут, как дата. Если собрать всю эту информацию в таблицу, то она
+		окажется сложной для визуального анализа и осмысления. Более того, она может оказаться избыточной:
+		если, например, один и тот же товар продавался в один и тот же день в различных городах, то придется
+		несколько раз повторить одно и то же соответствие «город — товар» с указанием различных суммы и
+		количества. Все это способно окончательно запутать и сбить с толку любого, кто попытается извлечь
+		из такой таблицы полезную информацию с целью анализа текущего состояния продаж и поиска путей
+		оптимизации процесса торговли. Указанные проблемы возникают по одной простой причине: в плоской
+		таблице хранятся многомерные данные.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Проясним суть вопроса с помощью геометрической аналогии. Представьте себе трехмерную фигуру
+		(например, тетраэдр или параллелепипед) и спроецируйте его на плоскость, а затем по полученной
+		плоской проекции попытайтесь оценить форму и размеры исходной объемной фигуры. Сделать это будет
+		трудно: во-первых, потеряна информация об одном измерении, а во-вторых, фигура теперь представлена
+		в совершенно несвойственном ей плоском виде.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Примерно то же самое можно сказать об информации, представленной несколькими рядами данных.
+		Каждый такой ряд (поле таблицы) можно рассматривать как своего рода информационное измерение, и тогда
+		«плоская» таблица может быть интерпретирована как результат преобразования многомерной информационной
+		структуры в совершенно несвойственную ей плоскую форму. Чтобы компенсировать потерю информации от
+		исключения одного или нескольких измерений, приходится усложнять структуру таблицы, а это в большинстве
+		случаев приводит к тому, что разобраться в ней становится очень сложно.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Можно пойти другим путем — выполнить декомпозицию информации в несколько более простых таблиц,
+		связать их некоторым набором отношений и перейти к реляционной модели, которую используют классические
+		базы данных. Однако доказано, что реляционная модель не является оптимальной с точки зрения задач анализа,
+		поскольку предполагает высокую степень нормализации, в результате чего снижается скорость выполнения
+		запросов. Поэтому разработка многомерной модели представления данных, которая реализуется с помощью
+		многомерных кубов, стала естественным шагом.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Замечание</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Не следует пытаться провести геометрическую интерпретацию понятия «многомерный куб», поскольку
+		это просто служебный термин, описывающий метод представления данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Измерения и факты — базовые понятия многомерной модели данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В основе многомерного представления данных лежит их
+		разделение на две группы — измерения и факты.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Измерения — это категориальные атрибуты, наименования и свойства объектов, участвующих
+		в некотором бизнес-процессе. Значениями измерений являются наименования товаров, названия
+		фирм-поставщиков и покупателей, ФИО людей, названия городов и т.д. Измерения могут быть и числовыми,
+		если какой-либо категории (например, наименованию товара) соответствует числовой код, но в любом
+		случае это данные дискретные, то есть принимающие значения из ограниченного набора. Измерения качественно
+		описывают исследуемый бизнес-процесс.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Факты — это данные, количественно описывающие бизнес-процесс, непрерывные по своему характеру,
+		то есть они могут принимать бесконечное множество значений. Примеры фактов — цена товара или изделия,
+		их количество, сумма продаж или закупок, зарплата сотрудников, сумма кредита, страховое
+		вознаграждение и т.д.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Структура многомерного куба</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Многомерный куб можно рассматривать как систему координат, осями которой являются измерения,
+		например Дата, Товар, Покупатель. По осям будут откладываться значения измерений — даты, наименования
+		товаров, названия фирм-покупателей, ФИО физических лиц и т.д.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В такой системе каждому набору значений измерений (например, «дата — товар — покупатель»)
+		будет соответствовать ячейка, в которой можно разместить числовые показатели (то есть факты), связанные
+		с данным набором. Таким образом, между объектами бизнес-процесса и их числовыми характеристиками
+		будет установлена однозначная связь.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Принцип организации многомерного куба поясняется на рис. 5. В ячейке 1 будут располагаться факты,
+		относящиеся к продаже цемента ООО «Спецстрой» 3 ноября, в ячейке 2 — к продаже плит ЗАО «Пирамида» 6 ноября,
+		а в ячейке 3 — к продаже плит ООО «Спецстрой» 4 ноября.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.49in; margin-top: 0.08in; margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="page1.jpg" ALIGN=BOTTOM><FONT SIZE=4><I>,</I></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Рис. 5. Принцип организации многомерного куба</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Многомерный взгляд на измерения Дата, Товар и Покупатель представлен на рис. 6. Фактами
+		в данном случае могут быть Цена, Количество, Сумма. Тогда выделенный сегмент будет содержать информацию
+		 о том, сколько плит, на какую сумму и по какой цене приобрела фирма ЗАО «Строитель» 3 ноября.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.49in; margin-top: 0.08in; margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="page2.jpg" ALIGN=BOTTOM><FONT SIZE=4><I>,</I></FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><i>Рис. 6. Измерения и факты в многомерном кубе</i></FONT></P>
+
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Таким образом, информация в многомерном хранилище данных является логически целостной.
+		Это уже не просто наборы строковых и числовых значений, которые в случае реляционной модели нужно
+		получать из различных таблиц, а целостные структуры типа «кому, что и в каком количестве было продано
+		на данный момент времени». Преимущества многомерного подхода очевидны.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>1)  Представление данных в виде многомерных кубов более наглядно, чем совокупность нормализованных
+		таблиц реляционной модели, структуру которой представляет только администратор БД.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>2)  Возможности построения аналитических запросов к системе, использующей МХД, более широки.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>3)  В некоторых случаях использование многомерной модели позволяет значительно уменьшить
+		продолжительность поиска в MDX, обеспечивая выполнение аналитических запросов практически в режиме
+		реального времени. Это связано с тем, что агрегированные данные вычисляются предварительно и хранятся
+		в многомерных кубах вместе с детализированными, поэтому тратить время на вычисление агрегатов
+		при выполнении запроса уже не нужно.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В принципе, OLAP-куб может быть реализован и с помощью обычной реляционной модели. В этом
+		случае имеет место эмуляция многомерного представления совокупностью плоских таблиц. Такие системы
+		получили название ROLAP — Relational OLAP.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Использование многомерной модели данных сопряжено с определенными трудностями. Так, для ее
+		реализации требуется больший объем памяти. Это связано с тем, что при реализации физической
+		многомерности используется большое количество технической информации, поэтому объем данных, который
+		может поддерживаться МХД, обычно не превышает нескольких десятков гигабайт. Кроме того, многомерная
+		структура труднее поддается модификации; при необходимости встроить еще одно измерение требуется выполнить
+		физическую перестройку всего многомерного куба. На основании этого можно сделать вывод, что применение
+		систем хранения, в основе которых лежит многомерное представление данных, целесообразно только в тех
+		случаях, когда объем используемых данных сравнительно невелик, а сама многомерная модель имеет стабильный
+		набор измерений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Видео материалы</FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/IhFkNmVmwn4" width="560"></iframe>
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/-o_2BoLD7Ho" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

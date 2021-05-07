@@ -1,0 +1,51 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "AllWorkers";
+}
+
+<h2>Список работников</h2>
+
+<table>
+    <tr>
+        <th>Имя работника</th>
+        <th>Фамилия работника</th>
+        <th>Должность</th>
+        <th>Офис</th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <p>No Workers!</p>}
+    @foreach (var item in Model.workers)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.position)
+                </td>
+                <td>
+                    @{
+                        Office office = Model.offices.FirstOrDefault(i => i.id == item.officeId);
+                        if (office != null)
+                        {
+                            @office.name
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+                </td>
+            </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Назад", "Index")
+</p>

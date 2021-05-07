@@ -1,0 +1,53 @@
+{
+  "tickets": [
+    {
+      "number": 1,
+      "depart": "London",
+      "arrive": "Moscow",
+      "price": 430,
+      "class": "tourist"
+    },
+    {
+      "number": 2,
+      "depart": "Minsk",
+      "arrive": "Paris",
+      "price": 230,
+      "class": "business"
+    },
+    {
+      "number": 3,
+      "depart": "Sochi",
+      "arrive": "Seul",
+      "price": 320,
+      "class": "first"
+    },
+    {
+      "number": 4,
+      "depart": "Paris",
+      "arrive": "Krakow",
+      "price": 750,
+      "class": "first"
+    },
+    {
+      "number": 5,
+      "depart": "Moscow",
+      "arrive": "Minsk",
+      "price": 120,
+      "class": "tourist"
+    },
+    {
+      "number": 6,
+      "depart": "Berlin",
+      "arrive": "London",
+      "price": 210,
+      "class": "tourist"
+    },
+    {
+      "number": 7,
+      "depart": "Moscow",
+      "arrive": "Berlin",
+      "price": 410,
+      "class": "business"
+    }
+  ]
+}

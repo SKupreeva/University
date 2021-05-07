@@ -1,0 +1,37 @@
+mongod: launch
+
+mongo:
+use logs
+
+mongoimport: 
+mongoimport -d logs -c logs --type csv --headerline --file C:\data\files\logs.csv
+
+mongo: 
+db.logs.find()
+
+requests:
+db.logs.find({},{URL:1,_id:0}).sort({URL:1})
+db.logs.find({URL: 2},{IP:1,_id:0}).sort({IP:1})
+db.logs.find({timeStamp: "12:38"},{URL:1,_id:0}).sort({URL:1})
+db.logs.find({IP: 1},{URL:1,_id:0}).sort({URL:1})
+
+mapReduce:
+var map1 = function() { emit(this.URL, this.timeSpent);};
+var reduce1 = function(keyURL, timeValues) { return Array.sum(timeValues);};
+db.logs.mapReduce(map1,reduce1,{out:"map_reduce1"})
+db.map_reduce1.find().sort({_id: 1})
+
+var map2 = function() { emit(this.URL, 1); };
+var reduce2 = function(keyURL, IPValue) { return Array.sum(IPValue);};
+db.logs.mapReduce(map2,reduce2,{out:"map_reduce2"})
+db.map_reduce2.find().sort({_id: 1})
+
+var map3 = function() { emit(this.URL, 1); if ( this.timeStamp>= this.timeStamp && this.timeStamp <= this.timeStamp) emit(this.timeStamp, 1); };
+var reduce3 = function(keyURL, IPValue) { return Array.sum(IPValue);};
+db.logs.mapReduce(map3,reduce3,{out:"map_reduce3"})
+db.map_reduce3.find().sort({_id: -1})
+
+var map4 = function() { emit({ip: this.IP, url: this.URL}, {totalCount: 1, totalDuration: this.timeSpent}); };
+var reduce4 = function(keyURL, IPValue) { var totalCount = 0; var totalDuration = 0; for (var i in IPValue) { totalCount += IPValue[i].totalCount; totalDuration += IPValue[i].totalDuration;} return {totalCount: totalCount, totalDuration: totalDuration};};
+db.logs.mapReduce(map4,reduce4,{out:"map_reduce4"})
+db.map_reduce4.find().sort({url: -1, totalCount: -1, totalDuration: -1})

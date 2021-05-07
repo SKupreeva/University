@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?xml-stylesheet href="goods.xsl" type="text/xsl"?>
+<patients>
+    <patient ID="1">
+        <name>Aldous</name>
+        <surname>Pitts</surname>
+        <diagnosis>anaemia</diagnosis>
+        <roomNumber>34</roomNumber>
+    </patient>
+    <patient ID="2">
+        <name>William</name>
+        <surname>Morton</surname>
+        <diagnosis>migraine</diagnosis>
+        <roomNumber>26</roomNumber>
+    </patient>
+    <patient ID="3">
+        <name>Muriel</name>
+        <surname>Evans</surname>
+        <diagnosis>tuberculosis</diagnosis>
+        <roomNumber>13</roomNumber>
+    </patient>
+    <patient ID="4">
+        <name>Charleen</name>
+        <surname>Ferguson</surname>
+        <diagnosis>pneumonia</diagnosis>
+        <roomNumber>56</roomNumber>
+    </patient>
+    <patient ID="5">
+        <name>Susan</name>
+        <surname>Simpson</surname>
+        <diagnosis>quinsy</diagnosis>
+        <roomNumber>19</roomNumber>
+    </patient>
+    <patient ID="6">
+        <name>Blake</name>
+        <surname>Chapman</surname>
+        <diagnosis>rhinitis</diagnosis>
+        <roomNumber>70</roomNumber>
+    </patient>
+</patients>

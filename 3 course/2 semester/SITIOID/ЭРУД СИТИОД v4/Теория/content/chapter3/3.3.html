@@ -1,0 +1,362 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;174000000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;174100000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.08in; direction: ltr; line-height: 115%; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif }
+		P.cjk { font-family: "Calibri" }
+		P.ctl { font-family: "Times New Roman" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" STYLE="text-indent: 0.5in; margin-bottom: 0in; line-height: 100%">
+<FONT SIZE=4><B>Основные алгоритмы и методы интеллектуального анализа данных</B></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><B>1. Обзор существующих методов</B></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>К методам и алгоритмам Data Mining относятся:</FONT></P>
+<OL>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>искусственные нейронные сети</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>деревья решений, символьные правила</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>методы ближайшего соседа и k-ближайшего соседа</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>метод опорных векторов</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>байесовские сети</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>линейная регрессия</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>корреляционно-регрессионный анализ</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>иерархические методы кластерного анализа</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>неиерархические методы кластерного анализа, в
+			том числе алгоритмы k-средних и k-медианы</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>методы поиска ассоциативных правил, в том числе алгоритм Apriori</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>метод ограниченного перебора</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>эволюционное программирование и генетические алгоритмы</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>разнообразные методы визуализации данных
+			и множество других методов.</FONT></FONT></P>
+</OL>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Большинство аналитических методов, используемые в технологии Data Mining –
+		это известные математические алгоритмы и методы. Новым в их применении является возможность
+		их использования при решении тех или иных конкретных проблем, обусловленная появившимися возможностями
+		технических и программных средств. Следует отметить, что большинство методов Data Mining были
+		разработаны в рамках теории искусственного интеллекта.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Метод представляет собой норму или правило, определенный путь, способ, прием
+		решений задачи теоретического, практического, познавательного, управленческого характера.</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><B>2. Свойства методов Data Mining</B></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Различные методы Data Mining характеризуются определенными свойствами, которые могут
+		быть определяющими при выборе метода анализа данных. Методы можно сравнивать между собой,
+		оценивая характеристики их свойств.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Основные свойства и характеристики методов Data Mining: точность, масштабируемость,
+		интерпретируемость, проверяемость, трудоемкость, гибкость, быстрота и популярность.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Масштабируемость – свойство вычислительной системы, которое обеспечивает предсказуемый
+		рост системных характеристик, например, быстроты реакции, общей производительности и пр., при
+		добавлении к ней вычислительных ресурсов.</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><B>3. Классификация методов<br><br>
+		3.1. Работа с данными
+	</B></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Все методы Data Mining можно разделить на две большие группы по принципу работы с
+		исходными обучающими данными. В этой классификации верхний уровень определяется на основании
+		того, сохраняются ли данные после Data Mining либо они дистиллируются для последующего
+		использования.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Непосредственное использование данных, или сохранение данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В этом случае исходные данные хранятся в явном детализированном виде и непосредственно
+		используются на стадиях прогностического моделирования и/или анализа исключений. Проблема
+		этой группы методов – при их использовании могут возникнуть сложности анализа сверхбольших
+		баз данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Выявление и использование формализованных закономерностей, или дистилляция шаблонов</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>При технологии дистилляции шаблонов один образец (шаблон) информации извлекается
+		из исходных данных и преобразуется в некие формальные конструкции, вид которых зависит от
+		используемого метода Data Mining. Этот процесс выполняется на стадии свободного поиска, у
+		первой же группы методов данная стадия в принципе отсутствует. На стадиях прогностического
+		моделирования и анализа исключений используются результаты стадии свободного поиска, они
+		значительно компактнее самих баз данных. Конструкции этих моделей могут быть трактуемыми
+		аналитиком либо не трактуемыми (“черными ящиками”).<br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Логические методы</b>, или методы логической индукции, включают: нечеткие запросы
+		и анализы; символьные правила; деревья решений; генетические алгоритмы.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Методы этой группы являются, пожалуй, наиболее интерпретируемыми – они оформляют найденные
+		закономерности, в большинстве случаев, в достаточно прозрачном виде с точки зрения пользователя.
+		Полученные правила могут включать непрерывные и дискретные переменные. Следует заметить, что
+		деревья решений могут быть легко преобразованы в наборы символьных правил путем генерации одного
+		правила по пути от корня дерева до его терминальной вершины. Деревья решений и правила фактически
+		являются разными способами решения одной задачи и отличаются лишь по своим возможностям. Кроме
+		того, реализация правил осуществляется более медленными алгоритмами, чем индукция деревьев решений.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Методы кросс-табуляции</b>: агенты, байесовские (доверительные) сети,
+		кросс-табличная визуализация.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Последний метод не совсем отвечает одному из свойств Data Mining – самостоятельному
+		поиску закономерностей аналитической системой. Однако предоставление информации в виде кросс-таблиц
+		обеспечивает реализацию основной задачи Data Mining – поиск шаблонов, поэтому этот метод можно также
+		считать одним из методов Data Mining.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Методы на основе уравнений</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Методы этой группы выражают выявленные закономерности в виде математических выражений
+		– уравнений. Следовательно, они могут работать лишь с численными переменными, и переменные других
+		типов должны быть закодированы соответствующим образом. Это несколько ограничивает применение
+		методов данной группы, тем не менее, они широко используются при решении различных задач, особенно
+		задач прогнозирования. Данная классификация разделяет все многообразие методов Data Mining на две
+		группы: статистические и кибернетические методы.</FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><B>3.2. Подход к обучению математических моделей</B></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Следует отметить, что существует два подхода отнесения статистических методов к
+		Data Mining. Первый из них противопоставляет статистические методы и Data Mining, его сторонники
+		считают классические статистические методы отдельным направлением анализа данных. Согласно
+		второму подходу, статистические методы анализа являются частью математического инструментария
+		Data Mining. Большинство авторитетных источников придерживается второго подхода.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В этой классификации различают две группы методов:</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>1. статистические методы, основанные на использовании усредненного накопленного опыта,
+		который отражен в ретроспективных данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>2. кибернетические методы, включающие множество разнородных математических подходов</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Недостаток такой классификации: и статистические, и кибернетические алгоритмы
+		тем или иным образом опираются на сопоставление статистического опыта с результатами
+		мониторинга текущей ситуации. Преимуществом такой классификации является ее удобство
+		для интерпретации – она используется при описании математических средств современного
+		подхода к извлечению знаний из массивов исходных наблюдений (оперативных и ретроспективных),
+		т.е. в задачах Data Mining.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Статистические методы Data Mining</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В эти методы представляют собой четыре взаимосвязанных раздела:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>предварительный анализ природы статистических данных
+			(проверка гипотез стационарности, нормальности, независимости, однородности, оценка вида функции
+			распределения, ее параметров и т.п.);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>выявление связей и закономерностей (линейный и
+			нелинейный регрессионный анализ, корреляционный анализ и др.);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>многомерный статистический анализ (линейный и нелинейный
+			дискриминантный анализ, кластерный анализ, компонентный анализ, факторный анализ и др.);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>динамические модели и прогноз на основе временных рядов.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Арсенал статистических методов Data Mining классифицирован на четыре группы методов:</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture1.jpg" NAME="Рисунок 4" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Кибернетические методы Data Mining</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Второе направление Data Mining – это множество подходов, объединенных идеей компьютерной
+		математики и использования теории искусственного интеллекта.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture2.jpg" NAME="Рисунок 2" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><B>3.3 Классификация по задачам</B></FONT></P>
+<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Методы Data Mining также можно классифицировать по задачам Data Mining. В соответствии
+		с такой классификацией выделяем две группы. Первая из них – это подразделение методов Data Mining
+		на решающие задачи сегментации (т.е. задачи классификации и кластеризации) и задачи прогнозирования.
+		В соответствии со второй классификацией по задачам методы Data Mining могут быть направлены на
+		получение описательных и прогнозирующих результатов.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Описательные методы</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Описательные методы служат для нахождения шаблонов или образцов, описывающих данные,
+		которые поддаются интерпретации с точки зрения аналитика.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture3.jpg" NAME="Рисунок 3" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Прогнозирующие методы</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Прогнозирующие методы используют значения одних переменных для предсказания/прогнозирования
+		неизвестных (пропущенных) или будущих значений других (целевых) переменных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+		<BR>
+	</P>
+		<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+			<FONT SIZE=4><B>4. Задача классификации, алгоритмы реализации</B></FONT></P>
+		<P CLASS="western" STYLE="margin-left: 0.49in; margin-bottom: 0in; line-height: 100%">
+			<BR>
+		</P></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Задача классификации – одна из наиболее распространенных задач в анализе данных и
+		распознавании образов. Для решения этой задачи требуется создание классифицирующей функции,
+		которая присваивает каждому набору входных атрибутов значение метки одного из классов.
+		Классификация входных значений производится после прохождения этапа «обучения», в процессе
+		которого на вход обучающего алгоритма подаются входные данные с уже приписанными им значениями классов.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>На сегодняшний день разработано большое число подходов к решению задач
+		классификации, использующие такие алгоритмы как:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>деревья решений;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>нейронные сети;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>логистическая регрессия;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>метод опорных векторов;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>дискриминантный анализ;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>ассоциативные правила.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Одним из эффективных алгоритмов классификации является так называемый «наивный»
+		(упрощенный) алгоритм Байеса. Точность классификации, осуществляемой «наивным» алгоритмом Байеса,
+		сравнима с точностью всех приведенных выше алгоритмов. С точки зрения быстроты обучения,
+		стабильности на различных данных и простоты реализации, «наивный» алгоритм Байеса превосходит
+		практически все известные эффективные алгоритмы классификации.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Обучение алгоритма производится путем определения относительных частот значений всех атрибутов
+		входных данных при фиксированных значениях атрибутов класса. Классификация осуществляется путем
+		применения правила Байеса для вычисления условной вероятности каждого класса для вектора входных
+		атрибутов. Входной вектор приписывается классу, условная вероятность которого при данном значении
+		входных атрибутов максимальна. «Наивность» алгоритма заключается в предположении, что входные атрибуты
+		условно (для каждого значения класса) независимы друг от друга, т.е. <IMG SRC="picture4.jpg" ALIGN=BOTTOM>
+		для всех атрибутов Xi, Xj и	значений класса C. Это предположение является очень сильным, и,
+		во многих случаях неправомерным, что делает факт эффективности классификации при помощи
+		«наивного» алгоритма Байес довольно	неожиданным.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В этой связи закономерен поиск таких модификаций в алгоритме, которые ослабили бы
+		предпосылку об условной независимости атрибутов. Модификацией алгоритма, решающей эти проблемы,
+		могут служить так называемые байесовские сети. Байесовской сетью называется направленный граф без
+		циклов, позволяющий представлять совместное распределение случайных переменных. Каждый узел графа
+		представляет случайную переменную, а дуги – прямые зависимости между ними. Более точно, сеть
+		описывает следующие высказывание: каждая переменная зависит только от непосредственных родителей.
+		Таким образом, граф описывает ограничения на зависимость переменных друг от друга, что уменьшает
+		количество параметров совместного распределения. Параметры совместного распределения кодируются
+		в наборе таблиц для каждой переменной в форме условных распределений при условии на значения
+		переменных-родителей. Структура графа и условные распределения узлов при значениях их родителей
+		однозначно описывают совместное распределение всех переменных, что позволяет решать задачу
+		классификации как определение значения переменной класса, максимизирующее ее условную вероятность
+		при заданных значениях входных переменных.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture5.jpg" NAME="Рисунок 5" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0><br><br>
+	<FONT SIZE=4><i>Байесовская сеть</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Очевидно, что «наивный» алгоритм  Байеса является частным случаем байесовской сети,
+		где каждая входная переменная зависит только от переменной класса, которая является
+		единственным корнем графа.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture6.jpg" NAME="Рисунок 6" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0><br><br>
+	<FONT SIZE=4><i>«Наивный» алгоритм Байеса</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Обучение байесовских сетей стало одним из актуальных направлением вычислительной математики
+		и до сих пор является предметов активных исследований. Однако, до сих пор определение структуры
+		байесовской сети в общем виде является сложной задачей как с теоретической, так и с вычислительной
+		точки зрения. Подход в общем виде обладает следующими недостатками:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Вычислительная сложность.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>При попытке учесть большое количество зависимостей
+			между переменными, оценки условных вероятностей приобретают большую дисперсию, так как их
+			совместное появление в данных является маловероятным событием. Таким образом, оценки параметров
+			могут стать недостоверными, что в итоге может приводить к ухудшению качества классификации
+			даже по сравнению с «наивным» алгоритмом Байеса.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Из-за большого количества параметров, модель
+			получается слишком ориентированной на обучающие данные. Это приводит к очень хорошим
+			результатам классификации на обучающих данных и неудовлетворительным результатам на
+			тестовых данных. Т.е. модель описывает не общие закономерности в структуре данных, а
+			скорее набор частных случаев в обучающей выборке.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для решения этих проблем мы будем использовать ограничение на структуру графа
+		и рассматривать такое расширение «наивной» модели Байеса, где каждый узел дополнительно
+		может иметь не более одного родителя среди других входных переменных.</FONT></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 100%">
+	<IMG SRC="picture7.jpg" NAME="Рисунок 7" ALIGN=BOTTOM WIDTH=397 HEIGHT=153 BORDER=0><br><br>
+	<FONT SIZE=4><i>Модифицированный древовидный алгоритм Байеса</i></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4></FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        Видео материалы</p>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/iz665opPBMU" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/CN3jazuiprQ" width="560"></iframe>
+    </p>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I3" allowfullscreen="" frameborder="0" height="315" name="I3" src="https://www.youtube.com/embed/2FRK-iW9JVY" width="560"></iframe>
+        <iframe id="I4" allowfullscreen="" frameborder="0" height="315" name="I4" src="https://www.youtube.com/embed/ZG6aeUlTIs4" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

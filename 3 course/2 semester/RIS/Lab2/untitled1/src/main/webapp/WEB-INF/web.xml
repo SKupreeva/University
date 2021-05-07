@@ -1,0 +1,23 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>ShowTicketByClassServlet</servlet-name>
+    <servlet-class>WebFace.controller.ShowTicketByClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowTicketByClassServlet</servlet-name>
+    <url-pattern>/ShowTicketByClassServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteTicketServlet</servlet-name>
+    <servlet-class>WebFace.controller.DeleteTicketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteTicketServlet</servlet-name>
+    <url-pattern>/DeleteTicketServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

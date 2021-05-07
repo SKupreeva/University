@@ -1,0 +1,215 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;173500000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;173800000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { text-indent: 0.5in; margin-top: 0.25in; margin-bottom: 0in; background: #ffffff; direction: ltr; line-height: 0.29in; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 18pt; so-language: en-US }
+		P.cjk { font-family: "Arial Unicode MS"; font-size: 18pt; so-language: en-US }
+		P.ctl { font-family: "Times New Roman"; font-size: 18pt }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 0.49in; text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4><B>Организация процесса интеллектуального анализа данных.</B></FONT></FONT></P>
+<P LANG="en-US" CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-top: 0in; background: transparent; line-height: 100%">
+<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Постановка задачи</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Первоначально задача ставится следующим образом:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>имеется достаточно крупная база данных;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>предполагается, что в базе данных находятся некие
+			«скрытые знания».</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Необходимо разработать методы обнаружения знаний, скрытых в больших объёмах исходных
+		«сырых» данных. В текущих условиях глобальной конкуренции именно найденные закономерности
+		(знания) могут быть источником дополнительного конкурентного преимущества.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Что означает «скрытые знания»? Это должны быть обязательно знания:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>ранее неизвестные — то есть такие знания, которые должны быть новыми
+			(а не подтверждающими какие-то ранее полученные сведения);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>нетривиальные — то есть такие, которые нельзя просто так увидеть
+			(при непосредственном визуальном анализе данных или при вычислении простых
+			статистических характеристик);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>практически полезные — то есть такие знания, которые представляют
+			ценность для исследователя или потребителя;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>доступные для интерпретации — то есть такие знания, которые легко представить
+			в наглядной для пользователя форме и легко объяснить в терминах предметной области.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Эти требования во многом определяют суть методов Data mining и то, в каком виде
+		и в каком соотношении в технологии Data mining используются системы управления базами
+		данных, статистические методы анализа и методы искусственного интеллекта.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Data mining и базы данных</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Методы Data mining имеет смысл применять только для достаточно больших баз данных.
+		В каждой конкретной области исследований существует свой критерий достаточного размера
+		базы данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Развитие технологий баз данных сначала привело к созданию специализированного языка
+		— языка запросов к базам данных. Для реляционных баз данных — это языкSQL, который
+		предоставил широкие возможности для создания, изменения и извлечения хранимых данных. Затем
+		возникла необходимость в получении аналитической информации (например, информации о деятельности
+		предприятия за определённый период), и тут оказалось, что традиционные реляционные базы данных,
+		хорошо приспособленные, например, для ведения оперативного учёта на предприятии, плохо приспособлены
+		для проведения анализа. Это привело, в свою очередь, к созданию т. н. «хранилищ данных», сама
+		структура которых наилучшим способом соответствует проведению всестороннего математического
+		анализа.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>Data mining и искусственный интеллект</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Знания, добываемые методами Data mining, принято представлять в виде
+		<i>закономерностей (паттернов)</i>. В качестве таких выступают:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>ассоциативные правила;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>деревья решений;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>кластеры;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>математические функции.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Алгоритмы поиска таких закономерностей находятся на пересечении областей:
+		Искусственный интеллект, Математическая статистика, Математическое программирование,
+		Визуализация, OLAP.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Задачи, решаемые методами Data Mining, принято разделять на описательные
+		(англ. <i>descriptive</i>) и предсказательные (англ. <i>predictive</i>).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В описательных задачах самое главное — это дать наглядное описание имеющихся
+		скрытых закономерностей, в то время как в предсказательных задачах на первом плане стоит
+		вопрос о предсказании для тех случаев, для которых данных ещё нет.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>К описательным задачам относятся:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>поиск ассоциативных правил или паттернов (образцов);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>группировка объектов, кластерный анализ;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>построение регрессионной модели.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>К предсказательным задачам относятся:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>классификация объектов (для заранее заданных классов);</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>регрессионный анализ, анализ временны́х рядов.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>АЛГОРИТМЫ ОБУЧЕНИЯ.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для задач классификации характерно «обучение с учителем», при котором построение (обучение)
+		модели производится по выборке, содержащей входные и выходные векторы.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для задач кластеризации и ассоциации применяется «обучение без учителя», при котором
+		построение модели производится по выборке, в которой нет выходного параметра. Значение выходного
+		параметра («относится к кластеру …», «похож на вектор …») подбирается автоматически в
+		процессе обучения.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для задач сокращения описания характерно <i>отсутствие разделения на входные и
+		выходные векторы</i>. Начиная с классических работ К. Пирсона по методу главных компонент,
+		основное внимание уделяется аппроксимации данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>ЭТАПЫ ОБУЧЕНИЯ.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Ряд этапов решения задач методами Data Mining:</FONT></P>
+<OL>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Постановка задачи анализа;</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Сбор данных;</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Подготовка данных (фильтрация, дополнение, кодирование);</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Выбор модели (алгоритма анализа данных);</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Подбор параметров модели и алгоритма обучения;</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Обучение модели (автоматический поиск остальных
+			параметров модели);</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Анализ качества обучения, если неудовлетворительный
+			переход на п. 5 или п. 4;</FONT></FONT></P>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Анализ выявленных закономерностей, если
+			неудовлетворительный переход на п. 1, 4 или 5.</FONT></FONT></P>
+</OL>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>ПОСТАНОВКА ДАННЫХ</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Перед использованием алгоритмов Data Mining необходимо произвести подготовку набора
+		анализируемых данных. Так как ИАД может обнаружить только присутствующие в данных закономерности,
+		исходные данные с одной стороны должны иметь достаточный объём, чтобы эти закономерности в
+		них присутствовали, а с другой — быть достаточно компактными, чтобы анализ занял приемлемое
+		время. Чаще всего в качестве исходных данных выступают хранилища или витрины данных. Подготовка
+		необходима для анализа многомерных данных до кластеризации или интеллектуального анализа данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Далее данные очищаются. Очистка удаляет выборки с шумами и пропущенными данными.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Очищенные данные сводятся к наборам признаков (или векторам, если алгоритм может
+		работать только с векторами фиксированной размерности), один набор признаков на наблюдение.
+		Набор признаков формируется в соответствии с гипотезами о том, какие признаки сырых данных
+		имеют высокую прогнозную силу в расчете на требуемую вычислительную мощность для обработки.
+		Например, черно-белое изображение лица размером 100×100 пикселей содержит 10 тыс. бит сырых
+		данных. Они могут быть преобразованы в вектор признаков путем обнаружения в изображении глаз
+		и рта. В итоге происходит уменьшение объёма данных с 10 тыс. бит до списка кодов положения,
+		значительно уменьшая объём анализируемых данных, а значит и время анализа.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Ряд алгоритмов умеют обрабатывать пропущенные данные, имеющие прогностическую силу
+		(например, отсутствие у клиента покупок определенного вида). Скажем, при использовании метода
+		ассоциативных правил (англ.)русск. обрабатываются не векторы признаков, а наборы переменной
+		размерности.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Выбор целевой функции будет зависеть от того, что является целью анализа; выбор «правильной»
+		функции имеет основополагающее значение для успешного интеллектуального анализа данных.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Наблюдения делятся на две категории — обучающий набор и тестовый набор. Обучающий набор
+		используется для «обучения» алгоритма Data Mining, а тестовый набор — для проверки найденных
+		закономерностей.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Видео материалы</FONT></P>
+    <p align="JUSTIFY" class="western" style="text-indent: 0.49in; line-height: 100%; margin-bottom: 0in">
+        <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/u7jyDXRkxuU" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/xyOS4EkSehY" width="560"></iframe>
+    </p>
+</BODY>
+</HTML>

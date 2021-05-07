@@ -1,0 +1,236 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Nikita Tabalchuk">
+	<META NAME="CREATED" CONTENT="20160511;174700000000000">
+	<META NAME="CHANGEDBY" CONTENT="Nikita Tabalchuk">
+	<META NAME="CHANGED" CONTENT="20160511;174900000000000">
+	<META NAME="AppVersion" CONTENT="15.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-left: 1.18in; margin-right: 0.59in; margin-top: 0.79in; margin-bottom: 0.79in }
+		P { text-indent: 0.5in; margin-top: 0.25in; margin-bottom: 0in; background: #ffffff; direction: ltr; line-height: 0.29in; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Times New Roman", serif; font-size: 18pt; so-language: en-US }
+		P.cjk { font-family: "Arial Unicode MS"; font-size: 18pt; so-language: en-US }
+		P.ctl { font-family: "Times New Roman"; font-size: 18pt }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" DIR="LTR">
+<P STYLE="margin-right: 0.03in; text-indent: 0.43in; margin-top: 0in; line-height: 0.27in"><A NAME="_GoBack"></A>
+<FONT FACE="Calibri, serif"><FONT SIZE=4><B>Свойства ACID для реляционных СУБД, сравнение
+	реляционных СУБД и NoSQL, ключевые особенности NoSQL, архитектура
+	СУБД Cassandra</B></FONT></FONT></P>
+<P STYLE="margin-left: 0.49in; margin-right: 0.03in; text-indent: 0in; margin-top: 0in; line-height: 0.27in">
+<BR>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>1. Свойства ACID  для реляционных СУБД</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Одним из наиболее распространённых наборов свойств к транзакциям
+		и транзакционным системам является набор ACID
+		(Atomicity, Consistency, Isolation, Durability). </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Свойства ACID для реляционной СУБД:</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>1)	<b>Atomicity</b> — Атомарность </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Атомарность гарантирует, что никакая транзакция не будет зафиксирована
+		в системе частично. Будут либо выполнены все её подоперации, либо не выполнено
+		ни одной. Поскольку на практике невозможно одновременно и атомарно выполнить
+		всю последовательность операций внутри транзакции, вводится понятие «отката»
+		(rollback): если транзакцию не удаётся полностью завершить, результаты всех
+		её до сих пор произведённых действий будут отменены и система вернётся в
+		исходное состояние.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>2)	<b>Consistency</b> — Согласованность</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Consistency — транзакции не нарушают согласованность данных, то есть
+		они переводят базу данных из одного корректного состояния в другое.  </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Например, в банковской системе может существовать требование равенства суммы,
+		списываемой с одного счёта, сумме, зачисляемой на другой. Это правило не может быть
+		гарантировано только проверками целостности, его должны соблюсти программисты при
+		написании кода транзакций. Если какая-либо транзакция произведёт списание, но не
+		зачисление, то система останется в некорректном состоянии и свойство согласованности
+		будет нарушено.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В нашем примере, списание и зачисление будут, скорее всего, двумя разными
+		подоперациями и между их выполнением внутри транзакции будет видно несогласованное
+		состояние системы. Однако не нужно забывать, что при выполнении требования изоляции,
+		никаким другим транзакциям эта несогласованность не будет видна. А атомарность гарантирует,
+		что транзакция либо будет полностью завершена, либо ни одна из операций транзакции не будет
+		выполнена. Тем самым эта промежуточная несогласованность является скрытой. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>3)<b>	Isolation</b> — Изолированность</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>События, происходящие внутри транзакции, должны быть скрыты
+		от других одновременно выполняемых транзакций. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>4)	<b>Durability</b> — Надежность (Долговечность)</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Независимо от проблем на нижних уровнях (к примеру, обесточивание системы
+		или сбои в оборудовании) изменения, сделанные успешно завершённой транзакцией, должны
+		остаться сохранёнными после возвращения системы в работу. Другими словами, если
+		пользователь получил подтверждение от системы, что транзакция выполнена, он может
+		быть уверен, что сделанные им изменения не будут отменены из-за какого-либо сбоя.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>2. Сравнение реляционных СУБД и NoSQL</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>NoSQL</b> убирает все ограничения реляционной модели (недостаточная
+		производительность, трудоёмкое горизонтальное масштабирование, недостаточная
+		производительность в кластере) и облегчает средства хранения и доступа к данным.
+		Такие БД используют неструктурированный подход (создание структуры на лету),
+		тем самым снимая ограничения жестких связей и предлагая различные типы доступа
+		к специфическим данным.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Реляционные СУБД используют строго описанные структуры данных
+		- схемы. Схема базы данных включает в себя описание содержания, структуры
+		и ограничений целостности, т.е. она определяет таблицы, поля в каждой таблице,
+		а также отношения между полями и таблицами. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>NoSQL базы данных</b> не работают с реляционными моделями.
+		Существует много различных решений, каждое из которых работает немного
+		по-своему и служит специфической цели. Эти безсхемные решения снимают
+		ограничения с формирования сущностей и допускают хранения данных в виде
+		ключ-значение. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>В отличии от реляционных баз данных, можно группировать коллекции данных
+		с другими NoSQL базами данных, например MongoDB. Такие СУБД хранят данные как одно
+		целое в базе. Такие данные могут представлять собой одиночный объект как JSON и вместе
+		с тем корректно отвечать на запросы к полям. NoSQL базы данных не используют общий
+		формат запроса, такой как SQL в реляционных базах данных. Каждое NoSQL решение использует
+		собственную систему запросов.</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для представления общей картины давайте сравним эти два типа СУБД:</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>3. Ключевые особенности NoSQL</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Проникновение Интернета во все сферы нашей жизни привело к взрывному росту числа
+		источников данных, что привело к проблемам хранения, обработки и сложностям оперирования
+		неструктурированной информацией. В результате коммерческие компании начали разрабатывать
+		новые инструменты — системы NoSQL или хранилища «ключ-значение», позволяющие строить
+		многопользовательские сервисы, предоставляемые по требованию и упрощающие разработку и
+		развертывание приложений. СУБД класса NoSQL необходимы для приложений, имеющих дело с
+		очень большими объемами квазиструктурированных и неструктурированных данных</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Основные особенности программного обеспечения баз данных типа NoSQL:</FONT>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Возможность горизонтального
+			масштабирования данных.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Поддержка более слабых
+			моделей согласованности. </FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Возможность использования
+			гибких схем и моделей данных.</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Поддержка простых
+			низкоуровневых интерфейсов для запросов.</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Все NoSQL СУБД разделяются на несколько категорий:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Key-value stores /
+			Хранилища типа «ключ-значение»</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Column Family (Bigtable) stores /
+			Масштабируемые распределенные хранилища</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Graph Stores / Графовые СУБД</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Document Stores /
+			Документо-ориентированные СУБД</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><b>4. Архитектура СУБД Cassandra</b></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4><br></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Архитектура кластера Cassandra показана на рисунке. Сразу видно, что
+		Cassandra ― распределенная система. Она состоит из нескольких узлов и распределяет
+		данные между этими узлами (или секционирует их по терминологии баз данных).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Для распределения элементов данных по узлам Cassandra использует последовательное хэширование.
+		Проще говоря, Cassandra использует хэш-алгоритм для вычисления хэш-значений ключей каждого элемента данных,
+		хранящегося в Cassandra (имя столбца, ID строки и т.п.). Диапазон хэш-значений или все возможные хэш-значения
+		(т.н. пространство ключей) распределяется между узлами кластера Cassandra. Затем Cassandra назначает каждому
+		элементу данных свой узел, и этот узел отвечает за хранение и управление этим элементом данных. Подробные
+		описание архитектуры Cassandra содержится в документе "Cassandra - A Decentralized Structured Storage System"
+		(Cassandra – децентрализованная структурированная системы хранения данных - см. раздел Ресурсы).</FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Такая архитектура предоставляет следующие возможности:</FONT></P>
+<ul CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 100%">
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Cassandra распределяет данные между узлами
+			прозрачно для пользователей. Любой узел может принимать любой запрос (чтение, запись
+			или удаление), и если данные хранятся не в этом узле, перенаправляет его в нужный
+			узел;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>пользователи могут определить необходимое
+			количество реплик, и Cassandra прозрачно обеспечит создание реплик и управление ими;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>настраиваемая согласованность:
+			при хранении и считывании данных пользователи могут выбирать уровень согласованности
+			по каждой операции. Например, если при записи или чтении используется уровень
+			согласованности «кворум», то данные записываются и считываются более чем из половины
+			узлов кластера. Поддержка настраиваемой согласованности позволяет выбрать уровень
+			согласованности, наиболее подходящий для данного случая;</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Cassandra обеспечивает очень быструю
+			запись, более быструю, чем чтение, со скоростью передачи данных порядка 80-360 МБ/с
+			на узел. Это достигается с помощью двух подходов:</FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Cassandra хранит большую часть данных в оперативной
+			памяти ответственного узла, и любые обновления выполняются в памяти, а затем записываются в
+			постоянную систему хранения (файловую систему) ленивым методом. Однако во избежание потери
+			данных Cassandra регистрирует все транзакции в журнале фиксации транзакций на диске. В
+			отличие от обновления элементов данных на диске, записи в журналы фиксации могут только
+			добавляться, что исключает задержку вращения диска. </FONT></FONT></P></LI>
+	<LI><P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0in; margin-top: 0in; background: transparent; line-height: 100%">
+		<FONT SIZE=2 STYLE="font-size: 11pt"><FONT SIZE=4>Eсли не требуется полная согласованность записей,
+			Cassandra записывает данные в достаточное число узлов без разрешения конфликтов несоответствия,
+			которые разрешаются только при первом считывании. Этот процесс называется
+			«ремонтом при чтении».</FONT></FONT></P></LI>
+</ul>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Результирующая архитектура хорошо масштабируется. Можно
+		построить кластер Cassandra с десятками или сотнями узлов, способный
+		обрабатывать терабайты или петабайты данных. Но распределенные системы
+		имеют свои недостатки, и масштабирование почти никогда не дается даром.
+		Переходя от реляционных баз данных к Cassandra, пользователь может
+		столкнуться со многими сюрпризами. </FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	<FONT SIZE=4>Видео Материалы</FONT></P>
+    <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	    <iframe id="I1" allowfullscreen="" frameborder="0" height="315" name="I1" src="https://www.youtube.com/embed/OAuBJxm_yTU" width="560"></iframe>
+        <iframe id="I2" allowfullscreen="" frameborder="0" height="315" name="I2" src="https://www.youtube.com/embed/g81WRoTNz5k" width="560"></iframe>
+        <iframe id="I3" allowfullscreen="" frameborder="0" height="315" name="I3" src="https://www.youtube.com/embed/i1KAvQ-pw08" width="560"></iframe>
+    </P>
+    <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%">
+	    <iframe id="I4" allowfullscreen="" frameborder="0" height="315" name="I4" src="https://www.youtube.com/embed/N9QllqXI1sE" width="560"></iframe>
+        <iframe id="I5" allowfullscreen="" frameborder="0" height="315" name="I5" src="https://www.youtube.com/embed/B_HTdrTgGNs" width="560"></iframe>
+        <iframe id="I6" allowfullscreen="" frameborder="0" height="315" name="I6" src="https://www.youtube.com/embed/Blrd9BVNZbs" width="560"></iframe>
+    </P>
+</BODY>
+</HTML>

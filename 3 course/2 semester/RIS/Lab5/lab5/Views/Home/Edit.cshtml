@@ -1,0 +1,41 @@
+﻿@model WorkerEntity
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Изменение работника</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Работник</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <p>
+            Имя работника <br />
+            @Html.EditorFor(model => model.name)
+        </p>
+
+        <p>
+            Фамилия работника <br />
+            @Html.EditorFor(model => model.surname)
+        </p>
+
+        <p>
+            Должность  <br />
+            @Html.EditorFor(model => model.position)
+        </p>
+        <p>
+            Офис <br />
+            @Html.DropDownListFor(model => model.officeId, ViewBag.Offices as SelectList)
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Вернуться к списку работников", "Index")
+</div>

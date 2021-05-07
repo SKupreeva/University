@@ -1,0 +1,24 @@
+x <- seq(-pi, pi, 0.1)
+
+plot(x, cos(x),
+main = "y = cosx",
+ylab = "y",
+type = "l",
+col = "blue")
+
+legend("topleft",
+       c("cos(x)"),
+       fill=c("blue"))
+
+x1 <- seq(-pi,pi,0.5)
+
+diag(x1)
+
+n1 <- seq(1,20,1)
+n2 <- seq(2,21,1)
+n3 <- seq(3,22,1)
+n4 <- seq(4,23,1)
+
+a <-23
+b <-156
+solve(a,b)
