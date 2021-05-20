@@ -1,0 +1,27 @@
+﻿@page
+@model BarberShop.Pages.Workplace.EditModel
+@{
+    Layout = "StylistLayout";
+}
+<h2>Редактирование рабочего места</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="workplace.id" />
+    <div class="form-group">
+        <label asp-for="workplace.number" class="control-label">Введите номер</label>
+        <input asp-for="workplace.number" type="number" min="@Model.maxNumber" max="1000" class="form-control"  required/>
+        <span asp-validation-for="workplace.number" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="workplace.stylistId" class="control-label">Выберите стилиста</label>
+        <select asp-for="workplace.stylistId" class="form-control" asp-items="ViewBag.Stylists"></select>
+    </div>
+        <div class="form-group">
+            <input type="submit" value="Редактировать" class="btn btn-primary" />
+        </div>
+        <a asp-page="./Main">Назад</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

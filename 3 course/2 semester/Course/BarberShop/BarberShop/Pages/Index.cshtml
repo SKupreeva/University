@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "_Layout";
+}
+
+<div>
+    <img src="/images/client.jpg" width="500"/> 
+    <img src="/images/stylist.jpg" width="500" />
+</div>
+<br/><br/>
+<table>
+    <tr>
+        <td>
+            <div style="width: 500px">
+                <p>
+                    Уже являетесь нашим клиентом? Тогда <a asp-page="/Client/SignIn">войдите как клиент</a>.<br />
+                    Еще нет аккауна? <a asp-page="/Client/SignUp">Создайте аккаунт клиента</a> прямо сейчас!
+                </p>
+            </div>
+        </td>
+        <td>
+            <div style="width: 500px">
+                <p>
+                    Работаете у нас?<a asp-page="/Stylist/SignIn"> Войдите на сайт как работник</a>. <br />
+                    Не успели завести аккаун? <a asp-page="/Stylist/SignUp">Зарегистрируйтесь</a> прямо сейчас!
+                </p>
+            </div>
+        </td>
+    </tr>
+</table>

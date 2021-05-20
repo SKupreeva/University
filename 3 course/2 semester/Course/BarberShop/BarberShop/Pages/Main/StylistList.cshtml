@@ -1,0 +1,44 @@
+﻿@page
+@model BarberShop.Pages.Main.StylistListModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>Список наших стилистов</h2>
+<div>
+    @if (Model.stylists == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>Логин</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Специализация</th>
+            </tr>
+            @{
+                for (var i = 0; i < Model.stylists.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.stylists[i].username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.stylists[i].firstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.stylists[i].lastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.specialities[i].name)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+
+</div>

@@ -1,0 +1,10 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+@{ if (Model.errorMessage == null)
+    {<h2>Неизвестная ошибка!</h2> }
+    else
+    {<h2>Внимание!<br/>Ошибка - @Model.errorMessage!</h2> }
+}

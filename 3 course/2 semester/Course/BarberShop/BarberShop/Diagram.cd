@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BarberShop.Pages.Client.CreateModel">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQEBAAAAAA=</HashCode>
+      <FileName>Pages\Client\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.DeleteModel">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAEBAAAAAA=</HashCode>
+      <FileName>Pages\Client\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.EditModel">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAEBAAAAAA=</HashCode>
+      <FileName>Pages\Client\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.DisplayModel">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAQAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Client\Display.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.MainModel">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAQAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Client\Main.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.SignInModel">
+    <Position X="4.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAQIQAAAAAAAA=</HashCode>
+      <FileName>Pages\Client\SignIn.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.SignUpModel">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQEBAAAAAA=</HashCode>
+      <FileName>Pages\Client\SignUp.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Client.WelcomeModel">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAIAAAAAAAAAAAAAQAQABAAAAAA=</HashCode>
+      <FileName>Pages\Client\Welcome.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Main.ContactsModel">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Main\Contacts.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Main.InfoModel">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Main\Info.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.Main.StylistListModel">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAEAAAAAAAAAAAIAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Main\StylistList.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.IndexModel">
+    <Position X="1" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAQAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BarberShop.Pages.ErrorModel">
+    <Position X="1" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Error.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

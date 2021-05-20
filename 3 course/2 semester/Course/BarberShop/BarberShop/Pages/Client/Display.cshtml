@@ -1,0 +1,65 @@
+﻿@page
+@model BarberShop.Pages.Client.MainModel
+@{
+    Layout = "ClientLayout";
+}
+
+<h2>Список клиентов</h2>
+<div>
+
+    <form asp-action="./Display" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Поиск по логину: <input type="text" name="login" />
+                <input type="submit" value="Поиск" /> |
+                <a asp-action="./Display">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    <form asp-action="./Display" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Фильтр по логину стилиста: <input type="text" name="stylist" />
+                <input type="submit" value="Фильтр" /> |
+                <a asp-action="./Display">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    @if (Model.clients == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>@Html.ActionLink("Логин", "Display", new { sortOrder = ViewBag.LoginSortParm })</th>
+                <th>Имя</th>
+                <th>@Html.ActionLink("Фамилия", "Display", new { sortOrder = ViewBag.LastNameSortParm })</th>
+                <th>Стилист</th>
+            </tr>
+            @{
+                for (var i = 0; i < Model.clients.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.clients[i].username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.clients[i].firstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.clients[i].lastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.stylists[i].username)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+
+</div>

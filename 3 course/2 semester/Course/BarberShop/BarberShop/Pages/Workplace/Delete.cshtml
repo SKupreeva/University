@@ -1,0 +1,33 @@
+﻿@page
+@model BarberShop.Pages.Workplace.DeleteModel
+@{
+    Layout = "StylistLayout";
+}
+<h1>Удаление рабочего места</h1>
+
+<p class="text-danger">@Model.ErrorMessage</p>
+
+<h3>Вы уверены, что хотите удалить данный объект?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Номер
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.workplace.number)
+        </dd>
+        <dt class="col-sm-2">
+            Стилист
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.workplace.stylist.username)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="workplace.id" />
+        <input type="submit" value="Подтвердить"/> |
+        <a asp-page="./Main">Назад</a>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+﻿@page
+@model BarberShop.Pages.Speciality.DisplayModel
+@{
+    Layout = "ClientLayout";
+}
+
+<h2>Список специальностей</h2>
+
+<div>
+
+    <form asp-action="./Display" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Поиск по названию: <input type="text" name="name" />
+                <input type="submit" value="Поиск" /> |
+                <a asp-action="./Display">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    <form asp-action="./Display" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Фильтр по образованию: <input type="text" name="education" />
+                <input type="submit" value="Фильтр" /> |
+                <a asp-action="./Display">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    @if (Model == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>@Html.ActionLink("Название", "Display", new { sortOrder = ViewBag.NameSortParm })</th>
+                <th>Образование</th>
+                <th>@Html.ActionLink("Опыт работы, лет", "Display", new { sortOrder = ViewBag.ExperienceSortParam })</th>
+            </tr>
+            @{
+                foreach (var m in Model.specialities)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => m.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => m.education)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => m.experience)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+
+</div>

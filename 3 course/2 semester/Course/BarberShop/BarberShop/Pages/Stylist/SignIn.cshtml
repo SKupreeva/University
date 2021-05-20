@@ -1,0 +1,23 @@
+﻿@page
+@model BarberShop.Pages.Stylist.SignInModel
+@{
+    Layout = "_Layout";
+}
+
+<div>Войти в качестве работника:</div>
+
+<form method="POST">
+    <label>Введите логин:</label>
+    <input type="text" name="username"  required/>
+    <label>Введите пароль:</label>
+    <input type="password" name="password"  required/>
+    <input type="submit" asp-page-handler="Submit" value="Войти" />
+</form>
+
+<div>
+    <p><a asp-page="StylistSignUp">Зарегистрироваться</a></p>
+</div>
+
+<div>
+    <p><a asp-page="Index">Назад</a></p>
+</div>

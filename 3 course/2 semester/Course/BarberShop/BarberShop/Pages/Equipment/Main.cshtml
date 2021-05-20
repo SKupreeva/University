@@ -1,0 +1,77 @@
+﻿@page
+@model BarberShop.Pages.Equipment.MainModel
+@{
+    Layout = "StylistLayout";
+}
+
+<h2>Список оборудования</h2>
+<div>
+    <div>
+        <p><a asp-page="Create">Добавить новое оборудование</a></p>
+    </div>
+
+    <form asp-action="./Main" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Поиск по названию: <input type="text" name="name" />
+                <input type="submit" value="Поиск" /> |
+                <a asp-action="./Main">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    <form asp-action="./Main" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Фильтр по номеру рабочего места: <input type="text" name="number" />
+                <input type="submit" value="Фильтр" /> |
+                <a asp-action="./Main">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    @if (Model.workplaces == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>@Html.ActionLink("Название", "Main", new { sortOrder = ViewBag.NameSortParm })</th>
+                <th>Срок службы<br />года</th>
+                <th>Срок использования<br />года</th>
+                <th>@Html.ActionLink("Цена", "Main", new { sortOrder = ViewBag.PriceSortParm })</th>
+                <th>Номер<br />рабочего места</th>
+                <th></th>
+            </tr>
+            @{
+                for (var i = 0; i < Model.equipments.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.equipments[i].name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.equipments[i].serviceLife)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.equipments[i].operatingTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.equipments[i].price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.workplaces[i].number)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@Model.equipments[i].id">Редактировать</a> |
+                            <a asp-page="./Delete" asp-route-id="@Model.equipments[i].id">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+
+</div>

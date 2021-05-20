@@ -1,0 +1,75 @@
+﻿@page
+@model BarberShop.Pages.Client.MainModel
+@{
+    Layout = "StylistLayout";
+}
+
+<h2>Список клиентов</h2>
+<div>
+    <div>
+        <p><a asp-page="Create">Добавить нового клиента</a></p>
+    </div>
+
+    <form asp-action="./Main" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Поиск по логину: <input type="text" name="login" />
+                <input type="submit" value="Поиск" /> |
+                <a asp-action="./Main">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    <form asp-action="./Main" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Фильтр по логину стилиста: <input type="text" name="stylist" />
+                <input type="submit" value="Фильтр" /> |
+                <a asp-action="./Main">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    @if (Model.clients == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>@Html.ActionLink("Логин", "Main", new { sortOrder = ViewBag.LoginSortParm })</th>
+                <th>Имя</th>
+                <th>@Html.ActionLink("Фамилия", "Main", new { sortOrder = ViewBag.LastNameSortParm })</th>
+                <th>Стилист</th>
+                <th></th>
+            </tr>
+            @{
+                for (var i = 0; i < Model.clients.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.clients[i].username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.clients[i].firstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.clients[i].lastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.stylists[i].username)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@Model.clients[i].id">Редактировать</a> |
+                            <a asp-page="./Delete" asp-route-id="@Model.clients[i].id">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+
+    <a asp-page="./Error">Назад</a>
+
+</div>

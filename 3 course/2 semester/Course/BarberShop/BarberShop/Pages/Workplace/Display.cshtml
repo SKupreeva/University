@@ -1,0 +1,58 @@
+﻿@page
+@model BarberShop.Pages.Workplace.DisplayModel
+@{
+    Layout = "ClientLayout";
+}
+
+<h2>Список рабочих мест</h2>
+
+<div>
+
+    <form asp-action="./Display" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Поиск по номеру: <input type="text" name="number" />
+                <input type="submit" value="Поиск" /> |
+                <a asp-action="./Display">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    <form asp-action="./Display" method="post">
+        <div class="form-actions no-color">
+            <p>
+                Фильтр по нику работника: <input type="text" name="username" />
+                <input type="submit" value="Фильтр" /> |
+                <a asp-action="./Display">Вывести полный список</a>
+            </p>
+        </div>
+    </form>
+
+    @if (Model.workplaces == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>@Html.ActionLink("Номер", "Display", new { sortOrder = ViewBag.NumberSortParm })</th>
+                <th>@Html.ActionLink("Ник работника", "Display", new { sortOrder = ViewBag.StylistSortParm })</th>
+            </tr>
+            @{
+                for (var i = 0; i < Model.workplaces.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.workplaces[i].number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.stylists[i].username)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+
+</div>

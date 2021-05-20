@@ -1,0 +1,50 @@
+﻿@page
+@model BarberShop.Pages.Stylist.EditModel
+@{
+    Layout = "StylistLayout";
+}
+<h2>Редактирование информации о стилисте</h2>
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="stylist.id" />
+            <div class="form-group">
+                <label asp-for="stylist.username" class="control-label">Введите логин</label>
+                <input asp-for="stylist.username" type="text" class="form-control"  required/>
+                <span asp-validation-for="stylist.username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stylist.firstName" class="control-label">Введите имя</label>
+                <input asp-for="stylist.firstName" type="text" class="form-control"  required/>
+                <span asp-validation-for="stylist.firstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stylist.lastName" class="control-label">Введите фамилию</label>
+                <input asp-for="stylist.lastName" type="text" class="form-control"  required/>
+                <span asp-validation-for="stylist.lastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stylist.specialityid" class="control-label">Выберите специальность</label>
+                <select asp-for="stylist.specialityid" class="form-control" asp-items="ViewBag.Specialities"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="stylist.password" class="control-label">Введите пароль</label>
+                <input asp-for="stylist.password" type="password" class="form-control"  required/>
+                <span asp-validation-for="stylist.password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Подтвердить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Main">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,39 @@
+﻿@page
+@model BarberShop.Pages.Stylist.WelcomeModel
+@{
+    Layout = "StylistLayout";
+}
+
+<h2>Добро пожаловать!</h2>
+<h4>Ваш профиль</h4>
+
+<div>
+    @if (Model.stylist == null)
+    {
+        <p>Информация не найдена!</p>
+    }
+    else
+    {
+<table>
+    <tr>
+        <th>Логин</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Специализация</th>
+    </tr>
+    <td>
+        @Html.DisplayFor(modelItem => Model.stylist.username)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.stylist.firstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.stylist.lastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.speciality.name)
+    </td>
+</table>
+    }
+
+</div>

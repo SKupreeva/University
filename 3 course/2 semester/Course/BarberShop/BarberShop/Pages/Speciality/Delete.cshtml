@@ -1,0 +1,39 @@
+﻿@page
+@model BarberShop.Pages.Speciality.DeleteModel
+@{
+    Layout = "StylistLayout";
+}
+<h1>Удаление специальности</h1>
+
+<p class="text-danger">@Model.ErrorMessage</p>
+
+<h3>Вы уверены, что хотите удалить данный объект?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Название
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.speciality.name)
+        </dd>
+        <dt class="col-sm-2">
+           Образование
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.speciality.education)
+        </dd>
+        <dt class="col-sm-2">
+            Опыт работы в годах
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.speciality.experience)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="speciality.id" />
+        <input type="submit" value="Подтвердить"/> |
+        <a asp-page="./Main">Назад</a>
+    </form>
+</div>

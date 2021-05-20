@@ -1,0 +1,35 @@
+﻿@page
+@model BarberShop.Pages.Workplace.CreateModel
+@{
+    Layout = "StylistLayout";
+}
+
+<h2>Добавление рабочего места</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="workplace.number" class="control-label">Введите номер</label>
+                <input asp-for="workplace.number" type="number" min="@Model.maxNumber" max="1000" class="form-control"  required/>
+                <span asp-validation-for="workplace.number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="workplace.stylistId" class="control-label">Выберите стилиста</label>
+                <select asp-for="workplace.stylistId" class="form-control" asp-items="ViewBag.Stylists"></select>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Main">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

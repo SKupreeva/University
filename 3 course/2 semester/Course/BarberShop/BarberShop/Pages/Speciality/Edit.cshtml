@@ -1,0 +1,33 @@
+﻿@page
+@model BarberShop.Pages.Speciality.EditModel
+@{
+    Layout = "StylistLayout";
+}
+<h2>Редактирование специальности</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="speciality.id" />
+    <div class="form-group">
+        <label asp-for="speciality.name" class="control-label">Введите название</label>
+        <input asp-for="speciality.name" class="form-control"  required/>
+        <span asp-validation-for="speciality.name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="speciality.education" class="control-label">Введите образование</label>
+        <input asp-for="speciality.education" class="form-control"  required/>
+        <span asp-validation-for="speciality.education" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="speciality.experience" class="control-label">Введите опыт работы в годах</label>
+        <input asp-for="speciality.experience" type="number" min="0" max="100" class="form-control"  required/>
+        <span asp-validation-for="speciality.experience" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Редактировать" class="btn btn-primary" />
+    </div>
+    <a asp-page="./Main">Назад</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

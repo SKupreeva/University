@@ -1,0 +1,50 @@
+﻿@page
+@model BarberShop.Pages.Equipment.CreateModel
+@{
+    Layout = "StylistLayout";
+}
+
+<h2>Добавление оборудования</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input type="hidden" asp-for="equipment.id" />
+            <div class="form-group">
+                <label asp-for="equipment.name" class="control-label">Введите название</label>
+                <input asp-for="equipment.name" type="text" class="form-control"  required/>
+                <span asp-validation-for="equipment.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="equipment.serviceLife" class="control-label">Введите срок службы в годах</label>
+                <input asp-for="equipment.serviceLife" type="number" min="0" max="200000000" class="form-control"  required/>
+                <span asp-validation-for="equipment.serviceLife" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="equipment.operatingTime" class="control-label">Введите срок использования в годах</label>
+                <input asp-for="equipment.operatingTime" type="number" min="0" max="200000000" class="form-control"  required/>
+                <span asp-validation-for="equipment.operatingTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="equipment.price" class="control-label">Введите цену</label>
+                <input asp-for="equipment.price" type="number" min="0" max="200000000" class="form-control"  required/>
+                <span asp-validation-for="equipment.price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="equipment.workplaceId" class="control-label">Выберите рабочее место</label>
+                <select asp-for="equipment.workplaceId" class="form-control" asp-items="ViewBag.Workplaces"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Main">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
