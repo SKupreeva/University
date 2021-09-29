@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ads>
+  <ad>
+    <id>1</id>
+    <region>A</region>
+    <address>Address 1</address>
+    <watchCount>35</watchCount>
+    <price>200</price>
+  </ad>
+  <ad>
+    <id>2</id>
+    <region>C</region>
+    <address>Address 2</address>
+    <watchCount>6</watchCount>
+    <price>300</price>
+  </ad>
+  <ad>
+    <id>3</id>
+    <region>B</region>
+    <address>Address 3</address>
+    <watchCount>23</watchCount>
+    <price>200</price>
+  </ad>
+  <ad>
+    <id>4</id>
+    <region>C</region>
+    <address>Address 4</address>
+    <watchCount>4</watchCount>
+    <price>400</price>
+  </ad>
+  <ad>
+    <id>5</id>
+    <region>B</region>
+    <address>eawgg</address>
+    <watchCount>1</watchCount>
+    <price>456</price>
+  </ad>
+</ads>

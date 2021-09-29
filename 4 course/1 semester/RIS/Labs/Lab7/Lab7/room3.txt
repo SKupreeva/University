@@ -1,0 +1,1 @@
+Room id: 3 Region: B Address: Address 3 Price: 200
